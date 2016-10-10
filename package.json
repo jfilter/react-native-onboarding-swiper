@@ -1,6 +1,6 @@
 {
   "name": "react-native-simple-onboarding",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A simple onboarding component for React Native",
   "main": "index.js",
   "scripts": {
