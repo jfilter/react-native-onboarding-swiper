@@ -36,12 +36,13 @@ import Onboarding from 'react-native-simple-onboarding';
 
 Props:
 
-* `pages`: an array of onboarding pages. A page is an object of shape:
+* `pages` (required): an array of onboarding pages. A page is an object of shape:
   * `backgroundColor` (required): a background color for the page
   * `image` (required): a component instance displayed at the top of the page
   * `title` (required): a string title
   * `subtitle` (required): a string subtitle
-* `onEnd`: a callback that is fired after the onboarding is complete
+* `onEnd` (optional): a callback that is fired after the onboarding is complete
+* `bottomOverlay` (optional): a bool flag indicating whether the bottom bar overlay should be shown. Defaults to `true`.
 
 ## To Do
 

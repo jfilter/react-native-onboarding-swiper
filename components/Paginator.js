@@ -26,8 +26,8 @@ const DoneButton = ({ isLight, size, ...props }) => (
 );
 
 const BUTTON_SIZE = 40;
-const Paginator = ({ isLight, pages, currentPage, onEnd, onNext }) => (
-  <View style={styles.container}>
+const Paginator = ({ isLight, overlay, pages, currentPage, onEnd, onNext }) => (
+  <View style={{ ...styles.container, ...(overlay ? styles.containerOverlay : {}) }}>
     <View style={styles.buttonLeft}>
       {currentPage + 1 !== pages ?
         <SkipButton isLight={isLight} size={BUTTON_SIZE} onPress={onEnd} /> :
@@ -46,12 +46,14 @@ const Paginator = ({ isLight, pages, currentPage, onEnd, onNext }) => (
 
 const styles = {
   container: {
-    backgroundColor: 'rgba(0, 0, 0, 0.1)',
     height: 60,
     paddingHorizontal: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  containerOverlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
   },
   buttonLeft: {
     width: 70,

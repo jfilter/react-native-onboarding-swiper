@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { View, ScrollView, Dimensions, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import tinycolor from 'tinycolor2';
 
 import PageData from './components/PageData';
 import Paginator from './components/Paginator';
 
-export default class Onboarder extends Component {
+export default class Onboarding extends Component {
   constructor() {
     super();
 
@@ -37,7 +37,8 @@ export default class Onboarder extends Component {
 
   render() {
     const { width, height } = Dimensions.get('window');
-    const currentPage = this.props.pages[this.state.currentPage] || this.props.pages[0];
+    const { pages, bottomOverlay } = this.props;
+    const currentPage = pages[this.state.currentPage] || pages[0];
     const { backgroundColor } = currentPage;
     const isLight = tinycolor(backgroundColor).getBrightness() > 180;
 
@@ -51,7 +52,7 @@ export default class Onboarder extends Component {
           onScroll={this.updatePosition}
           scrollEventThrottle={100}
         >
-          {this.props.pages.map(({ image, title, subtitle }, idx) => (
+          {pages.map(({ image, title, subtitle }, idx) => (
             <PageData
               key={idx}
               isLight={isLight}
@@ -65,7 +66,8 @@ export default class Onboarder extends Component {
         </ScrollView>
         <Paginator
           isLight={isLight}
-          pages={this.props.pages.length}
+          overlay={bottomOverlay}
+          pages={pages.length}
           currentPage={this.state.currentPage}
           onEnd={this.props.onEnd}
           onNext={this.goNext}
@@ -75,3 +77,16 @@ export default class Onboarder extends Component {
   }
 }
 
+Onboarding.propTypes = {
+  pages: PropTypes.arrayOf(PropTypes.shape({
+    backgroundColor: PropTypes.string.isRequired,
+    image: PropTypes.element.isRequired,
+    title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string.isRequired,
+  })).isRequired,
+  bottomOverlay: PropTypes.bool,
+};
+
+Onboarding.defaultProps = {
+  bottomOverlay: true,
+};
