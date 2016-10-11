@@ -5,19 +5,23 @@ const PageCheckmark = ({ style }) => (
   <Text style={{ ...styles.element, ...styles.elementCheck, ...style }}>✓</Text>
 );
 
-const PageDot = ({ selected }) => (
+const PageDot = ({ isLight, selected }) => (
   <View
-    style={{ ...styles.element, ...styles.elementDot, backgroundColor: selected ? '#fff' : 'rgba(255, 255, 255, 0.5)' }}
+    style={{
+      ...styles.element,
+      ...styles.elementDot,
+      backgroundColor: isLight ? (selected ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.3)') : (selected ? '#fff' : 'rgba(255, 255, 255, 0.5)'),
+    }}
   />
 );
 
-const PageDots = ({ pages, currentPage }) => (
+const PageDots = ({ isLight, pages, currentPage }) => (
   <View style={styles.container}>
     <PageCheckmark style={{ color: 'rgba(255, 255, 255, 0)' }} />
     {Array.from(new Array(pages), (x, i) => i).map(page => (
-      <PageDot key={page} selected={page === currentPage} />
+      <PageDot key={page} selected={page === currentPage} isLight={isLight} />
     ))}
-    <PageCheckmark style={{ color: 'rgba(255, 255, 255, 0.5)' }} />
+    <PageCheckmark style={{ color: isLight ? 'rgba(0, 0, 0, 0.3)' : 'rgba(255, 255, 255, 0.5)' }} />
   </View>
 );
 

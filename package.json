@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/goshakkk/react-native-simple-onboarding/issues"
   },
-  "homepage": "https://github.com/goshakkk/react-native-simple-onboarding#readme"
+  "homepage": "https://github.com/goshakkk/react-native-simple-onboarding#readme",
+  "dependencies": {
+    "tinycolor2": "^1.4.1"
+  }
 }

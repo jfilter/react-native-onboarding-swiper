@@ -15,16 +15,16 @@ const PageContent = ({ children }) => (
   </View>
 );
 
-const PageData = ({ image, title, subtitle, ...rest }) => (
+const PageData = ({ isLight, image, title, subtitle, ...rest }) => (
   <Page {...rest}>
     <PageContent>
       <View style={styles.image}>
         {image}
       </View>
-      <Text style={styles.title}>
+      <Text style={{ ...styles.title, ...(isLight ? styles.titleLight : {}) }}>
         {title}
       </Text>
-      <Text style={styles.subtitle}>
+      <Text style={{ ...styles.subtitle, ...(isLight ? styles.subtitleLight : {}) }}>
         {subtitle}
       </Text>
     </PageContent>
@@ -49,10 +49,16 @@ const styles = {
     color: '#fff',
     paddingBottom: 15,
   },
+  titleLight: {
+    color: '#000',
+  },
   subtitle: {
     textAlign: 'center',
     fontSize: 16,
     color: 'rgba(255, 255, 255, 0.7)',
+  },
+  subtitleLight: {
+    color: 'rgba(0, 0, 0, 0.7)',
   },
 };
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Dimensions, Text, TouchableOpacity } from 'react-native';
+import { View, ScrollView, Dimensions, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import tinycolor from 'tinycolor2';
 
 import PageData from './components/PageData';
 import Paginator from './components/Paginator';
@@ -37,9 +38,11 @@ export default class Onboarder extends Component {
   render() {
     const { width, height } = Dimensions.get('window');
     const currentPage = this.props.pages[this.state.currentPage] || this.props.pages[0];
+    const { backgroundColor } = currentPage;
+    const isLight = tinycolor(backgroundColor).getBrightness() > 180;
 
     return (
-      <View style={{ flex: 1, backgroundColor: currentPage.backgroundColor, justifyContent: 'center' }}>
+      <View style={{ flex: 1, backgroundColor: backgroundColor, justifyContent: 'center' }}>
         <ScrollView
           ref="scroll"
           pagingEnabled={true}
@@ -49,10 +52,19 @@ export default class Onboarder extends Component {
           scrollEventThrottle={100}
         >
           {this.props.pages.map(({ image, title, subtitle }, idx) => (
-            <PageData key={idx} image={image} title={title} subtitle={subtitle} width={width} height={height} />
+            <PageData
+              key={idx}
+              isLight={isLight}
+              image={image}
+              title={title}
+              subtitle={subtitle}
+              width={width}
+              height={height}
+            />
           ))}
         </ScrollView>
         <Paginator
+          isLight={isLight}
           pages={this.props.pages.length}
           currentPage={this.state.currentPage}
           onEnd={this.props.onEnd}
