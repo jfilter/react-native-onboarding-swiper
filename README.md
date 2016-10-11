@@ -8,11 +8,12 @@ Originally inspired by [AndroidOnboarder](https://github.com/chyrta/AndroidOnboa
 
 | ![](images/1.png) | ![](images/2.png) | ![](images/3.png) |
 | --- | --- | --- |
+| Adapts to bright backgrounds | and dark, too | shows the Done button |
 
 ```javascript
 <Onboarding
   pages={[
-    { backgroundColor: '#1060fe', image: <Square />, title: 'Simple Messenger UI', subtitle: 'Implemented in React Native' },
+    { backgroundColor: '#fff', image: <Square />, title: 'Simple Messenger UI', subtitle: 'Implemented in React Native' },
     { backgroundColor: "#fe6e58", image: <Circle />, title: 'Welcome', subtitle: 'To Earth' },
     { backgroundColor: "#999", image: <Square />, title: 'Also', subtitle: 'Mars is nice' },
   ]}
@@ -32,7 +33,7 @@ import Onboarding from 'react-native-simple-onboarding';
 
 ## Usage
 
-## `<Onboarding />`
+## `<Onboarding />` component
 
 Props:
 
