@@ -1,4 +1,4 @@
-## 0.1.1 (unreleased)
+## 0.1.1 (October 11, 2016)
 
 * Detect light background and adapt the text and controls to it.
 * Allow to disable the bottom bar overlay via the `bottomOverlay` prop.
