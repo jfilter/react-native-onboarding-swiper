@@ -26,10 +26,10 @@ const DoneButton = ({ isLight, size, ...props }) => (
 );
 
 const BUTTON_SIZE = 40;
-const Paginator = ({ isLight, overlay, pages, currentPage, onEnd, onNext }) => (
+const Paginator = ({ isLight, overlay, showSkip, showNext, showDone, pages, currentPage, onEnd, onNext }) => (
   <View style={{ ...styles.container, ...(overlay ? styles.containerOverlay : {}) }}>
     <View style={styles.buttonLeft}>
-      {currentPage + 1 !== pages ?
+      {showSkip && currentPage + 1 !== pages ?
         <SkipButton isLight={isLight} size={BUTTON_SIZE} onPress={onEnd} /> :
         null
       }
@@ -37,8 +37,8 @@ const Paginator = ({ isLight, overlay, pages, currentPage, onEnd, onNext }) => (
     <PageDots isLight={isLight} pages={pages} currentPage={currentPage} />
     <View style={styles.buttonRight}>
       {currentPage + 1 === pages ?
-        <DoneButton isLight={isLight} size={BUTTON_SIZE} onPress={onEnd} /> :
-        <NextButton isLight={isLight} size={BUTTON_SIZE} onPress={onNext} />
+        (showDone ? <DoneButton isLight={isLight} size={BUTTON_SIZE} onPress={onEnd} /> : null) :
+        (showNext ? <NextButton isLight={isLight} size={BUTTON_SIZE} onPress={onNext} /> : null)
       }
     </View>
   </View>

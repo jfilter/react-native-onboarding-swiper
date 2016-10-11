@@ -43,6 +43,9 @@ Props:
   * `subtitle` (required): a string subtitle
 * `onEnd` (optional): a callback that is fired after the onboarding is complete
 * `bottomOverlay` (optional): a bool flag indicating whether the bottom bar overlay should be shown. Defaults to `true`.
+* `showSkip` (optional): a bool flag indicating whether the Skip button should be show. Defaults to `true`.
+* `showNext` (optional): a bool flag indicating whether the Next arrow button should be show. Defaults to `true`.
+* `showDone` (optional): a bool flag indicating whether the Done checkmark button should be show. Defaults to `true`.
 
 ## To Do
 
