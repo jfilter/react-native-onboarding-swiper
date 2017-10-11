@@ -28,5 +28,9 @@
   "homepage": "https://github.com/goshakkk/react-native-simple-onboarding#readme",
   "dependencies": {
     "tinycolor2": "^1.4.1"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
   }
 }
