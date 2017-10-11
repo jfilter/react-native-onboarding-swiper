@@ -10,7 +10,9 @@ const PageDot = ({ isLight, selected }) => (
     style={{
       ...styles.element,
       ...styles.elementDot,
-      backgroundColor: isLight ? (selected ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.3)') : (selected ? '#fff' : 'rgba(255, 255, 255, 0.5)'),
+      backgroundColor: isLight
+        ? selected ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.3)'
+        : selected ? '#fff' : 'rgba(255, 255, 255, 0.5)',
     }}
   />
 );
@@ -21,7 +23,11 @@ const PageDots = ({ isLight, pages, currentPage }) => (
     {Array.from(new Array(pages), (x, i) => i).map(page => (
       <PageDot key={page} selected={page === currentPage} isLight={isLight} />
     ))}
-    <PageCheckmark style={{ color: isLight ? 'rgba(0, 0, 0, 0.3)' : 'rgba(255, 255, 255, 0.5)' }} />
+    <PageCheckmark
+      style={{
+        color: isLight ? 'rgba(0, 0, 0, 0.3)' : 'rgba(255, 255, 255, 0.5)',
+      }}
+    />
   </View>
 );
 
@@ -34,7 +40,7 @@ const styles = {
   element: {
     marginHorizontal: 3,
   },
-  elementCheck:  {
+  elementCheck: {
     textAlign: 'center',
     fontSize: 12,
     fontWeight: '900',

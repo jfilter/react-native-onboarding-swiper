@@ -1,5 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import { View, ScrollView, Dimensions, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  View,
+  ScrollView,
+  Dimensions,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 import tinycolor from 'tinycolor2';
 
 import PageData from './components/PageData';
@@ -14,7 +21,7 @@ export default class Onboarding extends Component {
     };
   }
 
-  updatePosition = (event) => {
+  updatePosition = event => {
     const { contentOffset, layoutMeasurement } = event.nativeEvent;
     const pageFraction = contentOffset.x / layoutMeasurement.width;
     const page = Math.round(pageFraction);
@@ -43,7 +50,13 @@ export default class Onboarding extends Component {
     const isLight = tinycolor(backgroundColor).getBrightness() > 180;
 
     return (
-      <View style={{ flex: 1, backgroundColor: backgroundColor, justifyContent: 'center' }}>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: backgroundColor,
+          justifyContent: 'center',
+        }}
+      >
         <ScrollView
           ref="scroll"
           pagingEnabled={true}
@@ -81,12 +94,14 @@ export default class Onboarding extends Component {
 }
 
 Onboarding.propTypes = {
-  pages: PropTypes.arrayOf(PropTypes.shape({
-    backgroundColor: PropTypes.string.isRequired,
-    image: PropTypes.element.isRequired,
-    title: PropTypes.string.isRequired,
-    subtitle: PropTypes.string.isRequired,
-  })).isRequired,
+  pages: PropTypes.arrayOf(
+    PropTypes.shape({
+      backgroundColor: PropTypes.string.isRequired,
+      image: PropTypes.element.isRequired,
+      title: PropTypes.string.isRequired,
+      subtitle: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   bottomOverlay: PropTypes.bool,
   showSkip: PropTypes.bool,
   showNext: PropTypes.bool,

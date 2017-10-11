@@ -2,29 +2,25 @@ import React from 'react';
 import { View, Text } from 'react-native';
 
 const Page = ({ width, height, children }) => (
-  <View style={{ width, height }}>
-    {children}
-  </View>
+  <View style={{ width, height }}>{children}</View>
 );
 
 const PageContent = ({ children }) => (
   <View style={styles.content}>
-    <View style={{ flex: 0 }}>
-      {children}
-    </View>
+    <View style={{ flex: 0 }}>{children}</View>
   </View>
 );
 
 const PageData = ({ isLight, image, title, subtitle, ...rest }) => (
   <Page {...rest}>
     <PageContent>
-      <View style={styles.image}>
-        {image}
-      </View>
+      <View style={styles.image}>{image}</View>
       <Text style={{ ...styles.title, ...(isLight ? styles.titleLight : {}) }}>
         {title}
       </Text>
-      <Text style={{ ...styles.subtitle, ...(isLight ? styles.subtitleLight : {}) }}>
+      <Text
+        style={{ ...styles.subtitle, ...(isLight ? styles.subtitleLight : {}) }}
+      >
         {subtitle}
       </Text>
     </PageContent>
