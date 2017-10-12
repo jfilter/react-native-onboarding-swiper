@@ -15,6 +15,12 @@ export default class Onboarding extends Component {
     };
   }
 
+  onSwipePageChange = ({ viewableItems }) => {
+    if (viewableItems[0]) {
+      this.setState({ currentPage: viewableItems[0].index });
+    }
+  };
+
   goNext = () => {
     this.flatList.scrollToIndex({
       animated: true,
@@ -23,11 +29,8 @@ export default class Onboarding extends Component {
   };
 
   renderItem = ({ item, index }) => {
-    const { image, title, subtitle } = item;
+    const { image, title, subtitle, backgroundColor } = item;
     const { width, height } = Dimensions.get('window');
-    const { pages } = this.props;
-    const currentPage = pages[this.state.currentPage] || pages[0];
-    const { backgroundColor } = currentPage;
     const isLight = tinycolor(backgroundColor).getBrightness() > 180;
 
     return (
@@ -45,7 +48,7 @@ export default class Onboarding extends Component {
 
   render() {
     const { pages, bottomOverlay, showSkip, showNext, showDone } = this.props;
-    const currentPage = pages[this.state.currentPage] || pages[0];
+    const currentPage = pages[this.state.currentPage];
     const { backgroundColor } = currentPage;
     const isLight = tinycolor(backgroundColor).getBrightness() > 180;
 
@@ -66,11 +69,7 @@ export default class Onboarding extends Component {
           horizontal
           showsHorizontalScrollIndicator={false}
           renderItem={this.renderItem}
-          onViewableItemsChanged={({ viewableItems }) => {
-            if (viewableItems[0]) {
-              this.setState({ currentPage: viewableItems[0].index });
-            }
-          }}
+          onViewableItemsChanged={this.onSwipePageChange}
           viewabilityConfig={{
             itemVisiblePercentThreshold: 100,
           }}
@@ -104,6 +103,7 @@ Onboarding.propTypes = {
   showSkip: PropTypes.bool,
   showNext: PropTypes.bool,
   showDone: PropTypes.bool,
+  onEnd: PropTypes.funtion,
 };
 
 Onboarding.defaultProps = {
@@ -111,4 +111,5 @@ Onboarding.defaultProps = {
   showSkip: true,
   showNext: true,
   showDone: true,
+  onEnd: null,
 };
