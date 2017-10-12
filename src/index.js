@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import tinycolor from 'tinycolor2';
 
-import PageData from './PageData';
-import Paginator from './Paginator';
+import Page from './Page';
+import Pagination from './Pagination';
 
 class Onboarding extends Component {
   constructor() {
@@ -33,7 +33,7 @@ class Onboarding extends Component {
     const isLight = tinycolor(backgroundColor).getBrightness() > 180;
 
     return (
-      <PageData
+      <Page
         key={index}
         isLight={isLight}
         image={image}
@@ -71,7 +71,7 @@ class Onboarding extends Component {
             itemVisiblePercentThreshold: 100,
           }}
         />
-        <Paginator
+        <Pagination
           isLight={isLight}
           overlay={bottomOverlay}
           showSkip={showSkip}

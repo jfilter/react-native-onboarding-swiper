@@ -2,7 +2,7 @@ import { Dimensions, Text, View } from 'react-native';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PageData = ({ isLight, image, title, subtitle }) => {
+const Page = ({ isLight, image, title, subtitle }) => {
   let titleElement = title;
   if (typeof title === 'string' || title instanceof String) {
     titleElement = (
@@ -34,7 +34,7 @@ const PageData = ({ isLight, image, title, subtitle }) => {
   );
 };
 
-PageData.propTypes = {
+Page.propTypes = {
   isLight: PropTypes.bool.isRequired,
   image: PropTypes.element.isRequired,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
@@ -80,4 +80,4 @@ const styles = {
   },
 };
 
-export default PageData;
+export default Page;

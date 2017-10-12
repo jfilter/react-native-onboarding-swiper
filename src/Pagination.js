@@ -12,7 +12,7 @@ const getDefaultStyle = isLight => ({
   color: isLight ? 'rgba(0, 0, 0, 0.8)' : '#fff',
 });
 
-const Paginator = ({
+const Pagination = ({
   numPages,
   currentPage,
   isLight,
@@ -80,7 +80,7 @@ const Paginator = ({
   );
 };
 
-Paginator.propTypes = {
+Pagination.propTypes = {
   numPages: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   isLight: PropTypes.bool.isRequired,
@@ -93,7 +93,7 @@ Paginator.propTypes = {
   onDone: PropTypes.func,
 };
 
-Paginator.defaultProps = {
+Pagination.defaultProps = {
   showNext: true,
   showSkip: true,
   showDone: true,
@@ -122,4 +122,4 @@ const styles = {
   },
 };
 
-export default Paginator;
+export default Pagination;
