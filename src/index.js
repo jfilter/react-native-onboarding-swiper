@@ -80,7 +80,7 @@ class Onboarding extends Component {
           showSkip={showSkip}
           showNext={showNext}
           showDone={showDone}
-          pages={pages.length}
+          numPages={pages.length}
           currentPage={this.state.currentPage}
           onEnd={this.props.onEnd}
           onNext={this.goNext}

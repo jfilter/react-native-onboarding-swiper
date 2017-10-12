@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import React from 'react';
 
-import PageDots from './PageDots';
+import Dots from './Dots';
 import SymbolButton from './SymbolButton';
 import TextButton from './TextButton';
 
@@ -41,7 +41,7 @@ const Paginator = ({
   showSkip,
   showNext,
   showDone,
-  pages,
+  numPages,
   currentPage,
   onEnd,
   onNext,
@@ -50,13 +50,13 @@ const Paginator = ({
     style={{ ...styles.container, ...(overlay ? styles.containerOverlay : {}) }}
   >
     <View style={styles.buttonLeft}>
-      {showSkip && currentPage + 1 !== pages ? (
+      {showSkip && currentPage + 1 !== numPages ? (
         <SkipButton isLight={isLight} size={BUTTON_SIZE} onPress={onEnd} />
       ) : null}
     </View>
-    <PageDots isLight={isLight} pages={pages} currentPage={currentPage} />
+    <Dots isLight={isLight} numPages={numPages} currentPage={currentPage} />
     <View style={styles.buttonRight}>
-      {currentPage + 1 === pages ? (
+      {currentPage + 1 === numPages ? (
         showDone ? (
           <DoneButton isLight={isLight} size={BUTTON_SIZE} onPress={onEnd} />
         ) : null
