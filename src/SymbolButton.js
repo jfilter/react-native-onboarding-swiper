@@ -16,7 +16,7 @@ const SymbolButton = ({ size, onPress, style, textStyle, children }) => (
 
 SymbolButton.propTypes = {
   size: PropTypes.number.isRequired,
-  onPress: PropTypes.func.isRequired,
+  onPress: PropTypes.func,
   style: View.propTypes.style,
   textStyle: Text.propTypes.style,
 };

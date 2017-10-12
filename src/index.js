@@ -82,7 +82,8 @@ class Onboarding extends Component {
           showDone={showDone}
           numPages={pages.length}
           currentPage={this.state.currentPage}
-          onEnd={this.props.onEnd}
+          onSkip={this.props.onSkip}
+          onDone={this.props.onDone}
           onNext={this.goNext}
         />
       </View>
@@ -103,7 +104,8 @@ Onboarding.propTypes = {
   showSkip: PropTypes.bool,
   showNext: PropTypes.bool,
   showDone: PropTypes.bool,
-  onEnd: PropTypes.funtion,
+  onSkip: PropTypes.funtion,
+  onDone: PropTypes.funtion,
 };
 
 Onboarding.defaultProps = {
@@ -111,7 +113,6 @@ Onboarding.defaultProps = {
   showSkip: true,
   showNext: true,
   showDone: true,
-  onEnd: null,
 };
 
 export default Onboarding;

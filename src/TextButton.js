@@ -12,7 +12,7 @@ const TextButton = ({ size, onPress, textStyle, children }) => (
 
 TextButton.propTypes = {
   size: PropTypes.number.isRequired,
-  onPress: PropTypes.func.isRequired,
+  onPress: PropTypes.func,
   textStyle: Text.propTypes.style,
 };
 
