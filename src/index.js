@@ -48,6 +48,8 @@ class Onboarding extends Component {
     const currentPage = pages[this.state.currentPage];
     const { backgroundColor } = currentPage;
     const isLight = tinycolor(backgroundColor).getBrightness() > 180;
+    const barStyle = isLight ? 'dark-content' : 'light-content';
+    StatusBar.setBarStyle(barStyle);
 
     return (
       <View
@@ -57,8 +59,6 @@ class Onboarding extends Component {
           justifyContent: 'center',
         }}
       >
-        <StatusBar barStyle={isLight ? 'dark-content' : 'light-content'} />
-
         <FlatList
           ref={list => {
             this.flatList = list;

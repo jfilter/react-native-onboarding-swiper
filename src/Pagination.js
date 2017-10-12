@@ -1,6 +1,6 @@
-import { View } from 'react-native';
-import React from 'react';
+import { StatusBar, View } from 'react-native';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 import Dots from './Dots';
 import SymbolButton from './SymbolButton';
@@ -31,7 +31,10 @@ const Pagination = ({
       <TextButton
         size={BUTTON_SIZE}
         textStyle={getDefaultStyle(isLight)}
-        onPress={onSkip}
+        onPress={() => {
+          onSkip && onSkip();
+          StatusBar.setBarStyle('default');
+        }}
       >
         Skip
       </TextButton>
@@ -57,7 +60,10 @@ const Pagination = ({
           borderRadius: BUTTON_SIZE / 2,
           backgroundColor: 'rgba(255, 255, 255, 0.10)',
         }}
-        onPress={onDone}
+        onPress={() => {
+          onDone && onDone();
+          StatusBar.setBarStyle('default');
+        }}
       >
         ✓
       </SymbolButton>
