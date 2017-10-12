@@ -1,4 +1,4 @@
-import { FlatList, View } from 'react-native';
+import { FlatList, StatusBar, View } from 'react-native';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import tinycolor from 'tinycolor2';
@@ -57,6 +57,8 @@ class Onboarding extends Component {
           justifyContent: 'center',
         }}
       >
+        <StatusBar barStyle={isLight ? 'dark-content' : 'light-content'} />
+
         <FlatList
           ref={list => {
             this.flatList = list;
