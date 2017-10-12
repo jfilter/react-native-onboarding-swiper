@@ -1,7 +1,7 @@
-import { View, ScrollView, Dimensions } from 'react-native';
+import { Dimensions, FlatList, View } from 'react-native';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import tinycolor from 'tinycolor2';
-import PropTypes from 'prop-types';
 
 import PageData from './components/PageData';
 import Paginator from './components/Paginator';
@@ -15,28 +15,35 @@ export default class Onboarding extends Component {
     };
   }
 
-  updatePosition = event => {
-    const { contentOffset, layoutMeasurement } = event.nativeEvent;
-    const pageFraction = contentOffset.x / layoutMeasurement.width;
-    const page = Math.round(pageFraction);
-    const isLastPage = this.props.pages.length === page + 1;
-    if (isLastPage && pageFraction - page > 0.3) {
-      this.props.onEnd();
-    } else {
-      this.setState({ currentPage: page });
-    }
+  goNext = () => {
+    this.flatList.scrollToIndex({
+      animated: true,
+      index: this.state.currentPage + 1,
+    });
   };
 
-  goNext = () => {
-    const { width } = Dimensions.get('window');
-    const { currentPage } = this.state;
-    const nextPage = currentPage + 1;
-    const offsetX = nextPage * width;
-    this.refs.scroll.scrollTo({ x: offsetX, animated: true });
+  renderItem = ({ item, index }) => {
+    const { image, title, subtitle } = item;
+    const { width, height } = Dimensions.get('window');
+    const { pages } = this.props;
+    const currentPage = pages[this.state.currentPage] || pages[0];
+    const { backgroundColor } = currentPage;
+    const isLight = tinycolor(backgroundColor).getBrightness() > 180;
+
+    return (
+      <PageData
+        key={index}
+        isLight={isLight}
+        image={image}
+        title={title}
+        subtitle={subtitle}
+        width={width}
+        height={height}
+      />
+    );
   };
 
   render() {
-    const { width, height } = Dimensions.get('window');
     const { pages, bottomOverlay, showSkip, showNext, showDone } = this.props;
     const currentPage = pages[this.state.currentPage] || pages[0];
     const { backgroundColor } = currentPage;
@@ -46,30 +53,28 @@ export default class Onboarding extends Component {
       <View
         style={{
           flex: 1,
-          backgroundColor: backgroundColor,
+          backgroundColor,
           justifyContent: 'center',
         }}
       >
-        <ScrollView
-          ref="scroll"
-          pagingEnabled={true}
-          horizontal={true}
+        <FlatList
+          ref={list => {
+            this.flatList = list;
+          }}
+          data={pages}
+          pagingEnabled
+          horizontal
           showsHorizontalScrollIndicator={false}
-          onScroll={this.updatePosition}
-          scrollEventThrottle={100}
-        >
-          {pages.map(({ image, title, subtitle }, idx) => (
-            <PageData
-              key={idx}
-              isLight={isLight}
-              image={image}
-              title={title}
-              subtitle={subtitle}
-              width={width}
-              height={height}
-            />
-          ))}
-        </ScrollView>
+          renderItem={this.renderItem}
+          onViewableItemsChanged={({ viewableItems }) => {
+            if (viewableItems[0]) {
+              this.setState({ currentPage: viewableItems[0].index });
+            }
+          }}
+          viewabilityConfig={{
+            itemVisiblePercentThreshold: 100,
+          }}
+        />
         <Paginator
           isLight={isLight}
           overlay={bottomOverlay}
