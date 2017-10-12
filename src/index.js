@@ -1,4 +1,4 @@
-import { Dimensions, FlatList, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import tinycolor from 'tinycolor2';
@@ -30,7 +30,6 @@ class Onboarding extends Component {
 
   renderItem = ({ item, index }) => {
     const { image, title, subtitle, backgroundColor } = item;
-    const { width, height } = Dimensions.get('window');
     const isLight = tinycolor(backgroundColor).getBrightness() > 180;
 
     return (
@@ -40,8 +39,6 @@ class Onboarding extends Component {
         image={image}
         title={title}
         subtitle={subtitle}
-        width={width}
-        height={height}
       />
     );
   };

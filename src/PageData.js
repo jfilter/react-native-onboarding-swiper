@@ -1,34 +1,53 @@
+import { Dimensions, Text, View } from 'react-native';
 import React from 'react';
-import { View, Text } from 'react-native';
+import PropTypes from 'prop-types';
 
-const Page = ({ width, height, children }) => (
-  <View style={{ width, height }}>{children}</View>
-);
+const PageData = ({ isLight, image, title, subtitle }) => {
+  let titleElement = title;
+  if (typeof title === 'string' || title instanceof String) {
+    titleElement = (
+      <View style={styles.padding}>
+        <Text style={[styles.title, isLight ? styles.titleLight : {}]}>
+          {title}
+        </Text>
+      </View>
+    );
+  }
 
-const PageContent = ({ children }) => (
-  <View style={styles.content}>
-    <View style={{ flex: 0 }}>{children}</View>
-  </View>
-);
+  let subtitleElement = subtitle;
+  if (typeof subtitle === 'string' || subtitle instanceof String) {
+    subtitleElement = (
+      <View style={styles.padding}>
+        <Text style={[styles.subtitle, isLight ? styles.subtitleLight : {}]}>
+          {subtitle}
+        </Text>
+      </View>
+    );
+  }
 
-const PageData = ({ isLight, image, title, subtitle, ...rest }) => (
-  <Page {...rest}>
-    <PageContent>
+  return (
+    <View style={styles.container}>
       <View style={styles.image}>{image}</View>
-      <Text style={{ ...styles.title, ...(isLight ? styles.titleLight : {}) }}>
-        {title}
-      </Text>
-      <Text
-        style={{ ...styles.subtitle, ...(isLight ? styles.subtitleLight : {}) }}
-      >
-        {subtitle}
-      </Text>
-    </PageContent>
-  </Page>
-);
+      {titleElement}
+      {subtitleElement}
+    </View>
+  );
+};
+
+PageData.propTypes = {
+  isLight: PropTypes.bool.isRequired,
+  image: PropTypes.element.isRequired,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+  subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+    .isRequired,
+};
+
+const { width, height } = Dimensions.get('window');
 
 const styles = {
-  content: {
+  container: {
+    height,
+    width,
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
@@ -38,6 +57,9 @@ const styles = {
     flex: 0,
     paddingBottom: 60,
     alignItems: 'center',
+  },
+  padding: {
+    paddingHorizontal: 10,
   },
   title: {
     textAlign: 'center',
