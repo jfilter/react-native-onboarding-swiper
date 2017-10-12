@@ -44,7 +44,16 @@ class Onboarding extends Component {
   };
 
   render() {
-    const { pages, bottomOverlay, showSkip, showNext, showDone } = this.props;
+    const {
+      pages,
+      bottomOverlay,
+      showSkip,
+      showNext,
+      showDone,
+      onSkip,
+      onDone,
+      skipLabel,
+    } = this.props;
     const currentPage = pages[this.state.currentPage];
     const { backgroundColor } = currentPage;
     const isLight = tinycolor(backgroundColor).getBrightness() > 180;
@@ -81,9 +90,10 @@ class Onboarding extends Component {
           showDone={showDone}
           numPages={pages.length}
           currentPage={this.state.currentPage}
-          onSkip={this.props.onSkip}
-          onDone={this.props.onDone}
+          onSkip={onSkip}
+          onDone={onDone}
           onNext={this.goNext}
+          skipLabel={skipLabel}
         />
       </View>
     );
@@ -105,6 +115,7 @@ Onboarding.propTypes = {
   showDone: PropTypes.bool,
   onSkip: PropTypes.funtion,
   onDone: PropTypes.funtion,
+  skipLabel: PropTypes.string,
 };
 
 Onboarding.defaultProps = {
@@ -112,6 +123,7 @@ Onboarding.defaultProps = {
   showSkip: true,
   showNext: true,
   showDone: true,
+  skipLabel: 'Skip',
 };
 
 export default Onboarding;

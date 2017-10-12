@@ -23,6 +23,7 @@ const Pagination = ({
   onNext,
   onSkip,
   onDone,
+  skipLabel,
 }) => {
   const isLastPage = currentPage + 1 === numPages;
 
@@ -36,7 +37,7 @@ const Pagination = ({
           StatusBar.setBarStyle('default');
         }}
       >
-        Skip
+        {skipLabel}
       </TextButton>
     );
 
@@ -97,6 +98,7 @@ Pagination.propTypes = {
   onNext: PropTypes.func,
   onSkip: PropTypes.func,
   onDone: PropTypes.func,
+  skipLabel: PropTypes.string.isRequired,
 };
 
 Pagination.defaultProps = {
@@ -118,13 +120,12 @@ const styles = {
   },
   buttonLeft: {
     width: 70,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    paddingLeft: 20,
   },
   buttonRight: {
     width: 70,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    paddingRight: 10,
+    alignItems: 'flex-end',
   },
 };
 
