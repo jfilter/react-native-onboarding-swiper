@@ -46,7 +46,7 @@ class Onboarding extends Component {
   render() {
     const {
       pages,
-      bottomOverlay,
+      alterBottomColor,
       showSkip,
       showNext,
       showDone,
@@ -84,7 +84,7 @@ class Onboarding extends Component {
         />
         <Pagination
           isLight={isLight}
-          overlay={bottomOverlay}
+          alterBottomColor={alterBottomColor}
           showSkip={showSkip}
           showNext={showNext}
           showDone={showDone}
@@ -109,7 +109,7 @@ Onboarding.propTypes = {
       subtitle: PropTypes.string.isRequired,
     })
   ).isRequired,
-  bottomOverlay: PropTypes.bool,
+  alterBottomColor: PropTypes.bool,
   showSkip: PropTypes.bool,
   showNext: PropTypes.bool,
   showDone: PropTypes.bool,
@@ -119,7 +119,7 @@ Onboarding.propTypes = {
 };
 
 Onboarding.defaultProps = {
-  bottomOverlay: true,
+  alterBottomColor: true,
   showSkip: true,
   showNext: true,
   showDone: true,

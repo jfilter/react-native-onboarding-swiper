@@ -16,7 +16,7 @@ const Pagination = ({
   numPages,
   currentPage,
   isLight,
-  overlay,
+  alterBottomColor,
   showSkip,
   showNext,
   showDone,
@@ -74,7 +74,7 @@ const Pagination = ({
     <View
       style={{
         ...styles.container,
-        ...(overlay ? styles.containerOverlay : {}),
+        ...(alterBottomColor ? styles.overlay : {}),
       }}
     >
       <View style={styles.buttonLeft}>{SkipButton}</View>
@@ -91,7 +91,7 @@ Pagination.propTypes = {
   numPages: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   isLight: PropTypes.bool.isRequired,
-  overlay: PropTypes.bool.isRequired,
+  alterBottomColor: PropTypes.bool.isRequired,
   showNext: PropTypes.bool,
   showSkip: PropTypes.bool,
   showDone: PropTypes.bool,
@@ -115,7 +115,7 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  containerOverlay: {
+  overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
   },
   buttonLeft: {
