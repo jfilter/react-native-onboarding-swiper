@@ -1,13 +1,7 @@
-import React, { Component, PropTypes } from 'react';
-import {
-  View,
-  ScrollView,
-  Dimensions,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-} from 'react-native';
+import { View, ScrollView, Dimensions } from 'react-native';
+import React, { Component } from 'react';
 import tinycolor from 'tinycolor2';
+import PropTypes from 'prop-types';
 
 import PageData from './components/PageData';
 import Paginator from './components/Paginator';
