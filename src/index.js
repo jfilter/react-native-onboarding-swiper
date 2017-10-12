@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import tinycolor from 'tinycolor2';
 
-import PageData from './components/PageData';
-import Paginator from './components/Paginator';
+import PageData from './PageData';
+import Paginator from './Paginator';
 
-export default class Onboarding extends Component {
+class Onboarding extends Component {
   constructor() {
     super();
 
@@ -113,3 +113,5 @@ Onboarding.defaultProps = {
   showDone: true,
   onEnd: null,
 };
+
+export default Onboarding;

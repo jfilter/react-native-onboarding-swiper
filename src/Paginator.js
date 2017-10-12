@@ -1,8 +1,9 @@
+import { View } from 'react-native';
 import React from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
 
 import PageDots from './PageDots';
-import { SymbolButton, TextButton } from './Buttons';
+import SymbolButton from './SymbolButton';
+import TextButton from './TextButton';
 
 const getDefaultStyle = isLight => ({
   color: isLight ? 'rgba(0, 0, 0, 0.8)' : '#fff',
