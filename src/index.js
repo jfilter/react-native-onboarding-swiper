@@ -28,18 +28,13 @@ class Onboarding extends Component {
     });
   };
 
-  renderItem = ({ item, index }) => {
+  keyExtractor = (item, index) => index;
+
+  renderItem = ({ item }) => {
     const { image, title, subtitle, backgroundColor } = item;
     const isLight = tinycolor(backgroundColor).getBrightness() > 180;
-
     return (
-      <Page
-        key={index}
-        isLight={isLight}
-        image={image}
-        title={title}
-        subtitle={subtitle}
-      />
+      <Page isLight={isLight} image={image} title={title} subtitle={subtitle} />
     );
   };
 
@@ -77,6 +72,7 @@ class Onboarding extends Component {
           horizontal
           showsHorizontalScrollIndicator={false}
           renderItem={this.renderItem}
+          keyExtractor={this.keyExtractor}
           onViewableItemsChanged={this.onSwipePageChange}
           viewabilityConfig={{
             itemVisiblePercentThreshold: 100,
