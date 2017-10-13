@@ -102,8 +102,10 @@ Onboarding.propTypes = {
     PropTypes.shape({
       backgroundColor: PropTypes.string.isRequired,
       image: PropTypes.element.isRequired,
-      title: PropTypes.string.isRequired,
-      subtitle: PropTypes.string.isRequired,
+      title: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+        .isRequired,
+      subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+        .isRequired,
     })
   ).isRequired,
   alterBottomColor: PropTypes.bool,
