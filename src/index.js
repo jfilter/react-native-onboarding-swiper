@@ -113,8 +113,8 @@ Onboarding.propTypes = {
   showSkip: PropTypes.bool,
   showNext: PropTypes.bool,
   showDone: PropTypes.bool,
-  onSkip: PropTypes.funtion,
-  onDone: PropTypes.funtion,
+  onSkip: PropTypes.func,
+  onDone: PropTypes.func,
   skipLabel: PropTypes.string,
 };
 
