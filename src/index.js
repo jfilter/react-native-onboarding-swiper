@@ -77,6 +77,7 @@ class Onboarding extends Component {
           viewabilityConfig={{
             itemVisiblePercentThreshold: 100,
           }}
+          initialNumToRender={1}
         />
         <Pagination
           isLight={isLight}
