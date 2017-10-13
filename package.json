@@ -1,31 +1,32 @@
 {
-  "name": "react-native-simple-onboarding",
+  "name": "react-native-onboarding-swiper",
   "version": "0.1.1",
-  "description": "A simple onboarding component for React Native",
+  "description": "Delightful Onboarding for your React-Native App",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/goshakkk/react-native-simple-onboarding.git"
+    "url": "git+https://github.com/jfilter/react-native-onboarding-swiper"
   },
   "keywords": [
-    "React",
     "React",
     "Native",
     "React-Native",
     "Component",
     "Onboarding",
-    "iOS",
-    "Android"
+    "Tutorial",
+    "Intro",
+    "Swiper",
+    "Welcome"
   ],
-  "author": "Gosha Arinich",
+  "author": "Gosha Arinich, Johannes Filter",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/goshakkk/react-native-simple-onboarding/issues"
+    "url": "https://github.com/jfilter/react-native-onboarding-swiper/issues"
   },
-  "homepage": "https://github.com/goshakkk/react-native-simple-onboarding#readme",
+  "homepage": "https://github.com/jfilter/react-native-onboarding-swiper#readme",
   "dependencies": {
     "tinycolor2": "^1.4.1"
   },
