@@ -1,3 +1,13 @@
+## 0.2.0 (October 16, 2017)
+* Change name to `react-native-onboarding-swiper`
+* Change from ScrollView to FlatList
+* Add `skipLabel` prop
+* Title and subtitle can be components
+* Change `onEnd` to `onSkip` and `onDone`
+* Remove check mark dot because it's not useful
+* Adapt StatusBar color
+* Refactor most of the internal components
+
 ## 0.1.1 (October 11, 2016)
 
 * Detect light background and adapt the text and controls to it.
