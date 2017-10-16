@@ -1,58 +1,60 @@
 # `<Onboarding />`
 
-Onboarding experience made a breeze.
-
-Originally inspired by [AndroidOnboarder](https://github.com/chyrta/AndroidOnboarder).
-
-## Quick demo
-
-| ![](images/1.png) | ![](images/2.png) | ![](images/3.png) |
+| ![](demo/simple1.png) | ![](demo/simple2.png) | ![](demo/simple3.png) |
 | --- | --- | --- |
-| Adapts to bright backgrounds | and dark, too | shows the Done button |
 
-```javascript
-<Onboarding
-  pages={[
-    { backgroundColor: '#fff', image: <Square />, title: 'Simple Messenger UI', subtitle: 'Implemented in React Native' },
-    { backgroundColor: "#fe6e58", image: <Circle />, title: 'Welcome', subtitle: 'To Earth' },
-    { backgroundColor: "#999", image: <Square />, title: 'Also', subtitle: 'Mars is nice' },
-  ]}
-  onEnd={}
-/>
-```
+Delightful Onboarding for your React-Native App. The Onboarding component renders swipable pages that you can customize. The color of the font and of the dots adapt to the background color of the page.
 
 ## Install
 
 ```
-npm install --save react-native-simple-onboarding
+npm i react-native-onboarding-swiper
 ```
 
 ```javascript
-import Onboarding from 'react-native-simple-onboarding';
+import Onboarding from 'react-native-onboarding-swiper';
 ```
 
 ## Usage
 
-## `<Onboarding />` component
+```
+<Onboarding
+  pages={[
+    {
+      backgroundColor: '#fff',
+      image: <Image source={require('./images/circle.png')} />,
+      title: 'Onboarding',
+      subtitle: 'Done with React Native Onboarding Swiper',
+    },
+    ...
+  ]}
+/>
+```
 
-Props:
+Check out the [simple example](examples/simple.js) or the [example with a Call-to-Action button](examples/withCTA.js).
 
-* `pages` (required): an array of onboarding pages. A page is an object of shape:
-  * `backgroundColor` (required): a background color for the page
-  * `image` (required): a component instance displayed at the top of the page
-  * `title` (required): a string title
-  * `subtitle` (required): a string subtitle
-* `onEnd` (optional): a callback that is fired after the onboarding is complete
-* `bottomOverlay` (optional): a bool flag indicating whether the bottom bar overlay should be shown. Defaults to `true`.
+## Properties
+
+* `pages` (required): an array of pages in the following shape:
+  * `backgroundColor` (required): a background color.
+  * `image` (required): a component (e.g. `<Image />`) to display at the top of the page.
+  * `title` (required): a string **OR** a React-Native component.
+  * `subtitle` (required): a string **OR** a React-Native component.
+* `onSkip` (optional): a callback that is fired if the Onboarding is skipped.
+* `onDone` (optional): a callback that is fired after the Onboarding is completed.
+* `alterBottomColor` (optional): a bool flag indicating whether the color in the bottom of the page should be altered/changed. Defaults to `true`.
 * `showSkip` (optional): a bool flag indicating whether the Skip button should be show. Defaults to `true`.
 * `showNext` (optional): a bool flag indicating whether the Next arrow button should be show. Defaults to `true`.
 * `showDone` (optional): a bool flag indicating whether the Done checkmark button should be show. Defaults to `true`.
+* `skipLabel` (optional): a string for the Skip label. Defaults to `Skip`.
 
-## To Do
+## Contributing
 
-* animations
-* accessibility
+If you have a **question**, found a **bug** or want to propose a new **feature**, have a look at the [issues page](https://github.com/jfilter/react-native-onboarding-swiper/issues).
 
-## License
+**Pull requests** are especially welcomed when they fix bugs or improve the code quality.
 
-MIT.
+
+## Acknowledgements
+Built upon the work by [Gosha Arinich](https://github.com/goshakkk/react-native-simple-onboarding) which was originally inspired by [AndroidOnboarder](https://github.com/chyrta/AndroidOnboarder).
+
