@@ -3,7 +3,7 @@
 | ![](demo/simple1.png) | ![](demo/simple2.png) | ![](demo/simple3.png) |
 | --- | --- | --- |
 
-Delightful Onboarding for your React-Native App. The Onboarding component renders swipable pages that you can customize. The color of the font and of the dots adapt to the background color of the page.
+Delightful Onboarding for your React-Native app. Let your users get familar with your app by giving a pleasurable introduction. The Onboarding component is easy to set up and but still customizable.
 
 ## Install
 
@@ -31,12 +31,12 @@ import Onboarding from 'react-native-onboarding-swiper';
 />
 ```
 
-Check out the [simple example](examples/simple.js) or the [example with a Call-to-Action button](examples/withCTA.js).
+Check out the [simple example](examples/Simple.js) and the [example with a Call-to-Action button](examples/WithCTA.js).
 
 ## Properties
 
 * `pages` (required): an array of pages in the following shape:
-  * `backgroundColor` (required): a background color.
+  * `backgroundColor` (required): a background color. The color of the font and dots adapts to the background color.
   * `image` (required): a component (e.g. `<Image />`) to display at the top of the page.
   * `title` (required): a string **OR** a React-Native component.
   * `subtitle` (required): a string **OR** a React-Native component.
