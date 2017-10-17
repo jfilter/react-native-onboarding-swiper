@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 
 const TextButton = ({ size, onPress, textStyle, children }) => (
   <View style={{ flex: 0 }}>
-    <TouchableOpacity style={{ flex: 0 }} onPress={onPress}>
+    <TouchableOpacity 
+      style={{ flex: 0 }} 
+      onPress={onPress}
+      hitSlop={{ top: 15, bottom: 15, left: 15, right: 15 }}
+    >
       <Text style={{ fontSize: size / 2.5, ...textStyle }}>{children}</Text>
     </TouchableOpacity>
   </View>
