@@ -11,13 +11,13 @@ Delightful Onboarding for your React-Native app. Let your users get familar with
 npm i react-native-onboarding-swiper
 ```
 
-```javascript
+```js
 import Onboarding from 'react-native-onboarding-swiper';
 ```
 
 ## Usage
 
-```
+```js
 <Onboarding
   pages={[
     {
