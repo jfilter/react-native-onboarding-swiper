@@ -1,3 +1,6 @@
+## 0.3.0 (October 18, 2017)
+* Increase touchable Radius for Buttons
+
 ## 0.2.0 (October 16, 2017)
 * Change name to `react-native-onboarding-swiper`
 * Change from ScrollView to FlatList
