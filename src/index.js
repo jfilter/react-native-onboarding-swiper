@@ -6,6 +6,9 @@ import tinycolor from 'tinycolor2';
 import Page from './Page';
 import Pagination from './Pagination';
 
+// hotfix: https://github.com/facebook/react-native/issues/16710
+const itemVisibleHotfix = { itemVisiblePercentThreshold: 100 };
+
 class Onboarding extends Component {
   constructor() {
     super();
@@ -74,9 +77,7 @@ class Onboarding extends Component {
           renderItem={this.renderItem}
           keyExtractor={this.keyExtractor}
           onViewableItemsChanged={this.onSwipePageChange}
-          viewabilityConfig={{
-            itemVisiblePercentThreshold: 100,
-          }}
+          viewabilityConfig={itemVisibleHotfix}
           initialNumToRender={1}
         />
         <Pagination
