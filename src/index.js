@@ -1,4 +1,4 @@
-import { FlatList, StatusBar, View } from 'react-native';
+import { FlatList, StatusBar, View, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import tinycolor from 'tinycolor2';
@@ -15,6 +15,8 @@ class Onboarding extends Component {
 
     this.state = {
       currentPage: 0,
+      width: null,
+      height: null,
     };
   }
 
@@ -31,13 +33,25 @@ class Onboarding extends Component {
     });
   };
 
+  _onLayout = () => {
+    const { width, height } = Dimensions.get('window');
+    this.setState({ width, height });
+  };
+
   keyExtractor = (item, index) => index;
 
   renderItem = ({ item }) => {
     const { image, title, subtitle, backgroundColor } = item;
     const isLight = tinycolor(backgroundColor).getBrightness() > 180;
     return (
-      <Page isLight={isLight} image={image} title={title} subtitle={subtitle} />
+      <Page
+        isLight={isLight}
+        image={image}
+        title={title}
+        subtitle={subtitle}
+        width={this.state.width}
+        height={this.state.height}
+      />
     );
   };
 
@@ -60,6 +74,7 @@ class Onboarding extends Component {
 
     return (
       <View
+        onLayout={this._onLayout}
         style={{
           flex: 1,
           backgroundColor,
@@ -79,6 +94,7 @@ class Onboarding extends Component {
           onViewableItemsChanged={this.onSwipePageChange}
           viewabilityConfig={itemVisibleHotfix}
           initialNumToRender={1}
+          extraData={this.state.width} // ensure that the list re-renders on orientation change
         />
         <Pagination
           isLight={isLight}
