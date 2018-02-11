@@ -43,14 +43,15 @@ class Onboarding extends Component {
   renderItem = ({ item }) => {
     const { image, title, subtitle, backgroundColor } = item;
     const isLight = tinycolor(backgroundColor).getBrightness() > 180;
+
     return (
       <Page
         isLight={isLight}
         image={image}
         title={title}
         subtitle={subtitle}
-        width={this.state.width}
-        height={this.state.height}
+        width={this.state.width || Dimensions.get('window').width}
+        height={this.state.height || Dimensions.get('window').height}
       />
     );
   };

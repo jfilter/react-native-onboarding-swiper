@@ -26,7 +26,7 @@ const Page = ({ isLight, image, title, subtitle, width, height }) => {
   }
 
   return (
-    <View style={[styles.container, width !== null ? { width, height } : {}]}>
+    <View style={[styles.container, { width, height }]}>
       <View style={styles.image}>{image}</View>
       {titleElement}
       {subtitleElement}
