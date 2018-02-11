@@ -1,4 +1,4 @@
-import { Animated, Dimensions, FlatList, StatusBar, View } from 'react-native';
+import { Animated, Dimensions, FlatList, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import tinycolor from 'tinycolor2';
@@ -169,6 +169,8 @@ Onboarding.defaultProps = {
   showNext: true,
   showDone: true,
   skipLabel: 'Skip',
+  onSkip: null,
+  onDone: null,
 };
 
 export default Onboarding;

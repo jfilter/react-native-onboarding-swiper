@@ -40,8 +40,8 @@ Page.propTypes = {
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
     .isRequired,
-  width: PropTypes.number,
-  height: PropTypes.number,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
 };
 
 const { width, height } = Dimensions.get('window');

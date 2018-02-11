@@ -33,8 +33,10 @@ const Pagination = ({
         size={BUTTON_SIZE}
         textStyle={getDefaultStyle(isLight)}
         onPress={() => {
-          onSkip && onSkip();
-          StatusBar.setBarStyle('default');
+          if (typeof onSkip === 'function') {
+            onSkip();
+            StatusBar.setBarStyle('default');
+          }
         }}
       >
         {skipLabel}
@@ -62,8 +64,10 @@ const Pagination = ({
           backgroundColor: 'rgba(255, 255, 255, 0.10)',
         }}
         onPress={() => {
-          onDone && onDone();
-          StatusBar.setBarStyle('default');
+          if (typeof onDone === 'function') {
+            onDone();
+            StatusBar.setBarStyle('default');
+          }
         }}
       >
         ✓
@@ -92,19 +96,13 @@ Pagination.propTypes = {
   currentPage: PropTypes.number.isRequired,
   isLight: PropTypes.bool.isRequired,
   alterBottomColor: PropTypes.bool.isRequired,
-  showNext: PropTypes.bool,
-  showSkip: PropTypes.bool,
-  showDone: PropTypes.bool,
-  onNext: PropTypes.func,
-  onSkip: PropTypes.func,
-  onDone: PropTypes.func,
+  showNext: PropTypes.bool.isRequired,
+  showSkip: PropTypes.bool.isRequired,
+  showDone: PropTypes.bool.isRequired,
+  onNext: PropTypes.func.isRequired,
+  onSkip: PropTypes.func.isRequired,
+  onDone: PropTypes.func.isRequired,
   skipLabel: PropTypes.string.isRequired,
-};
-
-Pagination.defaultProps = {
-  showNext: true,
-  showSkip: true,
-  showDone: true,
 };
 
 const styles = {
