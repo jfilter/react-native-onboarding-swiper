@@ -1,4 +1,4 @@
-import { FlatList, StatusBar, View, Dimensions } from 'react-native';
+import { Animated, Dimensions, FlatList, StatusBar, View } from 'react-native';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import tinycolor from 'tinycolor2';
@@ -15,15 +15,31 @@ class Onboarding extends Component {
 
     this.state = {
       currentPage: 0,
+      previousPage: null,
       width: null,
       height: null,
+      backgroundColorAnim: new Animated.Value(0),
     };
   }
 
+  componentDidUpdate() {
+    Animated.timing(this.state.backgroundColorAnim, {
+      toValue: 1,
+      duration: 500,
+    }).start();
+  }
+
   onSwipePageChange = ({ viewableItems }) => {
-    if (viewableItems[0]) {
-      this.setState({ currentPage: viewableItems[0].index });
-    }
+    if (!viewableItems[0] || this.state.currentPage === viewableItems[0].index)
+      return;
+
+    this.setState(state => {
+      return {
+        previousPage: state.currentPage,
+        currentPage: viewableItems[0].index,
+        backgroundColorAnim: new Animated.Value(0),
+      };
+    });
   };
 
   goNext = () => {
@@ -68,13 +84,23 @@ class Onboarding extends Component {
       skipLabel,
     } = this.props;
     const currentPage = pages[this.state.currentPage];
-    const { backgroundColor } = currentPage;
-    const isLight = tinycolor(backgroundColor).getBrightness() > 180;
+    const currentBackgroundColor = currentPage.backgroundColor;
+    const isLight = tinycolor(currentBackgroundColor).getBrightness() > 180;
     const barStyle = isLight ? 'dark-content' : 'light-content';
     StatusBar.setBarStyle(barStyle);
 
+    let backgroundColor = currentBackgroundColor;
+    if (this.state.previousPage !== null) {
+      const previousBackgroundColor =
+        pages[this.state.previousPage].backgroundColor;
+      backgroundColor = this.state.backgroundColorAnim.interpolate({
+        inputRange: [0, 1],
+        outputRange: [previousBackgroundColor, currentBackgroundColor],
+      });
+    }
+
     return (
-      <View
+      <Animated.View
         onLayout={this._onLayout}
         style={{
           flex: 1,
@@ -95,7 +121,9 @@ class Onboarding extends Component {
           onViewableItemsChanged={this.onSwipePageChange}
           viewabilityConfig={itemVisibleHotfix}
           initialNumToRender={1}
-          extraData={this.state.width} // ensure that the list re-renders on orientation change
+          extraData={
+            this.state.width // ensure that the list re-renders on orientation change
+          }
         />
         <Pagination
           isLight={isLight}
@@ -110,7 +138,7 @@ class Onboarding extends Component {
           onNext={this.goNext}
           skipLabel={skipLabel}
         />
-      </View>
+      </Animated.View>
     );
   }
 }
