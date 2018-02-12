@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Dots from './Dots';
-import SymbolButton from './SymbolButton';
-import TextButton from './TextButton';
 
 const BUTTON_SIZE = 40;
 
@@ -24,12 +22,16 @@ const Pagination = ({
   onSkip,
   onDone,
   skipLabel,
+  SkipButton,
+  NextButton,
+  DoneButton,
+  Dot,
 }) => {
   const isLastPage = currentPage + 1 === numPages;
 
-  const SkipButton = showSkip &&
+  const SkipButtonFinal = showSkip &&
     !isLastPage && (
-      <TextButton
+      <SkipButton
         size={BUTTON_SIZE}
         textStyle={getDefaultStyle(isLight)}
         onPress={() => {
@@ -40,23 +42,23 @@ const Pagination = ({
         }}
       >
         {skipLabel}
-      </TextButton>
+      </SkipButton>
     );
 
-  const NextButton = showNext &&
+  const NextButtonFinal = showNext &&
     !isLastPage && (
-      <SymbolButton
+      <NextButton
         size={BUTTON_SIZE}
         textStyle={getDefaultStyle(isLight)}
         onPress={onNext}
       >
         →
-      </SymbolButton>
+      </NextButton>
     );
 
-  const DoneButton = showDone &&
+  const DoneButtonFinal = showDone &&
     isLastPage && (
-      <SymbolButton
+      <DoneButton
         size={BUTTON_SIZE}
         textStyle={getDefaultStyle(isLight)}
         style={{
@@ -71,7 +73,7 @@ const Pagination = ({
         }}
       >
         ✓
-      </SymbolButton>
+      </DoneButton>
     );
 
   return (
@@ -81,11 +83,16 @@ const Pagination = ({
         ...(alterBottomColor ? styles.overlay : {}),
       }}
     >
-      <View style={styles.buttonLeft}>{SkipButton}</View>
-      <Dots isLight={isLight} numPages={numPages} currentPage={currentPage} />
+      <View style={styles.buttonLeft}>{SkipButtonFinal}</View>
+      <Dots
+        isLight={isLight}
+        numPages={numPages}
+        currentPage={currentPage}
+        Dot={Dot}
+      />
       <View style={styles.buttonRight}>
-        {NextButton}
-        {DoneButton}
+        {NextButtonFinal}
+        {DoneButtonFinal}
       </View>
     </View>
   );
@@ -100,9 +107,13 @@ Pagination.propTypes = {
   showSkip: PropTypes.bool.isRequired,
   showDone: PropTypes.bool.isRequired,
   onNext: PropTypes.func.isRequired,
-  onSkip: PropTypes.func.isRequired,
-  onDone: PropTypes.func.isRequired,
+  onSkip: PropTypes.func,
+  onDone: PropTypes.func,
   skipLabel: PropTypes.string.isRequired,
+  SkipButton: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  DoneButton: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  NextButton: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  Dot: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
 };
 
 const styles = {

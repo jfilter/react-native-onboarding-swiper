@@ -5,6 +5,9 @@ import tinycolor from 'tinycolor2';
 
 import Page from './Page';
 import Pagination from './Pagination';
+import Dot from './Dot';
+import TextButton from './TextButton';
+import SymbolButton from './SymbolButton';
 
 // hotfix: https://github.com/facebook/react-native/issues/16710
 const itemVisibleHotfix = { itemVisiblePercentThreshold: 100 };
@@ -82,6 +85,10 @@ class Onboarding extends Component {
       onSkip,
       onDone,
       skipLabel,
+      SkipButtonComponent,
+      DoneButtonComponent,
+      NextButtonComponent,
+      PaginationDotComponent,
     } = this.props;
     const currentPage = pages[this.state.currentPage];
     const currentBackgroundColor = currentPage.backgroundColor;
@@ -137,6 +144,10 @@ class Onboarding extends Component {
           onDone={onDone}
           onNext={this.goNext}
           skipLabel={skipLabel}
+          SkipButton={SkipButtonComponent}
+          DoneButton={DoneButtonComponent}
+          NextButton={NextButtonComponent}
+          Dot={PaginationDotComponent}
         />
       </Animated.View>
     );
@@ -148,8 +159,11 @@ Onboarding.propTypes = {
     PropTypes.shape({
       backgroundColor: PropTypes.string.isRequired,
       image: PropTypes.element.isRequired,
-      title: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
-        .isRequired,
+      title: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.element,
+        PropTypes.func,
+      ]).isRequired,
       subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
         .isRequired,
     })
@@ -161,6 +175,13 @@ Onboarding.propTypes = {
   onSkip: PropTypes.func,
   onDone: PropTypes.func,
   skipLabel: PropTypes.string,
+  SkipButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  DoneButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  NextButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  PaginationDotComponent: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.func,
+  ]),
 };
 
 Onboarding.defaultProps = {
@@ -171,6 +192,10 @@ Onboarding.defaultProps = {
   skipLabel: 'Skip',
   onSkip: null,
   onDone: null,
+  SkipButtonComponent: TextButton,
+  DoneButtonComponent: SymbolButton,
+  NextButtonComponent: SymbolButton,
+  PaginationDotComponent: Dot,
 };
 
 export default Onboarding;
