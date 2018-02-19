@@ -23,35 +23,54 @@ const Square = ({ isLight, selected }) => {
   );
 };
 
-const Done = ({ ...props }) => (
+const backgroundColor = isLight => (isLight ? 'blue' : 'lightblue');
+const color = isLight => backgroundColor(!isLight);
+
+const Done = ({ isLight, ...props }) => (
   <Button
-    title={'Get Started'}
-    containerViewStyle={{ marginTop: 20 }}
-    textStyle={{ color: '#003c8f' }}
+    title={'Done'}
+    buttonStyle={{
+      backgroundColor: backgroundColor(isLight),
+    }}
+    containerViewStyle={{
+      marginVertical: 10,
+      width: 70,
+      backgroundColor: backgroundColor(isLight),
+    }}
+    textStyle={{ color: color(isLight) }}
     {...props}
   />
 );
 
-const Skip = ({ skipLabel, ...props }) => (
+const Skip = ({ isLight, skipLabel, ...props }) => (
   <Button
     title={'Skip'}
-    containerViewStyle={{ marginTop: 20 }}
-    // backgroundColor={'white'}
-    // borderRadius={5}
-    textStyle={{ color: '#003c8f' }}
+    buttonStyle={{
+      backgroundColor: backgroundColor(isLight),
+    }}
+    containerViewStyle={{
+      marginVertical: 10,
+      width: 70,
+    }}
+    textStyle={{ color: color(isLight) }}
     {...props}
   >
     {skipLabel}
   </Button>
 );
 
-const Next = ({ ...props }) => (
+const Next = ({ isLight, ...props }) => (
   <Button
     title={'Next'}
-    containerViewStyle={{ marginTop: 20 }}
-    // backgroundColor={'white'}
-    // borderRadius={5}
-    textStyle={{ color: '#003c8f' }}
+    buttonStyle={{
+      backgroundColor: backgroundColor(isLight),
+    }}
+    containerViewStyle={{
+      marginVertical: 10,
+      width: 70,
+      backgroundColor: backgroundColor(isLight),
+    }}
+    textStyle={{ color: color(isLight) }}
     {...props}
   />
 );
