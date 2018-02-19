@@ -26,7 +26,8 @@
   "bugs": {
     "url": "https://github.com/jfilter/react-native-onboarding-swiper/issues"
   },
-  "homepage": "https://github.com/jfilter/react-native-onboarding-swiper#readme",
+  "homepage":
+    "https://github.com/jfilter/react-native-onboarding-swiper#readme",
   "dependencies": {
     "tinycolor2": "^1.4.1"
   },
