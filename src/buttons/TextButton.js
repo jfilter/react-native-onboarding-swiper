@@ -2,8 +2,8 @@ import { View, TouchableOpacity, Text } from 'react-native';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TextButton = ({ size, onPress, textStyle, children }) => (
-  <View style={{ flex: 0 }}>
+const TextButton = ({ size, onPress, textStyle, style, children }) => (
+  <View style={{ flex: 0, ...style }}>
     <TouchableOpacity
       style={{ flex: 0 }}
       onPress={onPress}

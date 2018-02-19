@@ -23,23 +23,45 @@ const Square = ({ isLight, selected }) => {
   );
 };
 
-const NextButton = () => (
+const Done = ({ ...props }) => (
   <Button
     title={'Get Started'}
+    containerViewStyle={{ marginTop: 20 }}
+    textStyle={{ color: '#003c8f' }}
+    {...props}
+  />
+);
+
+const Skip = ({ skipLabel, ...props }) => (
+  <Button
+    title={'Skip'}
     containerViewStyle={{ marginTop: 20 }}
     // backgroundColor={'white'}
     // borderRadius={5}
     textStyle={{ color: '#003c8f' }}
-    onPress={() => {
-      Alert.alert('done');
-      StatusBar.setBarStyle('default');
-    }}
+    {...props}
+  >
+    {skipLabel}
+  </Button>
+);
+
+const Next = ({ ...props }) => (
+  <Button
+    title={'Next'}
+    containerViewStyle={{ marginTop: 20 }}
+    // backgroundColor={'white'}
+    // borderRadius={5}
+    textStyle={{ color: '#003c8f' }}
+    {...props}
   />
 );
 
 const CustomButtons = () => (
   <Onboarding
     DotComponent={Square}
+    NextButtonComponent={Next}
+    SkipButtonComponent={Skip}
+    DoneButtonComponent={Done}
     pages={[
       {
         backgroundColor: '#fff',

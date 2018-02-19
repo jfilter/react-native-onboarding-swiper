@@ -66,6 +66,7 @@ const Pagination = ({
         numPages={numPages}
         currentPage={currentPage}
         Dot={DotComponent}
+        style={styles.dots}
       />
       <View style={styles.buttonRight}>
         {NextButtonFinal}
@@ -109,13 +110,17 @@ const styles = {
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
   },
   buttonLeft: {
-    width: 70,
-    paddingLeft: 20,
+    width: 200,
+    flexShrink: 1,
+    alignItems: 'flex-start',
   },
   buttonRight: {
-    width: 70,
-    paddingRight: 10,
+    width: 200,
+    flexShrink: 1,
     alignItems: 'flex-end',
+  },
+  dots: {
+    flexShrink: 0,
   },
 };
 
