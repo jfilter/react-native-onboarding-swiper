@@ -6,8 +6,9 @@ import tinycolor from 'tinycolor2';
 import Page from './Page';
 import Pagination from './Pagination';
 import Dot from './Dot';
-import TextButton from './TextButton';
-import SymbolButton from './SymbolButton';
+import SkipButton from './buttons/SkipButton';
+import NextButton from './buttons/NextButton';
+import DoneButton from './buttons/DoneButton';
 
 // hotfix: https://github.com/facebook/react-native/issues/16710
 const itemVisibleHotfix = { itemVisiblePercentThreshold: 100 };
@@ -88,7 +89,7 @@ class Onboarding extends Component {
       SkipButtonComponent,
       DoneButtonComponent,
       NextButtonComponent,
-      PaginationDotComponent,
+      DotComponent,
     } = this.props;
     const currentPage = pages[this.state.currentPage];
     const currentBackgroundColor = currentPage.backgroundColor;
@@ -144,10 +145,10 @@ class Onboarding extends Component {
           onDone={onDone}
           onNext={this.goNext}
           skipLabel={skipLabel}
-          SkipButton={SkipButtonComponent}
-          DoneButton={DoneButtonComponent}
-          NextButton={NextButtonComponent}
-          Dot={PaginationDotComponent}
+          SkipButtonComponent={SkipButtonComponent}
+          DoneButtonComponent={DoneButtonComponent}
+          NextButtonComponent={NextButtonComponent}
+          DotComponent={DotComponent}
         />
       </Animated.View>
     );
@@ -178,10 +179,7 @@ Onboarding.propTypes = {
   SkipButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   DoneButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   NextButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-  PaginationDotComponent: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.func,
-  ]),
+  DotComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
 };
 
 Onboarding.defaultProps = {
@@ -192,10 +190,10 @@ Onboarding.defaultProps = {
   skipLabel: 'Skip',
   onSkip: null,
   onDone: null,
-  SkipButtonComponent: TextButton,
-  DoneButtonComponent: SymbolButton,
-  NextButtonComponent: SymbolButton,
-  PaginationDotComponent: Dot,
+  SkipButtonComponent: SkipButton,
+  DoneButtonComponent: DoneButton,
+  NextButtonComponent: NextButton,
+  DotComponent: Dot,
 };
 
 export default Onboarding;
