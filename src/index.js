@@ -81,6 +81,7 @@ class Onboarding extends Component {
       pages,
       alterBottomColor,
       bottomBarHeight,
+      bottomBarHighlight,
       showSkip,
       showNext,
       showDone,
@@ -107,6 +108,12 @@ class Onboarding extends Component {
         inputRange: [0, 1],
         outputRange: [previousBackgroundColor, currentBackgroundColor],
       });
+    }
+
+    if (alterBottomColor !== undefined) {
+      console.warn(
+        'The prop alterBottomColor on react-native-onboarding-swiper is depricated and will be removed soon. Use `bottomBarHighlight` instead.'
+      );
     }
 
     return (
@@ -137,7 +144,7 @@ class Onboarding extends Component {
         />
         <Pagination
           isLight={isLight}
-          alterBottomColor={alterBottomColor}
+          bottomBarHighlight={bottomBarHighlight || alterBottomColor}
           bottomBarHeight={bottomBarHeight}
           showSkip={showSkip}
           showNext={showNext}
@@ -173,7 +180,7 @@ Onboarding.propTypes = {
         .isRequired,
     })
   ).isRequired,
-  alterBottomColor: PropTypes.bool,
+  bottomBarHighlight: PropTypes.bool,
   bottomBarHeight: PropTypes.number,
   showSkip: PropTypes.bool,
   showNext: PropTypes.bool,
@@ -189,7 +196,7 @@ Onboarding.propTypes = {
 };
 
 Onboarding.defaultProps = {
-  alterBottomColor: true,
+  bottomBarHighlight: true,
   bottomBarHeight: 60,
   showSkip: true,
   showNext: true,
