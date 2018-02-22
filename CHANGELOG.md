@@ -1,7 +1,15 @@
+## 0.4.0 (February 23, 2018)
+
+* Listen to orientation changes and adjust content appropiatly
+* Add animations between page chagnes
+* Make buttons, dots etc. adjustable via a wide range of different props
+
 ## 0.3.0 (October 18, 2017)
+
 * Increase touchable Radius for Buttons
 
 ## 0.2.0 (October 16, 2017)
+
 * Change name to `react-native-onboarding-swiper`
 * Change from ScrollView to FlatList
 * Add `skipLabel` prop
