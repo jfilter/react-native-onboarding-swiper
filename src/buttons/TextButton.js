@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const TextButton = ({ size, onPress, textStyle, style, children }) => (
-  <View style={{ flex: 0, ...style }}>
+  <View style={{ flex: 0, paddingHorizontal: 10, ...style }}>
     <TouchableOpacity
       style={{ flex: 0 }}
       onPress={onPress}

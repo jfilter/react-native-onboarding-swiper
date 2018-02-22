@@ -16,6 +16,7 @@ const Pagination = ({
   onSkip,
   onDone,
   skipLabel,
+  nextLabel,
   SkipButtonComponent,
   NextButtonComponent,
   DoneButtonComponent,
@@ -38,7 +39,13 @@ const Pagination = ({
     );
 
   const NextButtonFinal = showNext &&
-    !isLastPage && <NextButtonComponent isLight={isLight} onPress={onNext} />;
+    !isLastPage && (
+      <NextButtonComponent
+        nextLabel={nextLabel}
+        isLight={isLight}
+        onPress={onNext}
+      />
+    );
 
   const DoneButtonFinal = showDone &&
     isLastPage && (
@@ -88,6 +95,7 @@ Pagination.propTypes = {
   onSkip: PropTypes.func,
   onDone: PropTypes.func,
   skipLabel: PropTypes.string.isRequired,
+  nextLabel: PropTypes.string.isRequired,
   SkipButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
     .isRequired,
   DoneButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func])

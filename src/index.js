@@ -86,6 +86,7 @@ class Onboarding extends Component {
       onSkip,
       onDone,
       skipLabel,
+      nextLabel,
       SkipButtonComponent,
       DoneButtonComponent,
       NextButtonComponent,
@@ -145,6 +146,7 @@ class Onboarding extends Component {
           onDone={onDone}
           onNext={this.goNext}
           skipLabel={skipLabel}
+          nextLabel={nextLabel}
           SkipButtonComponent={SkipButtonComponent}
           DoneButtonComponent={DoneButtonComponent}
           NextButtonComponent={NextButtonComponent}
@@ -176,6 +178,7 @@ Onboarding.propTypes = {
   onSkip: PropTypes.func,
   onDone: PropTypes.func,
   skipLabel: PropTypes.string,
+  nextLabel: PropTypes.string,
   SkipButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   DoneButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   NextButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
@@ -188,6 +191,7 @@ Onboarding.defaultProps = {
   showNext: true,
   showDone: true,
   skipLabel: 'Skip',
+  nextLabel: 'Next',
   onSkip: null,
   onDone: null,
   SkipButtonComponent: SkipButton,

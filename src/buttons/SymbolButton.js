@@ -4,10 +4,20 @@ import PropTypes from 'prop-types';
 
 const SymbolButton = ({ size, onPress, style, textStyle, children }) => (
   <View
-    style={{ height: size, width: size, justifyContent: 'center', ...style }}
+    style={{
+      height: size,
+      width: size,
+      justifyContent: 'center',
+      alignItems: 'center',
+      ...style,
+    }}
   >
     <TouchableOpacity
-      style={{ flex: 0 }}
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
       onPress={onPress}
       hitSlop={{ top: 15, bottom: 15, left: 15, right: 15 }}
     >
