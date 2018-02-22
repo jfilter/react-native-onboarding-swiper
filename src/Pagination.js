@@ -9,6 +9,7 @@ const Pagination = ({
   currentPage,
   isLight,
   alterBottomColor,
+  bottomBarHeight,
   showSkip,
   showNext,
   showDone,
@@ -63,6 +64,7 @@ const Pagination = ({
   return (
     <View
       style={{
+        height: bottomBarHeight,
         ...styles.container,
         ...(alterBottomColor ? styles.overlay : {}),
       }}
@@ -88,6 +90,7 @@ Pagination.propTypes = {
   currentPage: PropTypes.number.isRequired,
   isLight: PropTypes.bool.isRequired,
   alterBottomColor: PropTypes.bool.isRequired,
+  bottomBarHeight: PropTypes.number.isRequired,
   showNext: PropTypes.bool.isRequired,
   showSkip: PropTypes.bool.isRequired,
   showDone: PropTypes.bool.isRequired,
@@ -108,7 +111,6 @@ Pagination.propTypes = {
 
 const styles = {
   container: {
-    height: 60,
     paddingHorizontal: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',

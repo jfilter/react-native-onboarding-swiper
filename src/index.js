@@ -80,6 +80,7 @@ class Onboarding extends Component {
     const {
       pages,
       alterBottomColor,
+      bottomBarHeight,
       showSkip,
       showNext,
       showDone,
@@ -137,6 +138,7 @@ class Onboarding extends Component {
         <Pagination
           isLight={isLight}
           alterBottomColor={alterBottomColor}
+          bottomBarHeight={bottomBarHeight}
           showSkip={showSkip}
           showNext={showNext}
           showDone={showDone}
@@ -172,6 +174,7 @@ Onboarding.propTypes = {
     })
   ).isRequired,
   alterBottomColor: PropTypes.bool,
+  bottomBarHeight: PropTypes.number,
   showSkip: PropTypes.bool,
   showNext: PropTypes.bool,
   showDone: PropTypes.bool,
@@ -187,6 +190,7 @@ Onboarding.propTypes = {
 
 Onboarding.defaultProps = {
   alterBottomColor: true,
+  bottomBarHeight: 60,
   showSkip: true,
   showNext: true,
   showDone: true,
