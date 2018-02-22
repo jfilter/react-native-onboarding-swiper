@@ -3,6 +3,7 @@
 * Listen to orientation changes and adjust content appropiatly
 * Add animations between page chagnes
 * Make buttons, dots etc. adjustable via a wide range of different props
+* Change next arrow to text button `next`.
 
 ## 0.3.0 (October 18, 2017)
 
