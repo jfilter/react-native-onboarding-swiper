@@ -65,7 +65,7 @@ You can also provide your own custom components for the buttons and the dots. Al
 * `SkipButtonComponent` (optional): Skip Button, gets `skipLabel` as prop.
 * `NextButtonComponent` (optional): Next Button, gets `nextLabel` as prop.
 * `DoneButtonComponent` (optional): Done Button.
-* `DotComponent` (optional): Dot for the pagination, gets `isSelected` as prop to indicate the current page.
+* `DotComponent` (optional): Dot for the pagination, gets `selected` as prop to indicate the active page.
 
 ## Contributing
 
