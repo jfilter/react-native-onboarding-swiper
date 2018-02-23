@@ -23,6 +23,7 @@ class Onboarding extends Component {
       width: null,
       height: null,
       backgroundColorAnim: new Animated.Value(0),
+      gone: false,
     };
   }
 
@@ -98,7 +99,6 @@ class Onboarding extends Component {
     const currentBackgroundColor = currentPage.backgroundColor;
     const isLight = tinycolor(currentBackgroundColor).getBrightness() > 180;
     const barStyle = isLight ? 'dark-content' : 'light-content';
-    StatusBar.setBarStyle(barStyle);
 
     let backgroundColor = currentBackgroundColor;
     if (this.state.previousPage !== null) {
@@ -119,12 +119,9 @@ class Onboarding extends Component {
     return (
       <Animated.View
         onLayout={this._onLayout}
-        style={{
-          flex: 1,
-          backgroundColor,
-          justifyContent: 'center',
-        }}
+        style={{ flex: 1, backgroundColor, justifyContent: 'center' }}
       >
+        <StatusBar barStyle={this.state.gone ? 'default' : barStyle} />
         <FlatList
           ref={list => {
             this.flatList = list;
@@ -143,6 +140,7 @@ class Onboarding extends Component {
           }
         />
         <Pagination
+          gone={() => this.setState({ gone: true })}
           isLight={isLight}
           bottomBarHighlight={bottomBarHighlight || alterBottomColor}
           bottomBarHeight={bottomBarHeight}
