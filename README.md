@@ -1,4 +1,4 @@
-# `<Onboarding />`
+# `<Onboarding />` [![npm](https://img.shields.io/npm/v/react-native-onboarding-swiper.svg)](https://www.npmjs.com/package/react-native-onboarding-swiper) [![npm](https://img.shields.io/npm/dm/react-native-onboarding-swiper.svg)](https://www.npmjs.com/package/react-native-onboarding-swiper)
 
 | ![](demo/simple1.png) | ![](demo/simple2.png) | ![](demo/simple3.png) |
 | --------------------- | --------------------- | --------------------- |
