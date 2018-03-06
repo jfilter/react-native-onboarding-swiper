@@ -59,7 +59,7 @@ class Onboarding extends Component {
     this.setState({ width, height });
   };
 
-  keyExtractor = (item, index) => index;
+  keyExtractor = (item, index) => index.toString();
 
   renderItem = ({ item }) => {
     const { image, title, subtitle, backgroundColor } = item;
