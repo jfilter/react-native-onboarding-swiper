@@ -98,8 +98,10 @@ Pagination.propTypes = {
   onNext: PropTypes.func.isRequired,
   onSkip: PropTypes.func,
   onDone: PropTypes.func,
-  skipLabel: PropTypes.string.isRequired,
-  nextLabel: PropTypes.string.isRequired,
+  skipLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
+    .isRequired,
+  nextLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
+    .isRequired,
   SkipButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
     .isRequired,
   DoneButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
