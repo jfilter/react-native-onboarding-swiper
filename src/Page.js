@@ -59,6 +59,7 @@ const styles = {
     flex: 0,
     paddingBottom: potrait ? 60 : 10,
     alignItems: 'center',
+    width: '100%',
   },
   padding: {
     paddingHorizontal: 10,
