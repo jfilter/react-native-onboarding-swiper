@@ -1,3 +1,8 @@
+## 0.5.0 (March 24, 2018)
+
+* allow customization of image container styles
+* fix several propTypes warnings
+
 ## 0.4.0 (February 23, 2018)
 
 * Listen to orientation changes and adjust content appropiatly
