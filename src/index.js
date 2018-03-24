@@ -142,7 +142,11 @@ class Onboarding extends Component {
         <Pagination
           gone={() => this.setState({ gone: true })}
           isLight={isLight}
-          bottomBarHighlight={bottomBarHighlight || alterBottomColor}
+          bottomBarHighlight={
+            alterBottomColor !== undefined
+              ? alterBottomColor
+              : bottomBarHighlight
+          }
           bottomBarHeight={bottomBarHeight}
           showSkip={showSkip}
           showNext={showNext}
