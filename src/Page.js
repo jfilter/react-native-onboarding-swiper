@@ -1,8 +1,16 @@
-import { Dimensions, Text, View } from 'react-native';
-import React from 'react';
+import { Dimensions, Text, View, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
+import React from 'react';
 
-const Page = ({ isLight, image, title, subtitle, width, height }) => {
+const Page = ({
+  isLight,
+  image,
+  title,
+  subtitle,
+  width,
+  height,
+  imageContainerStyles,
+}) => {
   let titleElement = title;
   if (typeof title === 'string' || title instanceof String) {
     titleElement = (
@@ -27,7 +35,7 @@ const Page = ({ isLight, image, title, subtitle, width, height }) => {
 
   return (
     <View style={[styles.container, { width, height }]}>
-      <View style={styles.image}>{image}</View>
+      <View style={[styles.imageContainer, imageContainerStyles]}>{image}</View>
       {titleElement}
       {subtitleElement}
     </View>
@@ -37,11 +45,16 @@ const Page = ({ isLight, image, title, subtitle, width, height }) => {
 Page.propTypes = {
   isLight: PropTypes.bool.isRequired,
   image: PropTypes.element.isRequired,
+  imageContainerStyles: ViewPropTypes.style,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
     .isRequired,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
+};
+
+Page.defaultProps = {
+  imageContainerStyles: null,
 };
 
 const { width, height } = Dimensions.get('window');
@@ -55,7 +68,7 @@ const styles = {
     justifyContent: potrait ? 'center' : 'flex-start',
     paddingTop: potrait ? 0 : 10,
   },
-  image: {
+  imageContainer: {
     flex: 0,
     paddingBottom: potrait ? 60 : 10,
     alignItems: 'center',
