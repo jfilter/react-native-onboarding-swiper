@@ -57,12 +57,13 @@ Also check out the three examples files: the [simple example](examples/Simple.js
 * `showSkip` (optional): a bool flag indicating whether the Skip button is visible. Defaults to `true`.
 * `showNext` (optional): a bool flag indicating whether the Next button is visible. Defaults to `true`.
 * `showDone` (optional): a bool flag indicating whether the Done checkmark button is visible. Defaults to `true`.
-* `skipLabel` (optional): a string for the Skip label. Defaults to `Skip`.
-* `nextLabel` (optional): a string for the Skip label. Defaults to `Next`.
+* `skipLabel` (optional): a string **OR** a React-Native component for the Skip label. Defaults to `Skip`.
+* `nextLabel` (optional): a string **OR** a React-Native component for the Skip label. Defaults to `Next`.
 * `bottomBarHeight` (optional): a number for the height of the bottom bar. Defaults to `60`.
 * `bottomBarHighlight` (optional): a bool flag indicating whether the bottm bar should be highlighted. Defaults to `true`.
+* `imageContainerStyles` (optional): for a page in the `pages` array, you can override the default styles e.g. the `paddingBottom` of 60.
 
-## Custom Compononts Properties
+## Custom Components Properties
 
 You can also provide your own custom components for the buttons and the dots. All of them have access to a `isLight` prop but it's up to you what you do with it. Also checkout [this example](examples/CustomButtons.js).
 
