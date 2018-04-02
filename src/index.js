@@ -90,6 +90,7 @@ class Onboarding extends Component {
       alterBottomColor,
       bottomBarHeight,
       bottomBarHighlight,
+      controlStatusBar,
       showSkip,
       showNext,
       showDone,
@@ -128,7 +129,7 @@ class Onboarding extends Component {
         onLayout={this._onLayout}
         style={{ flex: 1, backgroundColor, justifyContent: 'center' }}
       >
-        <StatusBar barStyle={this.state.gone ? 'default' : barStyle} />
+        { controlStatusBar && <StatusBar barStyle={this.state.gone ? 'default' : barStyle} /> }
         <FlatList
           ref={list => {
             this.flatList = list;
@@ -207,6 +208,7 @@ Onboarding.propTypes = {
 Onboarding.defaultProps = {
   bottomBarHighlight: true,
   bottomBarHeight: 60,
+  controlStatusBar: true,
   showSkip: true,
   showNext: true,
   showDone: true,
