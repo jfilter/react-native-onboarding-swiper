@@ -8,7 +8,6 @@ const Pagination = ({
   numPages,
   currentPage,
   isLight,
-  bottomBarHighlight,
   bottomBarHeight,
   showSkip,
   showNext,
@@ -67,7 +66,6 @@ const Pagination = ({
       style={{
         height: bottomBarHeight,
         ...styles.container,
-        ...(bottomBarHighlight ? styles.overlay : {}),
       }}
     >
       <View style={styles.buttonLeft}>{SkipButtonFinal}</View>
@@ -90,7 +88,6 @@ Pagination.propTypes = {
   numPages: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   isLight: PropTypes.bool.isRequired,
-  bottomBarHighlight: PropTypes.bool.isRequired,
   bottomBarHeight: PropTypes.number.isRequired,
   showNext: PropTypes.bool.isRequired,
   showSkip: PropTypes.bool.isRequired,
@@ -118,9 +115,6 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-  },
-  overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.1)',
   },
   buttonLeft: {
     width: 200,

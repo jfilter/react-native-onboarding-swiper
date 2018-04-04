@@ -1,4 +1,4 @@
-import { Animated, Dimensions, FlatList, StatusBar } from 'react-native';
+import { Animated, Dimensions, FlatList, StatusBar, SafeAreaView } from 'react-native';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import tinycolor from 'tinycolor2';
@@ -89,7 +89,6 @@ class Onboarding extends Component {
       pages,
       alterBottomColor,
       bottomBarHeight,
-      bottomBarHighlight,
       controlStatusBar,
       showSkip,
       showNext,
@@ -107,6 +106,11 @@ class Onboarding extends Component {
     const currentBackgroundColor = currentPage.backgroundColor;
     const isLight = tinycolor(currentBackgroundColor).getBrightness() > 180;
     const barStyle = isLight ? 'dark-content' : 'light-content';
+    const bottomBarHighlight = (
+      alterBottomColor !== undefined
+        ? alterBottomColor
+        : this.props.bottomBarHighlight
+    );
 
     let backgroundColor = currentBackgroundColor;
     if (this.state.previousPage !== null) {
@@ -147,30 +151,27 @@ class Onboarding extends Component {
             this.state.width // ensure that the list re-renders on orientation change
           }
         />
-        <Pagination
-          gone={() => this.setState({ gone: true })}
-          isLight={isLight}
-          bottomBarHighlight={
-            alterBottomColor !== undefined
-              ? alterBottomColor
-              : bottomBarHighlight
-          }
-          bottomBarHeight={bottomBarHeight}
-          showSkip={showSkip}
-          showNext={showNext}
-          showDone={showDone}
-          numPages={pages.length}
-          currentPage={this.state.currentPage}
-          onSkip={onSkip}
-          onDone={onDone}
-          onNext={this.goNext}
-          skipLabel={skipLabel}
-          nextLabel={nextLabel}
-          SkipButtonComponent={SkipButtonComponent}
-          DoneButtonComponent={DoneButtonComponent}
-          NextButtonComponent={NextButtonComponent}
-          DotComponent={DotComponent}
-        />
+        <SafeAreaView style={bottomBarHighlight ? styles.overlay : {}}>
+          <Pagination
+            gone={() => this.setState({ gone: true })}
+            isLight={isLight}
+            bottomBarHeight={bottomBarHeight}
+            showSkip={showSkip}
+            showNext={showNext}
+            showDone={showDone}
+            numPages={pages.length}
+            currentPage={this.state.currentPage}
+            onSkip={onSkip}
+            onDone={onDone}
+            onNext={this.goNext}
+            skipLabel={skipLabel}
+            nextLabel={nextLabel}
+            SkipButtonComponent={SkipButtonComponent}
+            DoneButtonComponent={DoneButtonComponent}
+            NextButtonComponent={NextButtonComponent}
+            DotComponent={DotComponent}
+          />
+        </SafeAreaView>
       </Animated.View>
     );
   }
@@ -221,5 +222,11 @@ Onboarding.defaultProps = {
   NextButtonComponent: NextButton,
   DotComponent: Dot,
 };
+
+const styles = {
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+  },
+}
 
 export default Onboarding;
