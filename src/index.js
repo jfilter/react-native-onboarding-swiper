@@ -1,4 +1,10 @@
-import { Animated, Dimensions, FlatList, StatusBar, SafeAreaView } from 'react-native';
+import {
+  Animated,
+  Dimensions,
+  FlatList,
+  StatusBar,
+  SafeAreaView,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import tinycolor from 'tinycolor2';
@@ -107,11 +113,10 @@ class Onboarding extends Component {
     const currentBackgroundColor = currentPage.backgroundColor;
     const isLight = tinycolor(currentBackgroundColor).getBrightness() > 180;
     const barStyle = isLight ? 'dark-content' : 'light-content';
-    const bottomBarHighlight = (
+    const bottomBarHighlight =
       alterBottomColor !== undefined
         ? alterBottomColor
-        : this.props.bottomBarHighlight
-    );
+        : this.props.bottomBarHighlight;
 
     let backgroundColor = currentBackgroundColor;
     if (this.state.previousPage !== null) {
@@ -134,7 +139,9 @@ class Onboarding extends Component {
         onLayout={this._onLayout}
         style={{ flex: 1, backgroundColor, justifyContent: 'center' }}
       >
-        { controlStatusBar && <StatusBar barStyle={this.state.gone ? 'default' : barStyle} /> }
+        {controlStatusBar && (
+          <StatusBar barStyle={this.state.gone ? 'default' : barStyle} />
+        )}
         <FlatList
           ref={list => {
             this.flatList = list;
@@ -229,6 +236,6 @@ const styles = {
   overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
   },
-}
+};
 
 export default Onboarding;
