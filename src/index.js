@@ -101,6 +101,7 @@ class Onboarding extends Component {
       DoneButtonComponent,
       NextButtonComponent,
       DotComponent,
+      flatlistProps,
     } = this.props;
     const currentPage = pages[this.state.currentPage];
     const currentBackgroundColor = currentPage.backgroundColor;
@@ -150,6 +151,7 @@ class Onboarding extends Component {
           extraData={
             this.state.width // ensure that the list re-renders on orientation change
           }
+          {...flatlistProps}
         />
         <SafeAreaView style={bottomBarHighlight ? styles.overlay : {}}>
           <Pagination
