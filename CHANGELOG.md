@@ -1,3 +1,8 @@
+## 0.6.0 (April 08, 2018)
+* iPhone X support (thanks to @nbolender)
+* new props: `flatlistProps` and `controlStatusBar`
+* fade-in animation for `Done` button
+
 ## 0.5.0 (March 24, 2018)
 
 * allow customization of image container styles
