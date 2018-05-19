@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -21,7 +21,6 @@ const Pagination = ({
   NextButtonComponent,
   DoneButtonComponent,
   DotComponent,
-  gone,
 }) => {
   const isLastPage = currentPage + 1 === numPages;
 
@@ -32,8 +31,8 @@ const Pagination = ({
         skipLabel={skipLabel}
         onPress={() => {
           if (typeof onSkip === 'function') {
+            StatusBar.setBarStyle('default', true);
             onSkip();
-            setTimeout(gone, 500);
           }
         }}
       />
@@ -54,8 +53,8 @@ const Pagination = ({
         isLight={isLight}
         onPress={() => {
           if (typeof onDone === 'function') {
+            StatusBar.setBarStyle('default', true);
             onDone();
-            setTimeout(gone, 500);
           }
         }}
       />
