@@ -29,7 +29,6 @@ class Onboarding extends Component {
       width: null,
       height: null,
       backgroundColorAnim: new Animated.Value(0),
-      gone: false,
     };
   }
 
@@ -130,7 +129,7 @@ class Onboarding extends Component {
 
     if (alterBottomColor !== undefined) {
       console.warn(
-        'The prop alterBottomColor on react-native-onboarding-swiper is depricated and will be removed soon. Use `bottomBarHighlight` instead.'
+        'The prop alterBottomColor on react-native-onboarding-swiper is deprecated and will be removed soon. Use `bottomBarHighlight` instead.'
       );
     }
 
@@ -140,8 +139,9 @@ class Onboarding extends Component {
         style={{ flex: 1, backgroundColor, justifyContent: 'center' }}
       >
         {controlStatusBar && (
-          <StatusBar barStyle={this.state.gone ? 'default' : barStyle} />
+          <StatusBar barStyle={barStyle} />
         )}
+
         <FlatList
           ref={list => {
             this.flatList = list;
@@ -162,7 +162,6 @@ class Onboarding extends Component {
         />
         <SafeAreaView style={bottomBarHighlight ? styles.overlay : {}}>
           <Pagination
-            gone={() => this.setState({ gone: true })}
             isLight={isLight}
             bottomBarHeight={bottomBarHeight}
             showSkip={showSkip}
