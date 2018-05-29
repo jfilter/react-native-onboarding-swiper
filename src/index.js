@@ -129,7 +129,7 @@ class Onboarding extends Component {
 
     if (alterBottomColor !== undefined) {
       console.warn(
-        'The prop alterBottomColor on react-native-onboarding-swiper is depricated and will be removed soon. Use `bottomBarHighlight` instead.'
+        'The prop alterBottomColor on react-native-onboarding-swiper is deprecated and will be removed soon. Use `bottomBarHighlight` instead.'
       );
     }
 
