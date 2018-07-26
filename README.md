@@ -64,6 +64,7 @@ Also check out the three examples files: the [simple example](examples/Simple.js
 * `imageContainerStyles` (optional): for a page in the `pages` array, you can override the default styles e.g. the `paddingBottom` of 60.
 * `controlStatusBar` (optional): a bool flag indicating whether the status bar should change with the background color. Defaults to `true`.
 * `flatlistProps` (optional): additional props for the [FlatList](https://facebook.github.io/react-native/docs/flatlist.html) which holds all the pages.
+* `transitionAnimationDuration` (optional): The duration in milliseconds for the animation of the background color for the page transition. Defaults to `500`.
 
 ## Custom Components Properties
 

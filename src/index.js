@@ -37,7 +37,7 @@ class Onboarding extends Component {
   componentDidUpdate() {
     Animated.timing(this.state.backgroundColorAnim, {
       toValue: 1,
-      duration: 500,
+      duration: this.props.transitionAnimationDuration,
     }).start();
   }
 
@@ -194,6 +194,7 @@ Onboarding.propTypes = {
   ).isRequired,
   bottomBarHighlight: PropTypes.bool,
   bottomBarHeight: PropTypes.number,
+  controlStatusBar: PropTypes.bool,
   showSkip: PropTypes.bool,
   showNext: PropTypes.bool,
   showDone: PropTypes.bool,
@@ -206,6 +207,7 @@ Onboarding.propTypes = {
   NextButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   DotComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   imageContainerStyles: ViewPropTypes.style,
+  transitionAnimationDuration: PropTypes.number,
 };
 
 Onboarding.defaultProps = {
@@ -224,6 +226,7 @@ Onboarding.defaultProps = {
   NextButtonComponent: NextButton,
   DotComponent: Dot,
   imageContainerStyles: null,
+  transitionAnimationDuration: 500,
 };
 
 const styles = {
