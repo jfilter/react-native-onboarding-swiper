@@ -1,6 +1,6 @@
 {
   "name": "react-native-onboarding-swiper",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Delightful Onboarding for your React-Native App",
   "main": "src/index.js",
   "scripts": {
