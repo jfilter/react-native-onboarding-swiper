@@ -53,6 +53,7 @@ Also check out the three examples files: the [simple example](examples/Simple.js
 ## Optional Properties
 
 * `onSkip` (optional): a callback that is fired if the Onboarding is skipped.
+* `skipToPage` (optional): when pressing skip, go the to that page (e.g. `skipToPage={2}`). If this prop is provided, ignores `onSkip`.
 * `onDone` (optional): a callback that is fired after the Onboarding is completed.
 * `showSkip` (optional): a bool flag indicating whether the Skip button is visible. Defaults to `true`.
 * `showNext` (optional): a bool flag indicating whether the Next button is visible. Defaults to `true`.

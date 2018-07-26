@@ -103,6 +103,7 @@ class Onboarding extends Component {
       NextButtonComponent,
       DotComponent,
       flatlistProps,
+      skipToPage,
     } = this.props;
     const currentPage = pages[this.state.currentPage];
     const currentBackgroundColor = currentPage.backgroundColor;
@@ -128,6 +129,16 @@ class Onboarding extends Component {
         'The prop alterBottomColor on react-native-onboarding-swiper is deprecated and will be removed soon. Use `bottomBarHighlight` instead.'
       );
     }
+
+    const skipFun =
+      skipToPage != null
+        ? () => {
+            this.flatList.scrollToIndex({
+              animated: true,
+              index: skipToPage,
+            });
+          }
+        : onSkip;
 
     return (
       <Animated.View
@@ -162,7 +173,7 @@ class Onboarding extends Component {
             showDone={showDone}
             numPages={pages.length}
             currentPage={this.state.currentPage}
-            onSkip={onSkip}
+            onSkip={skipFun}
             onDone={onDone}
             onNext={this.goNext}
             skipLabel={skipLabel}
@@ -208,6 +219,7 @@ Onboarding.propTypes = {
   DotComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   imageContainerStyles: ViewPropTypes.style,
   transitionAnimationDuration: PropTypes.number,
+  skipToPage: PropTypes.number,
 };
 
 Onboarding.defaultProps = {
@@ -227,6 +239,7 @@ Onboarding.defaultProps = {
   DotComponent: Dot,
   imageContainerStyles: null,
   transitionAnimationDuration: 500,
+  skipToPage: null,
 };
 
 const styles = {
