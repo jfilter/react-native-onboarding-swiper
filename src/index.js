@@ -4,7 +4,9 @@ import {
   FlatList,
   StatusBar,
   SafeAreaView,
+  ViewPropTypes,
 } from 'react-native';
+
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import tinycolor from 'tinycolor2';
@@ -67,13 +69,7 @@ class Onboarding extends Component {
   keyExtractor = (item, index) => index.toString();
 
   renderItem = ({ item }) => {
-    const {
-      image,
-      title,
-      subtitle,
-      backgroundColor,
-      imageContainerStyles,
-    } = item;
+    const { image, title, subtitle, backgroundColor } = item;
     const isLight = tinycolor(backgroundColor).getBrightness() > 180;
 
     return (
@@ -84,7 +80,7 @@ class Onboarding extends Component {
         subtitle={subtitle}
         width={this.state.width || Dimensions.get('window').width}
         height={this.state.height || Dimensions.get('window').height}
-        imageContainerStyles={imageContainerStyles}
+        imageContainerStyles={this.props.imageContainerStyles}
       />
     );
   };
@@ -209,6 +205,7 @@ Onboarding.propTypes = {
   DoneButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   NextButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   DotComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  imageContainerStyles: ViewPropTypes.style,
 };
 
 Onboarding.defaultProps = {
@@ -226,6 +223,7 @@ Onboarding.defaultProps = {
   DoneButtonComponent: DoneButton,
   NextButtonComponent: NextButton,
   DotComponent: Dot,
+  imageContainerStyles: null,
 };
 
 const styles = {
