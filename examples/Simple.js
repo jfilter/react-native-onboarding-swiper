@@ -5,7 +5,6 @@ import Onboarding from 'react-native-onboarding-swiper';
 
 const Simple = () => (
   <Onboarding
-    transitionAnimationDuration={500}
     pages={[
       {
         backgroundColor: '#fff',
