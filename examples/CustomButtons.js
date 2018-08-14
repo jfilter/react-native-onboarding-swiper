@@ -1,6 +1,6 @@
 import { Image, View } from 'react-native';
 import React from 'react';
-import { Button, Icon } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 
 import Onboarding from 'react-native-onboarding-swiper';
 
