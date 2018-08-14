@@ -9,6 +9,7 @@ const Pagination = ({
   currentPage,
   isLight,
   bottomBarHeight,
+  controlStatusBar,
   showSkip,
   showNext,
   showDone,
@@ -31,7 +32,9 @@ const Pagination = ({
         skipLabel={skipLabel}
         onPress={() => {
           if (typeof onSkip === 'function') {
-            StatusBar.setBarStyle('default', true);
+            if (controlStatusBar) {
+              StatusBar.setBarStyle('default', true);
+            }
             onSkip();
           }
         }}
@@ -53,7 +56,9 @@ const Pagination = ({
         isLight={isLight}
         onPress={() => {
           if (typeof onDone === 'function') {
-            StatusBar.setBarStyle('default', true);
+            if (controlStatusBar) {
+              StatusBar.setBarStyle('default', true);
+            }
             onDone();
           }
         }}

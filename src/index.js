@@ -173,6 +173,7 @@ class Onboarding extends Component {
             showDone={showDone}
             numPages={pages.length}
             currentPage={this.state.currentPage}
+            controlStatusBar={controlStatusBar}
             onSkip={skipFun}
             onDone={onDone}
             onNext={this.goNext}
