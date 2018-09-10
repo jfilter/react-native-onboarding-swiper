@@ -1,8 +1,5 @@
-import { Animated } from 'react-native';
+import { Animated, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import React from 'react';
-
-import { BUTTON_SIZE, MARGIN_RIGHT, getDefaultStyle } from './util';
-import SymbolButton from './SymbolButton';
 
 class DoneButton extends React.Component {
   state = {
@@ -28,21 +25,29 @@ class DoneButton extends React.Component {
           opacity: fadeAnim,
         }}
       >
-        <SymbolButton
-          size={BUTTON_SIZE}
-          textStyle={getDefaultStyle(isLight)}
-          style={{
-            borderRadius: BUTTON_SIZE / 2,
-            backgroundColor: 'rgba(255, 255, 255, 0.10)',
-            margin: MARGIN_RIGHT,
-          }}
-          {...rest}
-        >
-          ✓
-        </SymbolButton>
+        <TouchableOpacity style={styles.buttonContainer}>
+          <Text style={styles.buttonTitle} ellipsizeMode="middle">Got it</Text>
+        </TouchableOpacity>
       </Animated.View>
     );
   }
 }
+const styles = StyleSheet.create({
+  buttonContainer:{
+    borderRadius: 10,
+    backgroundColor: '#4549D1',
+    width: 300,
+    height: 40,
+    justifyContent: 'center',
+    marginTop: 20,
+  },
+  buttonTitle:{
+    color: 'white',
+    fontFamily: 'HelveticaNeueCyr-Medium',
+    fontSize: 18,
+    lineHeight: 21,
+    textAlign: 'center'
+  }
+});
 
 export default DoneButton;
