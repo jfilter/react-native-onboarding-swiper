@@ -17,7 +17,7 @@ class DoneButton extends React.Component {
 
   render() {
     const { fadeAnim } = this.state;
-    console.log(this.props);
+    
     return (
       <Animated.View
         style={{
