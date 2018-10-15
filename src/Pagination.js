@@ -87,11 +87,6 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  buttonLeft: {
-    width: 200,
-    flexShrink: 1,
-    alignItems: 'flex-start',
-  },
   buttonRight: {
     width: 200,
     flexShrink: 1,
