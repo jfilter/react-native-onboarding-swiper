@@ -81,7 +81,7 @@ const Pagination = ({
         style={styles.dots}
       />
       <View style={styles.buttonRight}>
-        {NextButtonFinal}
+        {/* {NextButtonFinal} */}
         {DoneButtonFinal}
       </View>
     </View>
@@ -116,7 +116,8 @@ Pagination.propTypes = {
 const styles = {
   container: {
     paddingHorizontal: 0,
-    flexDirection: 'row',
+    marginBottom: 20,
+    flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
@@ -128,7 +129,7 @@ const styles = {
   buttonRight: {
     width: 200,
     flexShrink: 1,
-    alignItems: 'flex-end',
+    alignItems: 'center',
   },
   dots: {
     flexShrink: 0,

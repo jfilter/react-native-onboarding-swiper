@@ -16,7 +16,7 @@ class DoneButton extends React.Component {
   }
 
   render() {
-    const { isLight, ...rest } = this.props;
+    const { isLight } = this.props;
     const { fadeAnim } = this.state;
 
     return (
@@ -26,28 +26,31 @@ class DoneButton extends React.Component {
         }}
       >
         <TouchableOpacity style={styles.buttonContainer}>
-          <Text style={styles.buttonTitle} ellipsizeMode="middle">Got it</Text>
+          <Text style={styles.buttonTitle} ellipsizeMode="middle">
+            Got i
+          </Text>
         </TouchableOpacity>
       </Animated.View>
     );
   }
 }
 const styles = StyleSheet.create({
-  buttonContainer:{
+  buttonContainer: {
     borderRadius: 10,
     backgroundColor: '#4549D1',
     width: 300,
     height: 40,
     justifyContent: 'center',
+    alignSelf: 'center',
     marginTop: 20,
   },
-  buttonTitle:{
+  buttonTitle: {
     color: 'white',
     fontFamily: 'HelveticaNeueCyr-Medium',
     fontSize: 18,
     lineHeight: 21,
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });
 
 export default DoneButton;

@@ -67,6 +67,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: potrait ? 'center' : 'flex-start',
     paddingTop: potrait ? 0 : 10,
+    paddingBottom: 20,
   },
   imageContainer: {
     flex: 0,
