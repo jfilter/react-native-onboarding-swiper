@@ -32,6 +32,16 @@ const Pagination = ({
       />
     );
 
+  const renderDots = !isLastPage && (
+    <Dots
+      isLight={isLight}
+      numPages={numPages}
+      currentPage={currentPage}
+      Dot={DotComponent}
+      style={styles.dots}
+    />
+  );
+
   return (
     <View
       style={{
@@ -39,13 +49,7 @@ const Pagination = ({
         ...styles.container,
       }}
     >
-      <Dots
-        isLight={isLight}
-        numPages={numPages}
-        currentPage={currentPage}
-        Dot={DotComponent}
-        style={styles.dots}
-      />
+      {renderDots}
       <View style={styles.buttonRight}>{DoneButtonFinal}</View>
     </View>
   );
