@@ -10,45 +10,12 @@ const Pagination = ({
   isLight,
   bottomBarHeight,
   controlStatusBar,
-  showSkip,
-  showNext,
   showDone,
-  onNext,
-  onSkip,
   onDone,
-  skipLabel,
-  nextLabel,
-  SkipButtonComponent,
-  NextButtonComponent,
   DoneButtonComponent,
   DotComponent,
 }) => {
   const isLastPage = currentPage + 1 === numPages;
-
-  const SkipButtonFinal = showSkip &&
-    !isLastPage && (
-      <SkipButtonComponent
-        isLight={isLight}
-        skipLabel={skipLabel}
-        onPress={() => {
-          if (typeof onSkip === 'function') {
-            if (controlStatusBar) {
-              StatusBar.setBarStyle('default', true);
-            }
-            onSkip();
-          }
-        }}
-      />
-    );
-
-  const NextButtonFinal = showNext &&
-    !isLastPage && (
-      <NextButtonComponent
-        nextLabel={nextLabel}
-        isLight={isLight}
-        onPress={onNext}
-      />
-    );
 
   const DoneButtonFinal = showDone &&
     isLastPage && (
@@ -72,7 +39,6 @@ const Pagination = ({
         ...styles.container,
       }}
     >
-      <View style={styles.buttonLeft}>{SkipButtonFinal}</View>
       <Dots
         isLight={isLight}
         numPages={numPages}
@@ -80,10 +46,7 @@ const Pagination = ({
         Dot={DotComponent}
         style={styles.dots}
       />
-      <View style={styles.buttonRight}>
-        {/* {NextButtonFinal} */}
-        {DoneButtonFinal}
-      </View>
+      <View style={styles.buttonRight}>{DoneButtonFinal}</View>
     </View>
   );
 };
@@ -118,7 +81,7 @@ const styles = {
     paddingHorizontal: 0,
     marginBottom: 20,
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   buttonLeft: {

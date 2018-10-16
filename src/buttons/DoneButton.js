@@ -16,7 +16,6 @@ class DoneButton extends React.Component {
   }
 
   render() {
-    const { isLight } = this.props;
     const { fadeAnim } = this.state;
 
     return (
@@ -27,7 +26,7 @@ class DoneButton extends React.Component {
       >
         <TouchableOpacity style={styles.buttonContainer}>
           <Text style={styles.buttonTitle} ellipsizeMode="middle">
-            Got i
+            Got it
           </Text>
         </TouchableOpacity>
       </Animated.View>
