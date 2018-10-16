@@ -12,19 +12,22 @@ class DoneButton extends React.Component {
         toValue: 1,
         duration: 1000,
       }).start();
-    }, 1000);
+    }, 300);
   }
 
   render() {
     const { fadeAnim } = this.state;
-
+    
     return (
       <Animated.View
         style={{
           opacity: fadeAnim,
         }}
       >
-        <TouchableOpacity style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          onPress={this.props.onPress}
+        >
           <Text style={styles.buttonTitle} ellipsizeMode="middle">
             Got it
           </Text>
@@ -41,7 +44,6 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'center',
     alignSelf: 'center',
-    marginTop: 20,
   },
   buttonTitle: {
     color: 'white',
