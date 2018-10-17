@@ -53,8 +53,8 @@ Page.propTypes = {
   subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
     .isRequired,
   allowFontScaling: PropTypes.bool,
-  titleStyles: ViewPropTypes.style,
-  subTitleStyles: ViewPropTypes.style,
+  titleStyles: Text.propTypes.style,
+  subTitleStyles: Text.propTypes.style,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
 };

@@ -5,6 +5,7 @@ import {
   StatusBar,
   SafeAreaView,
   ViewPropTypes,
+  Text,
 } from 'react-native';
 
 import PropTypes from 'prop-types';
@@ -81,7 +82,7 @@ class Onboarding extends Component {
         width={this.state.width || Dimensions.get('window').width}
         height={this.state.height || Dimensions.get('window').height}
         imageContainerStyles={this.props.imageContainerStyles}
-        allowFontScaling={this.props.allowFontScaling}
+        allowFontScaling={this.props.allowFontScalingText}
         titleStyles={this.props.titleStyles}
 		subTitleStyles={this.props.subTitleStyles}
       />
@@ -101,6 +102,7 @@ class Onboarding extends Component {
       onDone,
       skipLabel,
       nextLabel,
+      allowFontScalingButtons,
       SkipButtonComponent,
       DoneButtonComponent,
       NextButtonComponent,
@@ -182,6 +184,7 @@ class Onboarding extends Component {
             onNext={this.goNext}
             skipLabel={skipLabel}
             nextLabel={nextLabel}
+            allowFontScaling={allowFontScalingButtons}
             SkipButtonComponent={SkipButtonComponent}
             DoneButtonComponent={DoneButtonComponent}
             NextButtonComponent={NextButtonComponent}
@@ -222,9 +225,10 @@ Onboarding.propTypes = {
   NextButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   DotComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   imageContainerStyles: ViewPropTypes.style,
-  allowFontScaling: PropTypes.bool,
-  titleStyles: ViewPropTypes.style,
-  subTitleStyles: ViewPropTypes.style,
+  allowFontScalingText: PropTypes.bool,
+  allowFontScalingButtons: PropTypes.bool,
+  titleStyles: Text.propTypes.style,
+  subTitleStyles: Text.propTypes.style,
   transitionAnimationDuration: PropTypes.number,
   skipToPage: PropTypes.number,
 };
@@ -245,7 +249,8 @@ Onboarding.defaultProps = {
   NextButtonComponent: NextButton,
   DotComponent: Dot,
   imageContainerStyles: null,
-  allowFontScaling: true,
+  allowFontScalingText: true,
+  allowFontScalingButtons: true,
   titleStyles: null,
   subTitleStyles: null,
   transitionAnimationDuration: 500,
