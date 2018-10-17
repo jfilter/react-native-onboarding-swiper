@@ -81,6 +81,9 @@ class Onboarding extends Component {
         width={this.state.width || Dimensions.get('window').width}
         height={this.state.height || Dimensions.get('window').height}
         imageContainerStyles={this.props.imageContainerStyles}
+        allowFontScaling={this.props.allowFontScaling}
+        titleStyles={this.props.titleStyles}
+		subTitleStyles={this.props.subTitleStyles}
       />
     );
   };
@@ -219,6 +222,9 @@ Onboarding.propTypes = {
   NextButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   DotComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   imageContainerStyles: ViewPropTypes.style,
+  allowFontScaling: PropTypes.bool,
+  titleStyles: ViewPropTypes.style,
+  subTitleStyles: ViewPropTypes.style,
   transitionAnimationDuration: PropTypes.number,
   skipToPage: PropTypes.number,
 };
@@ -239,6 +245,9 @@ Onboarding.defaultProps = {
   NextButtonComponent: NextButton,
   DotComponent: Dot,
   imageContainerStyles: null,
+  allowFontScaling: true,
+  titleStyles: null,
+  subTitleStyles: null,
   transitionAnimationDuration: 500,
   skipToPage: null,
 };
