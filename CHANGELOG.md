@@ -1,4 +1,14 @@
+## 0.8.0 (October 21, 2018)
+
+* add props for title's styles
+* fix font scaling for symbol buttons
+
+## 0.7.0 (July 27, 2018)
+
+* add some more props and re-work how the statusbar color gets reset to default
+
 ## 0.6.0 (April 08, 2018)
+
 * iPhone X support (thanks to @nbolender)
 * new props: `flatlistProps` and `controlStatusBar`
 * fade-in animation for `Done` button
