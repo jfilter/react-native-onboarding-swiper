@@ -10,12 +10,15 @@ const Page = ({
   width,
   height,
   imageContainerStyles,
+  allowFontScaling,
+  titleStyles,
+  subTitleStyles,
 }) => {
   let titleElement = title;
   if (typeof title === 'string' || title instanceof String) {
     titleElement = (
       <View style={styles.padding}>
-        <Text style={[styles.title, isLight ? styles.titleLight : {}]}>
+        <Text allowFontScaling={allowFontScaling} style={[styles.title, isLight ? styles.titleLight : {}, titleStyles]}>
           {title}
         </Text>
       </View>
@@ -26,7 +29,7 @@ const Page = ({
   if (typeof subtitle === 'string' || subtitle instanceof String) {
     subtitleElement = (
       <View style={styles.padding}>
-        <Text style={[styles.subtitle, isLight ? styles.subtitleLight : {}]}>
+        <Text allowFontScaling={allowFontScaling} style={[styles.subtitle, isLight ? styles.subtitleLight : {}, subTitleStyles]}>
           {subtitle}
         </Text>
       </View>
@@ -49,12 +52,18 @@ Page.propTypes = {
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
     .isRequired,
+  allowFontScaling: PropTypes.bool,
+  titleStyles: Text.propTypes.style,
+  subTitleStyles: Text.propTypes.style,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
 };
 
 Page.defaultProps = {
   imageContainerStyles: null,
+  allowFontScaling: true,
+  titleStyles: null,
+  subTitleStyles: null,
 };
 
 const { width, height } = Dimensions.get('window');

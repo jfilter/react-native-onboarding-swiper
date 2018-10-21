@@ -21,7 +21,7 @@ const SymbolButton = ({ size, onPress, style, textStyle, children }) => (
       onPress={onPress}
       hitSlop={{ top: 15, bottom: 15, left: 15, right: 15 }}
     >
-      <Text style={{ textAlign: 'center', fontSize: size / 1.7, ...textStyle }}>
+      <Text allowFontScaling={false} style={{ textAlign: 'center', fontSize: size / 1.7, ...textStyle }}>
         {children}
       </Text>
     </TouchableOpacity>

@@ -18,6 +18,7 @@ const Pagination = ({
   onDone,
   skipLabel,
   nextLabel,
+  allowFontScaling,
   SkipButtonComponent,
   NextButtonComponent,
   DoneButtonComponent,
@@ -30,6 +31,7 @@ const Pagination = ({
       <SkipButtonComponent
         isLight={isLight}
         skipLabel={skipLabel}
+		allowFontScaling={allowFontScaling}
         onPress={() => {
           if (typeof onSkip === 'function') {
             if (controlStatusBar) {
@@ -45,6 +47,7 @@ const Pagination = ({
     !isLastPage && (
       <NextButtonComponent
         nextLabel={nextLabel}
+		allowFontScaling={allowFontScaling}
         isLight={isLight}
         onPress={onNext}
       />
@@ -54,6 +57,7 @@ const Pagination = ({
     isLastPage && (
       <DoneButtonComponent
         isLight={isLight}
+		allowFontScaling={allowFontScaling}
         onPress={() => {
           if (typeof onDone === 'function') {
             if (controlStatusBar) {
@@ -99,6 +103,7 @@ Pagination.propTypes = {
   onNext: PropTypes.func.isRequired,
   onSkip: PropTypes.func,
   onDone: PropTypes.func,
+  allowFontScaling: PropTypes.bool,
   skipLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
     .isRequired,
   nextLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
