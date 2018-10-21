@@ -12,7 +12,7 @@ Getting everything running merely takes a minute. Don't believe me? Try it out!
 
 ## Install
 
-```
+```bash
 npm i react-native-onboarding-swiper
 ```
 
@@ -52,20 +52,31 @@ Also check out the three examples files: the [simple example](examples/Simple.js
 
 ## Optional Properties
 
+### Adjust individual Pages
+
+* `titleStyles` (optional): modify styles of a page's title.
+* `subTitleStyles` (optional): modify styles of a page's subtitle.
+
+### Buttons
+
+* `nextLabel` (optional): a string **OR** a React-Native component for the Skip label. Defaults to `Next`.
+* `showNext` (optional): a bool flag indicating whether the Next button is visible. Defaults to `true`.
+* `skipLabel` (optional): a string **OR** a React-Native component for the Skip label. Defaults to `Skip`.
+* `showSkip` (optional): a bool flag indicating whether the Skip button is visible. Defaults to `true`.
 * `onSkip` (optional): a callback that is fired if the Onboarding is skipped.
 * `skipToPage` (optional): when pressing skip, go the to that page (e.g. `skipToPage={2}`). If this prop is provided, ignores `onSkip`.
 * `onDone` (optional): a callback that is fired after the Onboarding is completed.
-* `showSkip` (optional): a bool flag indicating whether the Skip button is visible. Defaults to `true`.
-* `showNext` (optional): a bool flag indicating whether the Next button is visible. Defaults to `true`.
 * `showDone` (optional): a bool flag indicating whether the Done checkmark button is visible. Defaults to `true`.
-* `skipLabel` (optional): a string **OR** a React-Native component for the Skip label. Defaults to `Skip`.
-* `nextLabel` (optional): a string **OR** a React-Native component for the Skip label. Defaults to `Next`.
+
+### General
+
 * `bottomBarHeight` (optional): a number for the height of the bottom bar. Defaults to `60`.
 * `bottomBarHighlight` (optional): a bool flag indicating whether the bottm bar should be highlighted. Defaults to `true`.
 * `imageContainerStyles` (optional): for a page in the `pages` array, you can override the default styles e.g. the `paddingBottom` of 60.
 * `controlStatusBar` (optional): a bool flag indicating whether the status bar should change with the background color. Defaults to `true`.
 * `flatlistProps` (optional): additional props for the [FlatList](https://facebook.github.io/react-native/docs/flatlist.html) which holds all the pages.
 * `transitionAnimationDuration` (optional): The duration in milliseconds for the animation of the background color for the page transition. Defaults to `500`.
+* `allowFontScaling` (optional): Font scaling can cause troubles with high-resolution screens. You may want to disable it. Defaults to `true`.
 
 ## Custom Components Properties
 
