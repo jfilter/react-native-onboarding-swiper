@@ -47,6 +47,7 @@ class Onboarding extends Component {
       return;
 
     this.setState(state => {
+      this.props.givePageIndex(viewableItems[0].index);
       return {
         previousPage: state.currentPage,
         currentPage: viewableItems[0].index,
@@ -109,6 +110,7 @@ class Onboarding extends Component {
       DotComponent,
       flatlistProps,
       skipToPage,
+      givePageIndex,
     } = this.props;
     const currentPage = pages[this.state.currentPage];
     const currentBackgroundColor = currentPage.backgroundColor;
@@ -231,6 +233,7 @@ Onboarding.propTypes = {
   subTitleStyles: Text.propTypes.style,
   transitionAnimationDuration: PropTypes.number,
   skipToPage: PropTypes.number,
+  givePageIndex: PropTypes.func,
 };
 
 Onboarding.defaultProps = {
@@ -255,6 +258,7 @@ Onboarding.defaultProps = {
   subTitleStyles: null,
   transitionAnimationDuration: 500,
   skipToPage: null,
+  givePageIndex: null,
 };
 
 const styles = {
