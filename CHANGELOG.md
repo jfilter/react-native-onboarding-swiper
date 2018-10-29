@@ -1,3 +1,7 @@
+## 0.9.0 (October 29, 2018)
+
+* add `pageIndexCallback` to get the page index on change
+
 ## 0.8.0 (October 21, 2018)
 
 * add props for title's styles
