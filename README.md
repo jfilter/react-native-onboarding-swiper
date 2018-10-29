@@ -77,7 +77,7 @@ Also check out the three examples files: the [simple example](examples/Simple.js
 * `flatlistProps` (optional): additional props for the [FlatList](https://facebook.github.io/react-native/docs/flatlist.html) which holds all the pages.
 * `transitionAnimationDuration` (optional): The duration in milliseconds for the animation of the background color for the page transition. Defaults to `500`.
 * `allowFontScaling` (optional): Font scaling can cause troubles with high-resolution screens. You may want to disable it. Defaults to `true`.
-* `givePageIndex` (optional): a function that receives the page `index` as a parameter.
+* `pageIndexCallback` (optional): a function that receives the page `index` as a parameter on page change. [Example Usage](https://github.com/jfilter/react-native-onboarding-swiper/pull/40)
 
 ## Custom Components Properties
 

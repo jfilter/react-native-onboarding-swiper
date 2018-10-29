@@ -47,7 +47,8 @@ class Onboarding extends Component {
       return;
 
     this.setState(state => {
-      this.props.givePageIndex(viewableItems[0].index);
+      this.props.pageIndexCallback &&
+        this.props.pageIndexCallback(viewableItems[0].index);
       return {
         previousPage: state.currentPage,
         currentPage: viewableItems[0].index,
@@ -85,7 +86,7 @@ class Onboarding extends Component {
         imageContainerStyles={this.props.imageContainerStyles}
         allowFontScaling={this.props.allowFontScalingText}
         titleStyles={this.props.titleStyles}
-		subTitleStyles={this.props.subTitleStyles}
+        subTitleStyles={this.props.subTitleStyles}
       />
     );
   };
@@ -110,7 +111,6 @@ class Onboarding extends Component {
       DotComponent,
       flatlistProps,
       skipToPage,
-      givePageIndex,
     } = this.props;
     const currentPage = pages[this.state.currentPage];
     const currentBackgroundColor = currentPage.backgroundColor;
@@ -233,7 +233,7 @@ Onboarding.propTypes = {
   subTitleStyles: Text.propTypes.style,
   transitionAnimationDuration: PropTypes.number,
   skipToPage: PropTypes.number,
-  givePageIndex: PropTypes.func,
+  pageIndexCallback: PropTypes.func,
 };
 
 Onboarding.defaultProps = {
@@ -258,7 +258,7 @@ Onboarding.defaultProps = {
   subTitleStyles: null,
   transitionAnimationDuration: 500,
   skipToPage: null,
-  givePageIndex: null,
+  pageIndexCallback: null,
 };
 
 const styles = {
