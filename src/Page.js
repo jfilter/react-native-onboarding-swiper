@@ -9,6 +9,7 @@ const Page = ({
   subtitle,
   width,
   height,
+  containerStyles,
   imageContainerStyles,
   allowFontScaling,
   titleStyles,
@@ -37,7 +38,7 @@ const Page = ({
   }
 
   return (
-    <View style={[styles.container, { width, height }]}>
+    <View style={[styles.container, containerStyles, { width, height }]}>
       <View style={[styles.imageContainer, imageContainerStyles]}>{image}</View>
       {titleElement}
       {subtitleElement}
@@ -48,6 +49,7 @@ const Page = ({
 Page.propTypes = {
   isLight: PropTypes.bool.isRequired,
   image: PropTypes.element.isRequired,
+  containerStyles: ViewPropTypes.style,
   imageContainerStyles: ViewPropTypes.style,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
@@ -60,6 +62,7 @@ Page.propTypes = {
 };
 
 Page.defaultProps = {
+  containerStyles: null,
   imageContainerStyles: null,
   allowFontScaling: true,
   titleStyles: null,
