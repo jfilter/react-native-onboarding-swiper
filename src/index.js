@@ -83,6 +83,7 @@ class Onboarding extends Component {
         subtitle={subtitle}
         width={this.state.width || Dimensions.get('window').width}
         height={this.state.height || Dimensions.get('window').height}
+        containerStyles={this.props.containerStyles}
         imageContainerStyles={this.props.imageContainerStyles}
         allowFontScaling={this.props.allowFontScalingText}
         titleStyles={this.props.titleStyles}
@@ -226,6 +227,7 @@ Onboarding.propTypes = {
   DoneButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   NextButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   DotComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  containerStyles: ViewPropTypes.style,
   imageContainerStyles: ViewPropTypes.style,
   allowFontScalingText: PropTypes.bool,
   allowFontScalingButtons: PropTypes.bool,
@@ -251,6 +253,7 @@ Onboarding.defaultProps = {
   DoneButtonComponent: DoneButton,
   NextButtonComponent: NextButton,
   DotComponent: Dot,
+  containerStyles: null,
   imageContainerStyles: null,
   allowFontScalingText: true,
   allowFontScalingButtons: true,
