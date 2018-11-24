@@ -52,11 +52,6 @@ Also check out the three examples files: the [simple example](examples/Simple.js
 
 ## Optional Properties
 
-### Adjust individual Pages
-
-* `titleStyles` (optional): modify styles of a page's title.
-* `subTitleStyles` (optional): modify styles of a page's subtitle.
-
 ### Buttons
 
 * `nextLabel` (optional): a string **OR** a React-Native component for the Skip label. Defaults to `Next`.
@@ -79,6 +74,11 @@ Also check out the three examples files: the [simple example](examples/Simple.js
 * `transitionAnimationDuration` (optional): The duration in milliseconds for the animation of the background color for the page transition. Defaults to `500`.
 * `allowFontScaling` (optional): Font scaling can cause troubles with high-resolution screens. You may want to disable it. Defaults to `true`.
 * `pageIndexCallback` (optional): a function that receives the page `index` as a parameter on page change. [Example Usage](https://github.com/jfilter/react-native-onboarding-swiper/pull/40)
+
+### Adjust individual Pages
+
+* `titleStyles` (optional): modify styles of a page's title.
+* `subTitleStyles` (optional): modify styles of a page's subtitle.
 
 ## Custom Components Properties
 
