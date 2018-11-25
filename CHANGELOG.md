@@ -1,3 +1,7 @@
+## 0.10.0 (November 25, 2018)
+
+* override default pages styles
+
 ## 0.9.0 (October 29, 2018)
 
 * add `pageIndexCallback` to get the page index on change
