@@ -67,18 +67,27 @@ Also check out the three examples files: the [simple example](examples/Simple.js
 
 * `bottomBarHeight` (optional): a number for the height of the bottom bar. Defaults to `60`.
 * `bottomBarHighlight` (optional): a bool flag indicating whether the bottm bar should be highlighted. Defaults to `true`.
-* `containerStyles` (optional): for a page in the `pages` array, you can override the default container styles.
-* `imageContainerStyles` (optional): for a page in the `pages` array, you can override the default styles e.g. the `paddingBottom` of 60.
 * `controlStatusBar` (optional): a bool flag indicating whether the status bar should change with the background color. Defaults to `true`.
 * `flatlistProps` (optional): additional props for the [FlatList](https://facebook.github.io/react-native/docs/flatlist.html) which holds all the pages.
 * `transitionAnimationDuration` (optional): The duration in milliseconds for the animation of the background color for the page transition. Defaults to `500`.
 * `allowFontScaling` (optional): Font scaling can cause troubles with high-resolution screens. You may want to disable it. Defaults to `true`.
 * `pageIndexCallback` (optional): a function that receives the page `index` as a parameter on page change. [Example Usage](https://github.com/jfilter/react-native-onboarding-swiper/pull/40)
 
-### Adjust individual Pages
+### Default Page Styles
 
-* `titleStyles` (optional): modify styles of a page's title.
-* `subTitleStyles` (optional): modify styles of a page's subtitle.
+For the pages in the `pages` array, you can set the default styles (and override the styles set by this component).
+
+* `containerStyles` (optional): override the default container styles.
+* `imageContainerStyles` (optional): override the default image container styles e.g. the `paddingBottom` of 60.
+* `titleStyles` (optional): override the default title styles.
+* `subTitleStyles` (optional): override the default subtitle styles.
+
+### Adjust Individual Page Styles
+
+For each page in the `pages` array, you can override the default page styles. [An example](examples/CustomButtons.js).
+
+* `titleStyles` (optional): modify styles of a specific page's title.
+* `subTitleStyles` (optional): modify styles of a specific page's subtitle.
 
 ## Custom Components Properties
 
