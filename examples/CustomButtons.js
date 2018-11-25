@@ -81,12 +81,14 @@ const CustomButtons = () => (
     NextButtonComponent={Next}
     SkipButtonComponent={Skip}
     DoneButtonComponent={Done}
+    titleStyles={{ color: 'blue' }} // set default color for the title
     pages={[
       {
         backgroundColor: '#fff',
         image: <Image source={require('./images/circle.png')} />,
         title: 'Onboarding',
         subtitle: 'Done with React Native Onboarding Swiper',
+        titleStyles: { color: 'red' }, // overwrite default color
       },
       {
         backgroundColor: '#fe6e58',
