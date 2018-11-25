@@ -74,6 +74,13 @@ class Onboarding extends Component {
   renderItem = ({ item }) => {
     const { image, title, subtitle, backgroundColor } = item;
     const isLight = tinycolor(backgroundColor).getBrightness() > 180;
+    const {
+      containerStyles,
+      imageContainerStyles,
+      allowFontScalingText,
+      titleStyles,
+      subTitleStyles,
+    } = this.props;
 
     return (
       <Page
@@ -83,11 +90,19 @@ class Onboarding extends Component {
         subtitle={subtitle}
         width={this.state.width || Dimensions.get('window').width}
         height={this.state.height || Dimensions.get('window').height}
-        containerStyles={this.props.containerStyles}
-        imageContainerStyles={this.props.imageContainerStyles}
-        allowFontScaling={this.props.allowFontScalingText}
-        titleStyles={this.props.titleStyles}
-        subTitleStyles={this.props.subTitleStyles}
+        containerStyles={containerStyles}
+        imageContainerStyles={imageContainerStyles}
+        allowFontScaling={allowFontScalingText}
+        titleStyles={Object.assign(
+          {},
+          titleStyles || {},
+          item.titleStyles || {}
+        )}
+        subTitleStyles={Object.assign(
+          {},
+          subTitleStyles || {},
+          item.subTitleStyles || {}
+        )}
       />
     );
   };
