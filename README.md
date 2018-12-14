@@ -38,7 +38,7 @@ import Onboarding from 'react-native-onboarding-swiper';
 
 ## Examples
 
-Try out the the example [running in your browser](https://snack.expo.io/rk80s-CDz).
+Try out the example [running in your browser](https://snack.expo.io/rk80s-CDz).
 
 Also check out the three examples files: the [simple example](examples/Simple.js), the [example with a Call-to-Action button](examples/WithCTA.js) or the [example with custom button components](examples/CustomButtons.js).
 
@@ -54,19 +54,19 @@ Also check out the three examples files: the [simple example](examples/Simple.js
 
 ### Buttons
 
-* `nextLabel` (optional): a string **OR** a React-Native component for the Skip label. Defaults to `Next`.
+* `nextLabel` (optional): a string **OR** a React-Native component for the Next label. Defaults to `Next`.
 * `showNext` (optional): a bool flag indicating whether the Next button is visible. Defaults to `true`.
 * `skipLabel` (optional): a string **OR** a React-Native component for the Skip label. Defaults to `Skip`.
 * `showSkip` (optional): a bool flag indicating whether the Skip button is visible. Defaults to `true`.
 * `onSkip` (optional): a callback that is fired if the Onboarding is skipped.
-* `skipToPage` (optional): when pressing skip, go the to that page (e.g. `skipToPage={2}`). If this prop is provided, ignores `onSkip`.
+* `skipToPage` (optional): when pressing skip, go to that page (e.g. `skipToPage={2}`). If this prop is provided, ignores `onSkip`.
 * `onDone` (optional): a callback that is fired after the Onboarding is completed.
 * `showDone` (optional): a bool flag indicating whether the Done checkmark button is visible. Defaults to `true`.
 
 ### General
 
 * `bottomBarHeight` (optional): a number for the height of the bottom bar. Defaults to `60`.
-* `bottomBarHighlight` (optional): a bool flag indicating whether the bottm bar should be highlighted. Defaults to `true`.
+* `bottomBarHighlight` (optional): a bool flag indicating whether the bottom bar should be highlighted. Defaults to `true`.
 * `controlStatusBar` (optional): a bool flag indicating whether the status bar should change with the background color. Defaults to `true`.
 * `flatlistProps` (optional): additional props for the [FlatList](https://facebook.github.io/react-native/docs/flatlist.html) which holds all the pages.
 * `transitionAnimationDuration` (optional): The duration in milliseconds for the animation of the background color for the page transition. Defaults to `500`.
