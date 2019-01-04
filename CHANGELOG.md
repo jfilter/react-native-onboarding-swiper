@@ -1,3 +1,7 @@
+## 1.0.0 (January 04, 2019)
+
+* stable release (no changes)
+
 ## 0.10.0 (November 25, 2018)
 
 * override default pages styles
