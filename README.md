@@ -105,6 +105,10 @@ If you have a **question**, found a **bug** or want to propose a new **feature**
 
 **Pull requests** are especially welcomed when they fix bugs or improve the code quality.
 
+## Related
+
+* https://github.com/jacse/react-native-app-intro-slider
+
 ## Acknowledgements
 
 Built upon the work by [Gosha Arinich](https://github.com/goshakkk/react-native-simple-onboarding) which was originally inspired by [AndroidOnboarder](https://github.com/chyrta/AndroidOnboarder).
