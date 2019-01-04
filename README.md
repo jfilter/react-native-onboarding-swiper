@@ -4,7 +4,10 @@
 | --------------------- | --------------------- | --------------------- |
 
 
-There are many ways to onboard people to your mobile app. But for React-Native, there is solely _one_ component that is a) **easy to setup** and b) **highly customizable**: `react-native-onboarding-swiper`.
+<img style="float: right;width: 100px;margin: 10px;" src="demo/demo.gif">
+
+There are many ways to onboard people to your mobile app. But for React-Native, there is solely _one_ component that is a) **easy to setup** and b) **highly customizable**:
+`react-native-onboarding-swiper`.
 
 Your new users shouldn't jump in at the deep end. First give them a pleasurable, delightful introduction and only then let them explore your awesome app.
 
