@@ -1,10 +1,8 @@
 # `<Onboarding />` [![npm](https://img.shields.io/npm/v/react-native-onboarding-swiper.svg)](https://www.npmjs.com/package/react-native-onboarding-swiper) [![npm](https://img.shields.io/npm/dm/react-native-onboarding-swiper.svg)](https://www.npmjs.com/package/react-native-onboarding-swiper)
 
-| ![](demo/simple1.png) | ![](demo/simple2.png) | ![](demo/simple3.png) |
-| --------------------- | --------------------- | --------------------- |
+| ![](demo/simple1.png) | ![](demo/simple2.png) | ![](demo/demo.gif) |
+| --------------------- | --------------------- | ------------------ |
 
-
-<img style="float: right;width: 100px;margin: 10px;" src="demo/demo.gif">
 
 There are many ways to onboard people to your mobile app. But for React-Native, there is solely _one_ component that is a) **easy to setup** and b) **highly customizable**:
 `react-native-onboarding-swiper`.
