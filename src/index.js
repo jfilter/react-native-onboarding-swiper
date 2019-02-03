@@ -138,7 +138,7 @@ class Onboarding extends Component {
         : this.props.bottomBarHighlight;
 
     let backgroundColor = currentBackgroundColor;
-    if (this.state.previousPage !== null) {
+    if (this.state.previousPage !== null && pages[this.state.previousPage] !== undefined) {
       const previousBackgroundColor =
         pages[this.state.previousPage].backgroundColor;
       backgroundColor = this.state.backgroundColorAnim.interpolate({
