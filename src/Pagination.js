@@ -14,6 +14,7 @@ const Pagination = ({
   showSkip,
   showNext,
   showDone,
+  onBack,
   onNext,
   onSkip,
   onDone,
@@ -36,7 +37,7 @@ const Pagination = ({
       <SkipButtonComponent
         isLight={isLight}
         skipLabel={skipLabel}
-		allowFontScaling={allowFontScaling}
+		    allowFontScaling={allowFontScaling}
         onPress={() => {
           if (typeof onSkip === 'function') {
             if (controlStatusBar) {
