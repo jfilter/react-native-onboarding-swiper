@@ -58,7 +58,6 @@ class Onboarding extends Component {
   };
 
   goBack = () => {
-    const 
     this.flatList.scrollToIndex({
       animated: true,
       index: this.state.currentPage - 1,
