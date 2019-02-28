@@ -127,6 +127,7 @@ class Onboarding extends Component {
       showDone,
       onSkip,
       onDone,
+      backLabel,
       skipLabel,
       nextLabel,
       allowFontScalingButtons,
@@ -212,6 +213,7 @@ class Onboarding extends Component {
             onDone={onDone}
             onBack={this.goBack}
             onNext={this.goNext}
+            backLabel={backLabel}
             skipLabel={skipLabel}
             nextLabel={nextLabel}
             allowFontScaling={allowFontScalingButtons}
@@ -250,6 +252,7 @@ Onboarding.propTypes = {
   showDone: PropTypes.bool,
   onSkip: PropTypes.func,
   onDone: PropTypes.func,
+  backLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   skipLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   nextLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   BackButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
@@ -276,6 +279,7 @@ Onboarding.defaultProps = {
   showBack: true,
   showNext: true,
   showDone: true,
+  backLabel: 'Back',
   skipLabel: 'Skip',
   nextLabel: 'Next',
   onSkip: null,

@@ -17,6 +17,7 @@ const Pagination = ({
   onNext,
   onSkip,
   onDone,
+  backLabel,
   skipLabel,
   nextLabel,
   allowFontScaling,
@@ -126,6 +127,8 @@ Pagination.propTypes = {
   onSkip: PropTypes.func,
   onDone: PropTypes.func,
   allowFontScaling: PropTypes.bool,
+  backLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
+    .isRequired,  
   skipLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
     .isRequired,
   nextLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
