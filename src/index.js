@@ -215,6 +215,7 @@ class Onboarding extends Component {
             skipLabel={skipLabel}
             nextLabel={nextLabel}
             allowFontScaling={allowFontScalingButtons}
+            BackButtonComponent={BackButtonComponent}
             SkipButtonComponent={SkipButtonComponent}
             DoneButtonComponent={DoneButtonComponent}
             NextButtonComponent={NextButtonComponent}
