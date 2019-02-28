@@ -32,7 +32,7 @@ const Pagination = ({
   const isLastPage = currentPage + 1 === numPages;
 
   const SkipButtonFinal = showSkip &&
-    !isLastPage && (
+    isFirstPage && (
       <SkipButtonComponent
         isLight={isLight}
         skipLabel={skipLabel}
