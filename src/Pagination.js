@@ -10,6 +10,7 @@ const Pagination = ({
   isLight,
   bottomBarHeight,
   controlStatusBar,
+  showBack,
   showSkip,
   showNext,
   showDone,
@@ -23,7 +24,9 @@ const Pagination = ({
   NextButtonComponent,
   DoneButtonComponent,
   DotComponent,
+  skipIsPageSpecific,
 }) => {
+  const isFirstPage = currentPage === 0;
   const isLastPage = currentPage + 1 === numPages;
 
   const SkipButtonFinal = showSkip &&
@@ -37,11 +40,28 @@ const Pagination = ({
             if (controlStatusBar) {
               StatusBar.setBarStyle('default', true);
             }
-            onSkip();
+            onSkip(skipIsPageSpecific ? currentPage : undefined);
           }
         }}
       />
     );
+
+  const BackButtonFinal = showBack &&
+      !isFirstPage && (
+        <BackButtonComponent
+          isLight={isLight}
+          backLabel={backLabel}
+          allowFontScaling={allowFontScaling}
+          onPress={() => {
+            if (typeof onBack === 'function') {
+              if (controlStatusBar) {
+                StatusBar.setBarStyle('default', true);
+              }
+              onBack();
+            }
+          }}
+        />
+      );
 
   const NextButtonFinal = showNext &&
     !isLastPage && (
@@ -76,7 +96,7 @@ const Pagination = ({
         ...styles.container,
       }}
     >
-      <View style={styles.buttonLeft}>{SkipButtonFinal}</View>
+      <View style={styles.buttonLeft}>{SkipButtonFinal || BackButtonFinal}</View>
       <Dots
         isLight={isLight}
         numPages={numPages}
@@ -100,6 +120,7 @@ Pagination.propTypes = {
   showNext: PropTypes.bool.isRequired,
   showSkip: PropTypes.bool.isRequired,
   showDone: PropTypes.bool.isRequired,
+  onBack: PropTypes.func,
   onNext: PropTypes.func.isRequired,
   onSkip: PropTypes.func,
   onDone: PropTypes.func,

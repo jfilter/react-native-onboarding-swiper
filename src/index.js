@@ -57,6 +57,14 @@ class Onboarding extends Component {
     });
   };
 
+  goBack = () => {
+    const 
+    this.flatList.scrollToIndex({
+      animated: true,
+      index: this.state.currentPage - 1,
+    });
+  };
+
   goNext = () => {
     this.flatList.scrollToIndex({
       animated: true,
@@ -114,6 +122,7 @@ class Onboarding extends Component {
       bottomBarHeight,
       controlStatusBar,
       showSkip,
+      showBack,
       showNext,
       showDone,
       onSkip,
@@ -192,6 +201,7 @@ class Onboarding extends Component {
             isLight={isLight}
             bottomBarHeight={bottomBarHeight}
             showSkip={showSkip}
+            showBack={showBack}
             showNext={showNext}
             showDone={showDone}
             numPages={pages.length}
@@ -199,6 +209,7 @@ class Onboarding extends Component {
             controlStatusBar={controlStatusBar}
             onSkip={skipFun}
             onDone={onDone}
+            onBack={this.goBack}
             onNext={this.goNext}
             skipLabel={skipLabel}
             nextLabel={nextLabel}
@@ -232,6 +243,7 @@ Onboarding.propTypes = {
   bottomBarHeight: PropTypes.number,
   controlStatusBar: PropTypes.bool,
   showSkip: PropTypes.bool,
+  showBack: PropTypes.bool,
   showNext: PropTypes.bool,
   showDone: PropTypes.bool,
   onSkip: PropTypes.func,
@@ -258,6 +270,7 @@ Onboarding.defaultProps = {
   bottomBarHeight: 60,
   controlStatusBar: true,
   showSkip: true,
+  showBack: true,
   showNext: true,
   showDone: true,
   skipLabel: 'Skip',
