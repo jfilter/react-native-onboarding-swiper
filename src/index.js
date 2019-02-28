@@ -15,6 +15,7 @@ import tinycolor from 'tinycolor2';
 import Page from './Page';
 import Pagination from './Pagination';
 import Dot from './Dot';
+import BackButton from './buttons/BackButton';
 import SkipButton from './buttons/SkipButton';
 import NextButton from './buttons/NextButton';
 import DoneButton from './buttons/DoneButton';
@@ -129,6 +130,7 @@ class Onboarding extends Component {
       skipLabel,
       nextLabel,
       allowFontScalingButtons,
+      BackButtonComponent,
       SkipButtonComponent,
       DoneButtonComponent,
       NextButtonComponent,
