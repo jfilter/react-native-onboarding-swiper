@@ -276,7 +276,7 @@ Onboarding.defaultProps = {
   bottomBarHeight: 60,
   controlStatusBar: true,
   showSkip: true,
-  showBack: true,
+  showBack: false,
   showNext: true,
   showDone: true,
   backLabel: 'Back',
