@@ -98,7 +98,10 @@ const Pagination = ({
         ...styles.container,
       }}
     >
-      <View style={styles.buttonLeft}>{SkipButtonFinal || BackButtonFinal}</View>
+      <View style={styles.buttonLeft}>
+        {SkipButtonFinal}
+        {BackButtonFinal}
+      </View>
       <Dots
         isLight={isLight}
         numPages={numPages}
