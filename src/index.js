@@ -166,7 +166,7 @@ class Onboarding extends Component {
     return (
       <Animated.View
         onLayout={this._onLayout}
-        style={{ flex: 1, backgroundColor, justifyContent: 'center' }}
+        style={{ flex: 1, backgroundColor, justifyContent: 'center', alignItems: 'center' }}
       >
         {controlStatusBar && <StatusBar barStyle={barStyle} />}
         <FlatList

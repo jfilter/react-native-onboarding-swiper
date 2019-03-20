@@ -121,6 +121,7 @@ Pagination.propTypes = {
 const styles = {
   container: {
     paddingHorizontal: 0,
+    width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
