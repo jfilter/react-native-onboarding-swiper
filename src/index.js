@@ -22,7 +22,7 @@ import DoneButton from './buttons/DoneButton';
 // hotfix: https://github.com/facebook/react-native/issues/16710
 const itemVisibleHotfix = { itemVisiblePercentThreshold: 100 };
 
-class Onboarding extends Component {
+export class Onboarding extends Component {
   constructor() {
     super();
 
@@ -221,7 +221,7 @@ Onboarding.propTypes = {
   pages: PropTypes.arrayOf(
     PropTypes.shape({
       backgroundColor: PropTypes.string.isRequired,
-      image: PropTypes.element.isRequired,
+      image: PropTypes.element,
       title: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.element,
@@ -291,3 +291,5 @@ const styles = {
 };
 
 export default Onboarding;
+
+export { Page };
