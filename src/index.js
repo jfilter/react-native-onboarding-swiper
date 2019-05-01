@@ -48,7 +48,7 @@ class Onboarding extends Component {
 
     this.setState(state => {
       this.props.pageIndexCallback &&
-      this.props.pageIndexCallback(viewableItems[0].index);
+        this.props.pageIndexCallback(viewableItems[0].index);
       return {
         previousPage: state.currentPage,
         currentPage: viewableItems[0].index,
@@ -140,7 +140,10 @@ class Onboarding extends Component {
         : this.props.bottomBarHighlight;
 
     let backgroundColor = currentBackgroundColor;
-    if (this.state.previousPage !== null && pages[this.state.previousPage] !== undefined) {
+    if (
+      this.state.previousPage !== null &&
+      pages[this.state.previousPage] !== undefined
+    ) {
       const previousBackgroundColor =
         pages[this.state.previousPage].backgroundColor;
       backgroundColor = this.state.backgroundColorAnim.interpolate({
@@ -158,11 +161,11 @@ class Onboarding extends Component {
     const skipFun =
       skipToPage != null
         ? () => {
-          this.flatList.scrollToIndex({
-            animated: true,
-            index: skipToPage,
-          });
-        }
+            this.flatList.scrollToIndex({
+              animated: true,
+              index: skipToPage,
+            });
+          }
         : onSkip;
 
     return (
@@ -189,7 +192,7 @@ class Onboarding extends Component {
           }
           {...flatlistProps}
         />
-        {showPagination &&
+        {showPagination && (
           <SafeAreaView style={bottomBarHighlight ? styles.overlay : {}}>
             <Pagination
               isLight={isLight}
@@ -213,7 +216,7 @@ class Onboarding extends Component {
               DotComponent={DotComponent}
             />
           </SafeAreaView>
-        }
+        )}
       </Animated.View>
     );
   }
