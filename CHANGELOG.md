@@ -1,3 +1,7 @@
+## 1.1.0 (May 01, 2019)
+
+* add more props for special cases
+
 ## 1.0.0 (January 04, 2019)
 
 * stable release (no changes)
