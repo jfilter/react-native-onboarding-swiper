@@ -70,6 +70,7 @@ Also check out the three examples files: the [simple example](examples/Simple.js
 * `bottomBarColor` (optional): backgroundColor of the bottom bar. Defaults to `transparent`.
 * `bottomBarHighlight` (optional): a bool flag indicating whether the bottom bar should be highlighted. Defaults to `true`.
 * `controlStatusBar` (optional): a bool flag indicating whether the status bar should change with the background color. Defaults to `true`.
+* `showPagination` (optional): whether to show the bottom pagination bar. Defaults to `true`.
 * `flatlistProps` (optional): additional props for the [FlatList](https://facebook.github.io/react-native/docs/flatlist.html) which holds all the pages.
 * `transitionAnimationDuration` (optional): The duration in milliseconds for the animation of the background color for the page transition. Defaults to `500`.
 * `allowFontScaling` (optional): Font scaling can cause troubles with high-resolution screens. You may want to disable it. Defaults to `true`.
