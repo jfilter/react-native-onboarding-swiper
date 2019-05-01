@@ -67,6 +67,7 @@ Also check out the three examples files: the [simple example](examples/Simple.js
 ### General
 
 * `bottomBarHeight` (optional): a number for the height of the bottom bar. Defaults to `60`.
+* `bottomBarColor` (optional): backgroundColor of the bottom bar. Defaults to `transparent`.
 * `bottomBarHighlight` (optional): a bool flag indicating whether the bottom bar should be highlighted. Defaults to `true`.
 * `controlStatusBar` (optional): a bool flag indicating whether the status bar should change with the background color. Defaults to `true`.
 * `flatlistProps` (optional): additional props for the [FlatList](https://facebook.github.io/react-native/docs/flatlist.html) which holds all the pages.

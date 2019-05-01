@@ -112,6 +112,7 @@ class Onboarding extends Component {
       pages,
       alterBottomColor,
       bottomBarHeight,
+      bottomBarColor,
       controlStatusBar,
       showSkip,
       showNext,
@@ -193,6 +194,7 @@ class Onboarding extends Component {
             <Pagination
               isLight={isLight}
               bottomBarHeight={bottomBarHeight}
+              bottomBarColor={bottomBarColor}
               showSkip={showSkip}
               showNext={showNext}
               showDone={showDone}
@@ -233,6 +235,7 @@ Onboarding.propTypes = {
   ).isRequired,
   bottomBarHighlight: PropTypes.bool,
   bottomBarHeight: PropTypes.number,
+  bottomBarColor: PropTypes.string,
   controlStatusBar: PropTypes.bool,
   showSkip: PropTypes.bool,
   showNext: PropTypes.bool,
@@ -260,6 +263,7 @@ Onboarding.propTypes = {
 Onboarding.defaultProps = {
   bottomBarHighlight: true,
   bottomBarHeight: 60,
+  bottomBarColor: 'transparent',
   controlStatusBar: true,
   showPagination: true,
   showSkip: true,
