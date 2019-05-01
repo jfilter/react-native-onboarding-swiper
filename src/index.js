@@ -48,7 +48,7 @@ class Onboarding extends Component {
 
     this.setState(state => {
       this.props.pageIndexCallback &&
-        this.props.pageIndexCallback(viewableItems[0].index);
+      this.props.pageIndexCallback(viewableItems[0].index);
       return {
         previousPage: state.currentPage,
         currentPage: viewableItems[0].index,
@@ -117,6 +117,7 @@ class Onboarding extends Component {
       showSkip,
       showNext,
       showDone,
+      showPagination,
       onSkip,
       onDone,
       skipLabel,
@@ -157,11 +158,11 @@ class Onboarding extends Component {
     const skipFun =
       skipToPage != null
         ? () => {
-            this.flatList.scrollToIndex({
-              animated: true,
-              index: skipToPage,
-            });
-          }
+          this.flatList.scrollToIndex({
+            animated: true,
+            index: skipToPage,
+          });
+        }
         : onSkip;
 
     return (
@@ -188,29 +189,31 @@ class Onboarding extends Component {
           }
           {...flatlistProps}
         />
-        <SafeAreaView style={bottomBarHighlight ? styles.overlay : {}}>
-          <Pagination
-            isLight={isLight}
-            bottomBarHeight={bottomBarHeight}
-            bottomBarColor={bottomBarColor}
-            showSkip={showSkip}
-            showNext={showNext}
-            showDone={showDone}
-            numPages={pages.length}
-            currentPage={this.state.currentPage}
-            controlStatusBar={controlStatusBar}
-            onSkip={skipFun}
-            onDone={onDone}
-            onNext={this.goNext}
-            skipLabel={skipLabel}
-            nextLabel={nextLabel}
-            allowFontScaling={allowFontScalingButtons}
-            SkipButtonComponent={SkipButtonComponent}
-            DoneButtonComponent={DoneButtonComponent}
-            NextButtonComponent={NextButtonComponent}
-            DotComponent={DotComponent}
-          />
-        </SafeAreaView>
+        {showPagination &&
+          <SafeAreaView style={bottomBarHighlight ? styles.overlay : {}}>
+            <Pagination
+              isLight={isLight}
+              bottomBarHeight={bottomBarHeight}
+              bottomBarColor={bottomBarColor}
+              showSkip={showSkip}
+              showNext={showNext}
+              showDone={showDone}
+              numPages={pages.length}
+              currentPage={this.state.currentPage}
+              controlStatusBar={controlStatusBar}
+              onSkip={skipFun}
+              onDone={onDone}
+              onNext={this.goNext}
+              skipLabel={skipLabel}
+              nextLabel={nextLabel}
+              allowFontScaling={allowFontScalingButtons}
+              SkipButtonComponent={SkipButtonComponent}
+              DoneButtonComponent={DoneButtonComponent}
+              NextButtonComponent={NextButtonComponent}
+              DotComponent={DotComponent}
+            />
+          </SafeAreaView>
+        }
       </Animated.View>
     );
   }
@@ -237,6 +240,7 @@ Onboarding.propTypes = {
   showSkip: PropTypes.bool,
   showNext: PropTypes.bool,
   showDone: PropTypes.bool,
+  showPagination: PropTypes.bool,
   onSkip: PropTypes.func,
   onDone: PropTypes.func,
   skipLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
@@ -261,6 +265,7 @@ Onboarding.defaultProps = {
   bottomBarHeight: 60,
   bottomBarColor: 'transparent',
   controlStatusBar: true,
+  showPagination: true,
   showSkip: true,
   showNext: true,
   showDone: true,
