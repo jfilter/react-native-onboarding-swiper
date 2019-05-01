@@ -5,6 +5,7 @@ import Onboarding from 'react-native-onboarding-swiper';
 
 const Simple = () => (
   <Onboarding
+    onDone={() => console.log('done')}
     pages={[
       {
         backgroundColor: '#fff',
