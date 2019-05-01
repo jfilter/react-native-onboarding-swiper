@@ -9,6 +9,7 @@ const Pagination = ({
   currentPage,
   isLight,
   bottomBarHeight,
+  bottomBarColor,
   controlStatusBar,
   showSkip,
   showNext,
@@ -73,6 +74,7 @@ const Pagination = ({
     <View
       style={{
         height: bottomBarHeight,
+        backgroundColor: bottomBarColor,
         ...styles.container,
       }}
     >
@@ -97,6 +99,7 @@ Pagination.propTypes = {
   currentPage: PropTypes.number.isRequired,
   isLight: PropTypes.bool.isRequired,
   bottomBarHeight: PropTypes.number.isRequired,
+  bottomBarColor: PropTypes.string.isRequired,
   showNext: PropTypes.bool.isRequired,
   showSkip: PropTypes.bool.isRequired,
   showDone: PropTypes.bool.isRequired,
