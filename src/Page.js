@@ -1,4 +1,4 @@
-import { Dimensions, Text, View, ViewPropTypes } from 'react-native';
+import { Dimensions, Text, View, ViewPropTypes, Keyboard, KeyboardAvoidingView } from 'react-native';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -16,6 +16,11 @@ const Page = ({
   titleStyles,
   subTitleStyles,
 }) => {
+  const [isVisible, setVisiblity] = React.useState(true);
+
+  Keyboard.addListener('keyboardWillShow', () => setVisiblity(false))
+  Keyboard.addListener('keyboardWillHide', () => setVisiblity(true));
+
   let titleElement = title;
   if (typeof title === 'string' || title instanceof String) {
     titleElement = (
@@ -39,12 +44,14 @@ const Page = ({
   }
 
   return (
-    <View style={[styles.container, containerStyles, { width, height }]}>
-      <View style={[styles.imageContainer, imageContainerStyles]}>{image}</View>
-      {titleElement}
-      {subtitleElement}
-      {render && render()}
-    </View>
+    <KeyboardAvoidingView behavior={'padding'}>
+      <View style={[styles.container, containerStyles, { width, height }]}>
+        {isVisible && <View style={[styles.imageContainer, imageContainerStyles]}>{image}</View>}
+        {titleElement}
+        {subtitleElement}
+        {render && render()}
+      </View>
+    </KeyboardAvoidingView>
   );
 };
 
