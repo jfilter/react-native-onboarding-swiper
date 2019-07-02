@@ -1,4 +1,4 @@
-import { Dimensions, Text, View, ViewPropTypes, Keyboard, KeyboardAvoidingView } from 'react-native';
+import { Dimensions, Text, View, ViewPropTypes, Keyboard, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -17,9 +17,19 @@ const Page = ({
   subTitleStyles,
 }) => {
   const [isVisible, setVisiblity] = React.useState(true);
+  const showListener = React.useRef(null);
+  const hideListener = React.useRef(null);
 
-  Keyboard.addListener('keyboardWillShow', () => setVisiblity(false))
-  Keyboard.addListener('keyboardWillHide', () => setVisiblity(true));
+  React.useEffect(() => {
+    const cycleKey = Platform.select({ ios: 'Will', default: 'Did' });
+    showListener.current = Keyboard.addListener(`keyboard${cycleKey}Show`, () => setVisiblity(false))
+    hideListener.current = Keyboard.addListener(`keyboard${cycleKey}Hide`, () => setVisiblity(true));
+
+    return () => {
+      showListener.current && showListener.current.remove();
+      hideListener.current && hideListener.current.remove();
+    };
+  }, []);
 
   let titleElement = title;
   if (typeof title === 'string' || title instanceof String) {
@@ -44,7 +54,7 @@ const Page = ({
   }
 
   return (
-    <KeyboardAvoidingView behavior={'padding'}>
+    <KeyboardAvoidingView {...Platform.OS === 'ios' && {behavior: 'padding'}}>
       <View style={[styles.container, containerStyles, { width, height }]}>
         {isVisible && <View style={[styles.imageContainer, imageContainerStyles]}>{image}</View>}
         {titleElement}
