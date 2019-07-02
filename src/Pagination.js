@@ -35,9 +35,6 @@ const Pagination = ({
 		allowFontScaling={allowFontScaling}
         onPress={() => {
           if (typeof onSkip === 'function') {
-            if (controlStatusBar) {
-              StatusBar.setBarStyle('default', true);
-            }
             onSkip();
           }
         }}
@@ -61,9 +58,6 @@ const Pagination = ({
 		allowFontScaling={allowFontScaling}
         onPress={() => {
           if (typeof onDone === 'function') {
-            if (controlStatusBar) {
-              StatusBar.setBarStyle('default', true);
-            }
             onDone();
           }
         }}
