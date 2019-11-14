@@ -1,30 +1,22 @@
-import {
-  Animated,
-  Dimensions,
-  FlatList,
-  StatusBar,
-  SafeAreaView,
-  ViewPropTypes,
-  Text,
-} from 'react-native';
+import { Animated, Dimensions, FlatList, StatusBar, SafeAreaView, ViewPropTypes, Text } from 'react-native'
 
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import tinycolor from 'tinycolor2';
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import tinycolor from 'tinycolor2'
 
-import Page from './Page';
-import Pagination from './Pagination';
-import Dot from './Dot';
-import SkipButton from './buttons/SkipButton';
-import NextButton from './buttons/NextButton';
-import DoneButton from './buttons/DoneButton';
+import Page from './Page'
+import Pagination from './Pagination'
+import Dot from './Dot'
+import SkipButton from './buttons/SkipButton'
+import NextButton from './buttons/NextButton'
+import DoneButton from './buttons/DoneButton'
 
 // hotfix: https://github.com/facebook/react-native/issues/16710
-const itemVisibleHotfix = { itemVisiblePercentThreshold: 100 };
+const itemVisibleHotfix = { itemVisiblePercentThreshold: 100 }
 
 class Onboarding extends Component {
   constructor() {
-    super();
+    super()
 
     this.state = {
       currentPage: 0,
@@ -32,58 +24,51 @@ class Onboarding extends Component {
       width: null,
       height: null,
       backgroundColorAnim: new Animated.Value(0),
-    };
+    }
   }
 
   componentDidUpdate() {
     Animated.timing(this.state.backgroundColorAnim, {
       toValue: 1,
       duration: this.props.transitionAnimationDuration,
-    }).start();
+    }).start()
   }
 
   onSwipePageChange = ({ viewableItems }) => {
-    if (!viewableItems[0] || this.state.currentPage === viewableItems[0].index)
-      return;
+    if (!viewableItems[0] || this.state.currentPage === viewableItems[0].index) return
 
     this.setState(state => {
-      this.props.pageIndexCallback &&
-        this.props.pageIndexCallback(viewableItems[0].index);
+      this.props.pageIndexCallback && this.props.pageIndexCallback(viewableItems[0].index)
       return {
         previousPage: state.currentPage,
         currentPage: viewableItems[0].index,
         backgroundColorAnim: new Animated.Value(0),
-      };
-    });
-  };
+      }
+    })
+  }
 
   goNext = () => {
     this.flatList.scrollToIndex({
       animated: true,
       index: this.state.currentPage + 1,
-    });
-  };
+    })
+  }
 
   _onLayout = () => {
-    const { width, height } = Dimensions.get('window');
-    this.setState({ width, height });
-  };
+    const { width, height } = Dimensions.get('window')
+    this.setState({ width, height })
+  }
 
-  keyExtractor = (item, index) => index.toString();
+  keyExtractor = (item, index) => index.toString()
 
   renderItem = ({ item }) => {
-    const { image, title, subtitle, backgroundColor } = item;
-    const isLight = tinycolor(backgroundColor).getBrightness() > 180;
-    const {
-      containerStyles,
-      imageContainerStyles,
-      allowFontScalingText,
-      titleStyles,
-      subTitleStyles,
-    } = this.props;
+    const { image, title, subtitle, backgroundColor, customScreen } = item
+    const isLight = tinycolor(backgroundColor).getBrightness() > 180
+    const { containerStyles, imageContainerStyles, allowFontScalingText, titleStyles, subTitleStyles } = this.props
 
     return (
       <Page
+        customScreen={customScreen}
         isLight={isLight}
         image={image}
         title={title}
@@ -93,19 +78,11 @@ class Onboarding extends Component {
         containerStyles={containerStyles}
         imageContainerStyles={imageContainerStyles}
         allowFontScaling={allowFontScalingText}
-        titleStyles={Object.assign(
-          {},
-          titleStyles || {},
-          item.titleStyles || {}
-        )}
-        subTitleStyles={Object.assign(
-          {},
-          subTitleStyles || {},
-          item.subTitleStyles || {}
-        )}
+        titleStyles={Object.assign({}, titleStyles || {}, item.titleStyles || {})}
+        subTitleStyles={Object.assign({}, subTitleStyles || {}, item.subTitleStyles || {})}
       />
-    );
-  };
+    )
+  }
 
   render() {
     const {
@@ -129,33 +106,26 @@ class Onboarding extends Component {
       DotComponent,
       flatlistProps,
       skipToPage,
-    } = this.props;
-    const currentPage = pages[this.state.currentPage];
-    const currentBackgroundColor = currentPage.backgroundColor;
-    const isLight = tinycolor(currentBackgroundColor).getBrightness() > 180;
-    const barStyle = isLight ? 'dark-content' : 'light-content';
-    const bottomBarHighlight =
-      alterBottomColor !== undefined
-        ? alterBottomColor
-        : this.props.bottomBarHighlight;
+    } = this.props
+    const currentPage = pages[this.state.currentPage]
+    const currentBackgroundColor = currentPage.backgroundColor
+    const isLight = tinycolor(currentBackgroundColor).getBrightness() > 180
+    const barStyle = isLight ? 'dark-content' : 'light-content'
+    const bottomBarHighlight = alterBottomColor !== undefined ? alterBottomColor : this.props.bottomBarHighlight
 
-    let backgroundColor = currentBackgroundColor;
-    if (
-      this.state.previousPage !== null &&
-      pages[this.state.previousPage] !== undefined
-    ) {
-      const previousBackgroundColor =
-        pages[this.state.previousPage].backgroundColor;
+    let backgroundColor = currentBackgroundColor
+    if (this.state.previousPage !== null && pages[this.state.previousPage] !== undefined) {
+      const previousBackgroundColor = pages[this.state.previousPage].backgroundColor
       backgroundColor = this.state.backgroundColorAnim.interpolate({
         inputRange: [0, 1],
         outputRange: [previousBackgroundColor, currentBackgroundColor],
-      });
+      })
     }
 
     if (alterBottomColor !== undefined) {
       console.warn(
         'The prop alterBottomColor on react-native-onboarding-swiper is deprecated and will be removed soon. Use `bottomBarHighlight` instead.'
-      );
+      )
     }
 
     const skipFun =
@@ -164,19 +134,16 @@ class Onboarding extends Component {
             this.flatList.scrollToIndex({
               animated: true,
               index: skipToPage,
-            });
+            })
           }
-        : onSkip;
+        : onSkip
 
     return (
-      <Animated.View
-        onLayout={this._onLayout}
-        style={{ flex: 1, backgroundColor, justifyContent: 'center' }}
-      >
+      <Animated.View onLayout={this._onLayout} style={{ flex: 1, backgroundColor, justifyContent: 'center' }}>
         {controlStatusBar && <StatusBar barStyle={barStyle} />}
         <FlatList
           ref={list => {
-            this.flatList = list;
+            this.flatList = list
           }}
           data={pages}
           pagingEnabled
@@ -218,22 +185,18 @@ class Onboarding extends Component {
           </SafeAreaView>
         )}
       </Animated.View>
-    );
+    )
   }
 }
 
 Onboarding.propTypes = {
   pages: PropTypes.arrayOf(
     PropTypes.shape({
-      backgroundColor: PropTypes.string.isRequired,
-      image: PropTypes.element.isRequired,
-      title: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.element,
-        PropTypes.func,
-      ]).isRequired,
-      subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
-        .isRequired,
+      customScreen: PropTypes.element,
+      backgroundColor: PropTypes.string,
+      image: PropTypes.element,
+      title: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.func]),
+      subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     })
   ).isRequired,
   bottomBarHighlight: PropTypes.bool,
@@ -261,7 +224,7 @@ Onboarding.propTypes = {
   transitionAnimationDuration: PropTypes.number,
   skipToPage: PropTypes.number,
   pageIndexCallback: PropTypes.func,
-};
+}
 
 Onboarding.defaultProps = {
   bottomBarHighlight: true,
@@ -289,12 +252,8 @@ Onboarding.defaultProps = {
   transitionAnimationDuration: 500,
   skipToPage: null,
   pageIndexCallback: null,
-};
+}
 
-const styles = {
-  overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.1)',
-  },
-};
+const styles = { overlay: { backgroundColor: 'rgba(0, 0, 0, 0.1)' } }
 
-export default Onboarding;
+export default Onboarding
