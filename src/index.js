@@ -174,49 +174,51 @@ class Onboarding extends Component {
         style={{ flex: 1, backgroundColor, justifyContent: 'center' }}
       >
         {controlStatusBar && <StatusBar barStyle={barStyle} />}
-        <FlatList
-          ref={list => {
-            this.flatList = list;
-          }}
-          data={pages}
-          pagingEnabled
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          renderItem={this.renderItem}
-          keyExtractor={this.keyExtractor}
-          onViewableItemsChanged={this.onSwipePageChange}
-          viewabilityConfig={itemVisibleHotfix}
-          initialNumToRender={1}
-          extraData={
-            this.state.width // ensure that the list re-renders on orientation change
-          }
-          {...flatlistProps}
-        />
-        {showPagination && (
-          <SafeAreaView style={bottomBarHighlight ? styles.overlay : {}}>
-            <Pagination
-              isLight={isLight}
-              bottomBarHeight={bottomBarHeight}
-              bottomBarColor={bottomBarColor}
-              showSkip={showSkip}
-              showNext={showNext}
-              showDone={showDone}
-              numPages={pages.length}
-              currentPage={this.state.currentPage}
-              controlStatusBar={controlStatusBar}
-              onSkip={skipFun}
-              onDone={onDone}
-              onNext={this.goNext}
-              skipLabel={skipLabel}
-              nextLabel={nextLabel}
-              allowFontScaling={allowFontScalingButtons}
-              SkipButtonComponent={SkipButtonComponent}
-              DoneButtonComponent={DoneButtonComponent}
-              NextButtonComponent={NextButtonComponent}
-              DotComponent={DotComponent}
-            />
-          </SafeAreaView>
-        )}
+        <Animated.View>
+          <FlatList
+            ref={list => {
+              this.flatList = list;
+            }}
+            data={pages}
+            pagingEnabled
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            renderItem={this.renderItem}
+            keyExtractor={this.keyExtractor}
+            onViewableItemsChanged={this.onSwipePageChange}
+            viewabilityConfig={itemVisibleHotfix}
+            initialNumToRender={1}
+            extraData={
+              this.state.width // ensure that the list re-renders on orientation change
+            }
+            {...flatlistProps}
+          />
+          {showPagination && (
+            <SafeAreaView style={bottomBarHighlight ? styles.overlay : {}}>
+              <Pagination
+                isLight={isLight}
+                bottomBarHeight={bottomBarHeight}
+                bottomBarColor={bottomBarColor}
+                showSkip={showSkip}
+                showNext={showNext}
+                showDone={showDone}
+                numPages={pages.length}
+                currentPage={this.state.currentPage}
+                controlStatusBar={controlStatusBar}
+                onSkip={skipFun}
+                onDone={onDone}
+                onNext={this.goNext}
+                skipLabel={skipLabel}
+                nextLabel={nextLabel}
+                allowFontScaling={allowFontScalingButtons}
+                SkipButtonComponent={SkipButtonComponent}
+                DoneButtonComponent={DoneButtonComponent}
+                NextButtonComponent={NextButtonComponent}
+                DotComponent={DotComponent}
+              />
+            </SafeAreaView>
+          )}
+        </Animated.View>
       </Animated.View>
     );
   }
