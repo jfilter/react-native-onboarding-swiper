@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { I18nManager, Platform, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 const Dots = ({ isLight, numPages, currentPage, Dot }) => (
@@ -20,7 +20,7 @@ Dots.propTypes = {
 const styles = {
   container: {
     flex: 0,
-    flexDirection: 'row',
+    flexDirection: I18nManager.isRTL && Platform.OS === 'ios' ? 'row-reverse' : 'row',
     alignItems: 'center',
   },
 };
