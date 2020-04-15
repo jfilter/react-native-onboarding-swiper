@@ -23,8 +23,8 @@ import DoneButton from './buttons/DoneButton';
 const itemVisibleHotfix = { itemVisiblePercentThreshold: 100 };
 
 class Onboarding extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       currentPage: 0,
@@ -39,6 +39,7 @@ class Onboarding extends Component {
     Animated.timing(this.state.backgroundColorAnim, {
       toValue: 1,
       duration: this.props.transitionAnimationDuration,
+      useNativeDriver: false,
     }).start();
   }
 
