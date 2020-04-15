@@ -1,3 +1,8 @@
+## 1.1.1 (April 15, 2020)
+
+* fix RTL
+* use `useNativeDrive` for RN v0.62+
+
 ## 1.1.0 (May 01, 2019)
 
 * add more props for special cases
