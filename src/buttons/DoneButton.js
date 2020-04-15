@@ -14,6 +14,7 @@ class DoneButton extends React.Component {
       Animated.timing(this.state.fadeAnim, {
         toValue: 1,
         duration: 1000,
+        useNativeDriver: true,
       }).start();
     }, 1000);
   }
