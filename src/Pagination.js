@@ -25,7 +25,9 @@ const Pagination = ({
   DoneButtonComponent,
   DotComponent,
 }) => {
-  const isLastPage = currentPage + 1 === numPages;
+  const isLastPage = I18nManager.isRTL
+    ? currentPage === 0
+    : currentPage + 1 === numPages;
 
   const SkipButtonFinal = showSkip &&
     !isLastPage && (
