@@ -2,6 +2,7 @@ import {
   Animated,
   Dimensions,
   FlatList,
+  I18nManager,
   StatusBar,
   SafeAreaView,
   ViewPropTypes,
