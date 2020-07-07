@@ -61,7 +61,9 @@ class Onboarding extends Component {
   goNext = () => {
     this.flatList.scrollToIndex({
       animated: true,
-      index: this.state.currentPage + 1,
+      index: I18nManager.isRTL
+        ? this.state.currentPage - 1
+        : this.state.currentPage + 1,
     });
   };
 
