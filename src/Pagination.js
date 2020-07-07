@@ -1,4 +1,4 @@
-import { View, StatusBar } from 'react-native';
+import { View, StatusBar, I18nManager } from 'react-native';
 import PropTypes from 'prop-types';
 import React from 'react';
 
