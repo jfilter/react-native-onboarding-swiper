@@ -1,4 +1,4 @@
-import { View, StatusBar, I18nManager } from 'react-native';
+import { View, StatusBar, I18nManager, Platform } from 'react-native';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -25,52 +25,50 @@ const Pagination = ({
   DoneButtonComponent,
   DotComponent,
 }) => {
-  const isLastPage = I18nManager.isRTL
-    ? currentPage === 0
-    : currentPage + 1 === numPages;
+  const isLastPage =
+    I18nManager.isRTL && Platform.OS == 'ios'
+      ? currentPage === 0
+      : currentPage + 1 === numPages;
 
-  const SkipButtonFinal = showSkip &&
-    !isLastPage && (
-      <SkipButtonComponent
-        isLight={isLight}
-        skipLabel={skipLabel}
-		allowFontScaling={allowFontScaling}
-        onPress={() => {
-          if (typeof onSkip === 'function') {
-            if (controlStatusBar) {
-              StatusBar.setBarStyle('default', true);
-            }
-            onSkip();
+  const SkipButtonFinal = showSkip && !isLastPage && (
+    <SkipButtonComponent
+      isLight={isLight}
+      skipLabel={skipLabel}
+      allowFontScaling={allowFontScaling}
+      onPress={() => {
+        if (typeof onSkip === 'function') {
+          if (controlStatusBar) {
+            StatusBar.setBarStyle('default', true);
           }
-        }}
-      />
-    );
+          onSkip();
+        }
+      }}
+    />
+  );
 
-  const NextButtonFinal = showNext &&
-    !isLastPage && (
-      <NextButtonComponent
-        nextLabel={nextLabel}
-		allowFontScaling={allowFontScaling}
-        isLight={isLight}
-        onPress={onNext}
-      />
-    );
+  const NextButtonFinal = showNext && !isLastPage && (
+    <NextButtonComponent
+      nextLabel={nextLabel}
+      allowFontScaling={allowFontScaling}
+      isLight={isLight}
+      onPress={onNext}
+    />
+  );
 
-  const DoneButtonFinal = showDone &&
-    isLastPage && (
-      <DoneButtonComponent
-        isLight={isLight}
-		allowFontScaling={allowFontScaling}
-        onPress={() => {
-          if (typeof onDone === 'function') {
-            if (controlStatusBar) {
-              StatusBar.setBarStyle('default', true);
-            }
-            onDone();
+  const DoneButtonFinal = showDone && isLastPage && (
+    <DoneButtonComponent
+      isLight={isLight}
+      allowFontScaling={allowFontScaling}
+      onPress={() => {
+        if (typeof onDone === 'function') {
+          if (controlStatusBar) {
+            StatusBar.setBarStyle('default', true);
           }
-        }}
-      />
-    );
+          onDone();
+        }
+      }}
+    />
+  );
 
   return (
     <View
