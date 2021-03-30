@@ -49,6 +49,8 @@ class Onboarding extends Component {
       return;
 
     this.setState((state) => {
+      this.props.onSlide({previousPage: state.currentPage,
+        currentPage: viewableItems[0].index});
       this.props.pageIndexCallback &&
         this.props.pageIndexCallback(viewableItems[0].index);
       return {
@@ -125,6 +127,7 @@ class Onboarding extends Component {
       showPagination,
       onSkip,
       onDone,
+      onSlide,
       skipLabel,
       nextLabel,
       allowFontScalingButtons,
@@ -211,6 +214,7 @@ class Onboarding extends Component {
               controlStatusBar={controlStatusBar}
               onSkip={skipFun}
               onDone={onDone}
+              onSlide={onSlide}
               onNext={this.goNext}
               skipLabel={skipLabel}
               nextLabel={nextLabel}
@@ -251,6 +255,7 @@ Onboarding.propTypes = {
   showPagination: PropTypes.bool,
   onSkip: PropTypes.func,
   onDone: PropTypes.func,
+  onSlide: PropTypes.func,
   skipLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   nextLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   SkipButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
@@ -281,6 +286,7 @@ Onboarding.defaultProps = {
   nextLabel: 'Next',
   onSkip: null,
   onDone: null,
+  onSlide: null,
   SkipButtonComponent: SkipButton,
   DoneButtonComponent: DoneButton,
   NextButtonComponent: NextButton,
