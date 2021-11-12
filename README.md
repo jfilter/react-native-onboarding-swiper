@@ -105,6 +105,7 @@ You can also provide your own custom components for the buttons and the dots. Al
 You can control Onboarding component with `useRef`
 
 * `goNext()` : Go to the next page
+* `goSlide(<pageIndex>)` : Go to the selected page
 
 ## Contributing
 
