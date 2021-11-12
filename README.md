@@ -102,6 +102,12 @@ You can also provide your own custom components for the buttons and the dots. Al
 * `DoneButtonComponent` (optional): Done Button.
 * `DotComponent` (optional): Dot for the pagination, gets `selected` as prop to indicate the active page.
 
+## Methods
+
+You can control Onboarding component with `useRef`
+
+* `goNext()` : Go to the next page
+
 ## Contributing
 
 If you have a **question**, found a **bug** or want to propose a new **feature**, have a look at the [issues page](https://github.com/jfilter/react-native-onboarding-swiper/issues).
