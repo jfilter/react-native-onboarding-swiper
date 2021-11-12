@@ -69,6 +69,13 @@ class Onboarding extends Component {
     });
   };
 
+  goSlide = (pageIndex) => {
+    this.flatList.scrollToIndex({
+      animated: true,
+      index: pageIndex,
+    });
+  };
+
   _onLayout = () => {
     const { width, height } = Dimensions.get('window');
     this.setState({ width, height });
