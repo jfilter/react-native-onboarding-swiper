@@ -9,7 +9,7 @@ There are many ways to onboard people to your mobile app. But for React-Native, 
 
 Your new users shouldn't jump in at the deep end. First give them a pleasurable, delightful introduction and only then let them explore your awesome app.
 
-Getting everything running merely takes a minute. Try out the example [running in your browser](https://snack.expo.io/dlQTGD06P).
+Getting everything running merely takes a minute. Try out the example [running in your browser](https://snack.expo.io/dlQTGD06P). Or check out this [tutorial on YouTube](https://www.youtube.com/watch?v=SMkR-iIGvwQ).
 
 ## Install
 
@@ -17,13 +17,15 @@ Getting everything running merely takes a minute. Try out the example [running i
 npm i react-native-onboarding-swiper
 ```
 
-```js
-import Onboarding from 'react-native-onboarding-swiper';
+```bash
+yarn add react-native-onboarding-swiper
 ```
 
 ## Usage
 
 ```js
+import Onboarding from 'react-native-onboarding-swiper';
+
 <Onboarding
   pages={[
     {
