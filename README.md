@@ -102,12 +102,27 @@ You can also provide your own custom components for the buttons and the dots. Al
 * `DoneButtonComponent` (optional): Done Button.
 * `DotComponent` (optional): Dot for the pagination, gets `selected` as prop to indicate the active page.
 
-## Methods
+## Controlling the pages imperatively 
 
-You can control Onboarding component with `useRef`
+You can control the Onboarding component imperatively with [useRef](https://reactjs.org/docs/hooks-reference.html#useref).
 
-* `goNext()` : Go to the next page
-* `goSlide(<pageIndex>)` : Go to the selected page
+```js
+const onboardingRef = useRef<Onboarding>(null);
+
+<Onboarding
+    ref={onboardingRef}
+    pages={pages}
+/>
+
+onboardingRef.current.goNext()
+onboardingRef.current.goToPage(2, true)
+onboardingRef.current.goToPage(2, false)
+```
+
+Methods:
+
+* `goNext()` : Go to the next page.
+* `goToPage(pageIndex, animated)` : Go to the selected page.
 
 ## Contributing
 

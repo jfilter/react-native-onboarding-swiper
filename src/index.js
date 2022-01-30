@@ -69,10 +69,10 @@ class Onboarding extends Component {
     });
   };
 
-  goSlide = (pageIndex) => {
+  goToPage = (index, animated=true) => {
     this.flatList.scrollToIndex({
-      animated: true,
-      index: pageIndex,
+      index,
+      animated,
     });
   };
 
