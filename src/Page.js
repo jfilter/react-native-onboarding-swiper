@@ -7,8 +7,6 @@ const Page = ({
   image,
   title,
   subtitle,
-  width,
-  height,
   containerStyles,
   imageContainerStyles,
   allowFontScaling,
@@ -38,7 +36,7 @@ const Page = ({
   }
 
   return (
-    <View style={[styles.container, containerStyles, { width, height }]}>
+    <View style={[styles.container, containerStyles]}>
       <View style={[styles.imageContainer, imageContainerStyles]}>{image}</View>
       {titleElement}
       {subtitleElement}
@@ -65,8 +63,6 @@ Page.propTypes = {
   subTitleStyles: PropTypes.shape({
     style: PropTypes.any,
   }),
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
 };
 
 Page.defaultProps = {
