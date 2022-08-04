@@ -29,8 +29,6 @@ class Onboarding extends Component {
     this.state = {
       currentPage: 0,
       previousPage: null,
-      width: null,
-      height: null,
       backgroundColorAnim: new Animated.Value(0),
     };
   }
@@ -76,8 +74,8 @@ class Onboarding extends Component {
   };
 
   _onLayout = () => {
-    const { width, height } = Dimensions.get('window');
-    this.setState({ width, height });
+    // const { width, height } = Dimensions.get('window');
+    // this.setState({ width, height });
   };
 
   keyExtractor = (item, index) => index.toString();
@@ -99,8 +97,6 @@ class Onboarding extends Component {
         image={image}
         title={title}
         subtitle={subtitle}
-        width={this.state.width || Dimensions.get('window').width}
-        height={this.state.height || Dimensions.get('window').height}
         containerStyles={containerStyles}
         imageContainerStyles={imageContainerStyles}
         allowFontScaling={allowFontScalingText}
