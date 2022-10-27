@@ -90,7 +90,8 @@ const styles = {
   },
   imageContainer: {
     flex: 0,
-    paddingBottom: potrait ? 60 : 10,
+    padding:10,
+    justifyContent:'center',
     alignItems: 'center',
     width: '100%',
   },
