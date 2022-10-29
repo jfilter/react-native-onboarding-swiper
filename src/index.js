@@ -20,7 +20,7 @@ import NextButton from './buttons/NextButton';
 import DoneButton from './buttons/DoneButton';
 
 // hotfix: https://github.com/facebook/react-native/issues/16710
-const itemVisibleHotfix = { itemVisiblePercentThreshold: 100 };
+const itemVisibleHotfix = { itemVisiblePercentThreshold: 99 };
 
 class Onboarding extends Component {
   constructor(props) {
@@ -200,7 +200,7 @@ class Onboarding extends Component {
           onViewableItemsChanged={this.onSwipePageChange}
           viewabilityConfig={itemVisibleHotfix}
           initialNumToRender={1}
-          getItemLayout={(data, index) => (
+          getItemLayout={(_data, index) => (
             {length: windowWidth, offset: windowWidth * index, index}
           )}
           extraData={
