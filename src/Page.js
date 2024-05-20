@@ -9,11 +9,11 @@ const Page = ({
   subtitle,
   width,
   height,
-  containerStyles,
-  imageContainerStyles,
-  allowFontScaling,
-  titleStyles,
-  subTitleStyles,
+  containerStyles = null,
+  imageContainerStyles = null,
+  allowFontScaling = true,
+  titleStyles = null,
+  subTitleStyles = null,
 }) => {
   let titleElement = title;
   if (typeof title === 'string' || title instanceof String) {
@@ -67,14 +67,6 @@ Page.propTypes = {
   }),
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
-};
-
-Page.defaultProps = {
-  containerStyles: null,
-  imageContainerStyles: null,
-  allowFontScaling: true,
-  titleStyles: null,
-  subTitleStyles: null,
 };
 
 const { width, height } = Dimensions.get('window');
