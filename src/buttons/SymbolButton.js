@@ -2,7 +2,7 @@ import { View, TouchableOpacity, Text } from 'react-native';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SymbolButton = ({ size, onPress, style, textStyle, children }) => (
+const SymbolButton = ({ size, onPress, style = null, textStyle = null, children }) => (
   <View
     style={{
       height: size,
@@ -37,11 +37,6 @@ SymbolButton.propTypes = {
   textStyle: PropTypes.shape({
     style: PropTypes.any,
   }),
-};
-
-SymbolButton.defaultProps = {
-  style: null,
-  textStyle: null,
 };
 
 export default SymbolButton;

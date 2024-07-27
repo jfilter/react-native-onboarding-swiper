@@ -2,7 +2,7 @@ import { View, TouchableOpacity, Text } from 'react-native';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TextButton = ({ size, onPress, textStyle, allowFontScaling, style, children }) => (
+const TextButton = ({ size, onPress, textStyle = null, allowFontScaling = true, style, children }) => (
   <View style={{ flex: 0, paddingHorizontal: 10, ...style }}>
     <TouchableOpacity
       style={{ flex: 0 }}
@@ -21,11 +21,6 @@ TextButton.propTypes = {
     style: PropTypes.any,
   }),
   allowFontScaling: PropTypes.bool,
-};
-
-TextButton.defaultProps = {
-  textStyle: null,
-  allowFontScaling: true,
 };
 
 export default TextButton;
