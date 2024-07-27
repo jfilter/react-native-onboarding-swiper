@@ -34,20 +34,20 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^9.8.0",
+    "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-prettier": "^2.4.0",
     "eslint-plugin-react": "^7.5.1",
-    "eslint-plugin-react-native": "^3.2.0",
+    "eslint-plugin-react-native": "^4.1.0",
     "prettier": "^1.9.2"
   },
   "peerDependencies": {
+    "prop-types": "*",
     "react": "*",
-    "react-native": "*",
-    "prop-types": "*"
+    "react-native": "*"
   },
   "prettier": {
     "singleQuote": true,
