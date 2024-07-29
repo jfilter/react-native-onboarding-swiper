@@ -130,9 +130,10 @@ If you have a **question**, found a **bug** or want to propose a new **feature**
 
 **Pull requests** are especially welcomed when they fix bugs or improve the code quality.
 
-## Related
+## Related Work
 
 * https://github.com/jacse/react-native-app-intro-slider
+* https://github.com/gorhom/react-native-paper-onboarding
 
 ## Acknowledgements
 
