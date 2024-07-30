@@ -20,7 +20,7 @@ import NextButton from './buttons/NextButton';
 import DoneButton from './buttons/DoneButton';
 
 // hotfix: https://github.com/facebook/react-native/issues/16710
-const itemVisibleHotfix = { itemVisiblePercentThreshold: 100 };
+const itemVisibleHotfix = { itemVisiblePercentThreshold: 99 };
 
 class Onboarding extends Component {
   constructor(props) {
@@ -179,6 +179,8 @@ class Onboarding extends Component {
           }
         : onSkip;
 
+    const windowWidth = Dimensions.get('window').width;
+
     return (
       <Animated.View
         onLayout={this._onLayout}
@@ -198,6 +200,9 @@ class Onboarding extends Component {
           onViewableItemsChanged={this.onSwipePageChange}
           viewabilityConfig={itemVisibleHotfix}
           initialNumToRender={1}
+          getItemLayout={(_data, index) => (
+            {length: windowWidth, offset: windowWidth * index, index}
+          )}
           extraData={
             this.state.width // ensure that the list re-renders on orientation change
           }
