@@ -5,7 +5,6 @@ import {
   I18nManager,
   StatusBar,
   SafeAreaView,
-  SafeAreaView,
   Platform,
 } from 'react-native';
 
