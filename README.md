@@ -18,7 +18,7 @@ npm i react-native-onboarding-swiper-rtl
 ```
 
 ```bash
-yarn add react-native-onboarding-swiper
+yarn add react-native-onboarding-swiper-rtl
 ```
 
 ## Usage
