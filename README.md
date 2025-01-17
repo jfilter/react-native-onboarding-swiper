@@ -5,7 +5,7 @@
 
 
 There are many ways to onboard people to your mobile app. But for React-Native, there is solely _one_ component that is a) **easy to setup** and b) **highly customizable**:
-`react-native-onboarding-swiper`.
+`react-native-onboarding-swiper-rtl`.
 
 Your new users shouldn't jump in at the deep end. First give them a pleasurable, delightful introduction and only then let them explore your awesome app.
 
@@ -14,7 +14,7 @@ Getting everything running merely takes a minute. Try out the example [running i
 ## Install
 
 ```bash
-npm i react-native-onboarding-swiper
+npm i react-native-onboarding-swiper-rtl
 ```
 
 ```bash
@@ -24,7 +24,7 @@ yarn add react-native-onboarding-swiper
 ## Usage
 
 ```js
-import Onboarding from 'react-native-onboarding-swiper';
+import Onboarding from 'react-native-onboarding-swiper-rtl';
 
 <Onboarding
   pages={[
