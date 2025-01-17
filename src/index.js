@@ -5,7 +5,8 @@ import {
   I18nManager,
   StatusBar,
   SafeAreaView,
-  View,
+  SafeAreaView,
+  Platform,
 } from 'react-native';
 
 import PropTypes from 'prop-types';
