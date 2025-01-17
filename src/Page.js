@@ -1,4 +1,4 @@
-import { Dimensions, Text, View } from 'react-native';
+import { Dimensions, Platform, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -14,12 +14,15 @@ const Page = ({
   allowFontScaling = true,
   titleStyles = null,
   subTitleStyles = null,
+  fontFamily = null,
 }) => {
   let titleElement = title;
   if (typeof title === 'string' || title instanceof String) {
     titleElement = (
       <View style={styles.padding}>
-        <Text allowFontScaling={allowFontScaling} style={[styles.title, isLight ? styles.titleLight : {}, titleStyles]}>
+        <Text allowFontScaling={allowFontScaling} style={[styles.title, isLight ? styles.titleLight : {}, titleStyles,
+         fontFamily ? { fontFamily } : {}
+        ]}>
           {title}
         </Text>
       </View>
@@ -30,7 +33,9 @@ const Page = ({
   if (typeof subtitle === 'string' || subtitle instanceof String) {
     subtitleElement = (
       <View style={styles.padding}>
-        <Text allowFontScaling={allowFontScaling} style={[styles.subtitle, isLight ? styles.subtitleLight : {}, subTitleStyles]}>
+        <Text allowFontScaling={allowFontScaling} style={[styles.subtitle, isLight ? styles.subtitleLight : {}, subTitleStyles,
+          fontFamily ? { fontFamily } : {}
+        ]}>
           {subtitle}
         </Text>
       </View>
@@ -67,6 +72,7 @@ Page.propTypes = {
   }),
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
+  fontFamily:PropTypes.string
 };
 
 const { width, height } = Dimensions.get('window');

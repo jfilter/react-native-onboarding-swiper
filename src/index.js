@@ -90,6 +90,7 @@ class Onboarding extends Component {
       imageContainerStyles,
       allowFontScalingText,
       titleStyles,
+      fontFamily,
       subTitleStyles,
     } = this.props;
 
@@ -104,6 +105,7 @@ class Onboarding extends Component {
         containerStyles={containerStyles}
         imageContainerStyles={imageContainerStyles}
         allowFontScaling={allowFontScalingText}
+        fontFamily={fontFamily}
         titleStyles={Object.assign(
           {},
           titleStyles || {},
@@ -274,6 +276,9 @@ Onboarding.propTypes = {
   titleStyles: PropTypes.shape({
     style: PropTypes.any,
   }),
+  fontFamily:PropTypes.shape({
+    style:PropTypes.string
+  }),
   subTitleStyles: PropTypes.shape({
     style: PropTypes.any,
   }),
@@ -304,6 +309,7 @@ Onboarding.defaultProps = {
   allowFontScalingText: true,
   allowFontScalingButtons: true,
   titleStyles: null,
+  fontFamily:null,
   subTitleStyles: null,
   transitionAnimationDuration: 500,
   skipToPage: null,
