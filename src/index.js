@@ -273,7 +273,7 @@ Onboarding.propTypes = {
   }),
   allowFontScalingText: PropTypes.bool,
   allowFontScalingButtons: PropTypes.bool,
-  titleStyles: PropTypes.shape({
+  fontFamily: PropTypes.shape({
     style: PropTypes.any,
   }),
   fontFamily:PropTypes.shape({

@@ -21,7 +21,7 @@ const Page = ({
     titleElement = (
       <View style={styles.padding}>
         <Text allowFontScaling={allowFontScaling} style={[styles.title, isLight ? styles.titleLight : {}, titleStyles,
-         fontFamily ? { fontFamily } : {}
+         fontFamily || {},
         ]}>
           {title}
         </Text>
@@ -34,7 +34,7 @@ const Page = ({
     subtitleElement = (
       <View style={styles.padding}>
         <Text allowFontScaling={allowFontScaling} style={[styles.subtitle, isLight ? styles.subtitleLight : {}, subTitleStyles,
-          fontFamily ? { fontFamily } : {}
+        fontFamily || {},
         ]}>
           {subtitle}
         </Text>
@@ -72,7 +72,9 @@ Page.propTypes = {
   }),
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
-  fontFamily:PropTypes.string
+  fontFamily: PropTypes.shape({
+    style: PropTypes.any,
+  }),
 };
 
 const { width, height } = Dimensions.get('window');
