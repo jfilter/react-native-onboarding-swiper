@@ -1,4 +1,5 @@
 import React from 'react';
+import { act } from '@testing-library/react-native';
 import { View } from 'react-native';
 
 /**
@@ -63,15 +64,17 @@ export const createMixedTestPages = () => [
  * @param {Array} pages - The pages data array
  */
 export const simulateSwipeTo = (flatList, pageIndex, pages) => {
-  flatList.props.onViewableItemsChanged({
-    viewableItems: [
-      {
-        index: pageIndex,
-        isViewable: true,
-        item: pages[pageIndex],
-        key: String(pageIndex),
-      },
-    ],
-    changed: [],
+  act(() => {
+    flatList.props.onViewableItemsChanged({
+      viewableItems: [
+        {
+          index: pageIndex,
+          isViewable: true,
+          item: pages[pageIndex],
+          key: String(pageIndex),
+        },
+      ],
+      changed: [],
+    });
   });
 };

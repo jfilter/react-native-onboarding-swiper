@@ -9,6 +9,7 @@
 * implement `getItemLayout` on FlatList for improved scroll performance (#136)
 * fix StatusBar no longer forced to `'default'` on Skip/Done press (#100)
 * fix missing `Platform` import and button clipping on narrow screens
+* upgrade dev dependencies (React 19, React Native 0.78, Jest 29) and fix security vulnerabilities
 
 ## 1.3.0 (July 28, 2024)
 
