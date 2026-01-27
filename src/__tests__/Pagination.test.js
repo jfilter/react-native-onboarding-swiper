@@ -1,5 +1,4 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
 import { render, fireEvent } from '@testing-library/react-native';
 
 import Pagination from '../Pagination';
@@ -14,7 +13,6 @@ const defaultProps = {
   isLight: false,
   bottomBarHeight: 60,
   bottomBarColor: 'transparent',
-  controlStatusBar: true,
   showSkip: true,
   showNext: true,
   showDone: true,
@@ -121,14 +119,14 @@ describe('Pagination', () => {
     expect(getByText('✓')).toBeTruthy();
   });
 
-  it('sets StatusBar to default on Skip when controlStatusBar is true', () => {
-    const setBarStyleSpy = jest.spyOn(StatusBar, 'setBarStyle');
+  it('does not force StatusBar style on Skip', () => {
     const onSkip = jest.fn();
     const { getByText } = render(
-      <Pagination {...defaultProps} controlStatusBar={true} onSkip={onSkip} />
+      <Pagination {...defaultProps} onSkip={onSkip} />
     );
     fireEvent.press(getByText('Skip'));
-    expect(setBarStyleSpy).toHaveBeenCalledWith('default', true);
-    setBarStyleSpy.mockRestore();
+    expect(onSkip).toHaveBeenCalledTimes(1);
+    // StatusBar.setBarStyle should NOT be called — the next screen
+    // manages its own status bar (#100)
   });
 });
