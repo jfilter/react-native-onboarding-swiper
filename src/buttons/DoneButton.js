@@ -21,13 +21,13 @@ class DoneButton extends React.Component {
   }
 
   render() {
-    const { isLight, doneLabel, ...rest } = this.props;
+    const { isLight, doneLabel, disabled, ...rest } = this.props;
     const { fadeAnim } = this.state;
 
     return (
       <Animated.View
         style={{
-          opacity: fadeAnim,
+          opacity: disabled ? 0.3 : fadeAnim,
         }}
       >
         {doneLabel != null ? (
@@ -35,6 +35,7 @@ class DoneButton extends React.Component {
             size={BUTTON_SIZE}
             style={{ marginRight: MARGIN_RIGHT }}
             textStyle={getDefaultStyle(isLight)}
+            disabled={disabled}
             {...rest}
           >
             {doneLabel}
@@ -48,6 +49,7 @@ class DoneButton extends React.Component {
               backgroundColor: 'rgba(255, 255, 255, 0.10)',
               margin: MARGIN_RIGHT,
             }}
+            disabled={disabled}
             {...rest}
           >
             ✓

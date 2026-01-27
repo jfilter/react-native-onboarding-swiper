@@ -24,18 +24,22 @@ const Pagination = ({
   NextButtonComponent,
   DoneButtonComponent,
   DotComponent,
+  canSwipeForward,
 }) => {
   const isLastPage =
     I18nManager.isRTL && Platform.OS == 'ios'
       ? currentPage === 0
       : currentPage + 1 === numPages;
 
+  const forwardDisabled = canSwipeForward === false;
+
   const SkipButtonFinal = showSkip && !isLastPage && (
     <SkipButtonComponent
       isLight={isLight}
       skipLabel={skipLabel}
       allowFontScaling={allowFontScaling}
-      onPress={() => {
+      disabled={forwardDisabled}
+      onPress={forwardDisabled ? () => {} : () => {
         if (typeof onSkip === 'function') {
           onSkip();
         }
@@ -48,7 +52,8 @@ const Pagination = ({
       nextLabel={nextLabel}
       allowFontScaling={allowFontScaling}
       isLight={isLight}
-      onPress={onNext}
+      disabled={forwardDisabled}
+      onPress={forwardDisabled ? () => {} : onNext}
     />
   );
 
@@ -57,7 +62,8 @@ const Pagination = ({
       isLight={isLight}
       doneLabel={doneLabel}
       allowFontScaling={allowFontScaling}
-      onPress={() => {
+      disabled={forwardDisabled}
+      onPress={forwardDisabled ? () => {} : () => {
         if (typeof onDone === 'function') {
           onDone();
         }
@@ -115,6 +121,7 @@ Pagination.propTypes = {
     .isRequired,
   DotComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
     .isRequired,
+  canSwipeForward: PropTypes.bool,
 };
 
 const styles = {

@@ -3,7 +3,7 @@ import { View, Text, FlatList, Animated, Platform } from 'react-native';
 import { render, fireEvent } from '@testing-library/react-native';
 
 import Onboarding from '../index';
-import { createTestPages, simulateSwipeTo } from './helpers';
+import { createTestPages, createTestPagesWithBackground, createMixedTestPages, simulateSwipeTo } from './helpers';
 
 const pages = createTestPages(3);
 
@@ -342,6 +342,125 @@ describe('Onboarding', () => {
     });
   });
 
+  // --- Per-page navigation conditions ---
+
+  describe('per-page navigation conditions', () => {
+    it('goNext does not scroll when canSwipeForward is false', () => {
+      const lockedPages = [
+        { ...pages[0], canSwipeForward: false },
+        pages[1],
+        pages[2],
+      ];
+      const { UNSAFE_getByType } = render(
+        <Onboarding pages={lockedPages} controlStatusBar={false} />
+      );
+      const onboardingInstance = UNSAFE_getByType(Onboarding).instance;
+      const scrollToIndex = jest.fn();
+      onboardingInstance.flatList = { scrollToIndex };
+
+      onboardingInstance.goNext();
+      expect(scrollToIndex).not.toHaveBeenCalled();
+    });
+
+    it('onNext callback is not fired when canSwipeForward is false', () => {
+      const onNext = jest.fn();
+      const lockedPages = [
+        { ...pages[0], canSwipeForward: false },
+        pages[1],
+        pages[2],
+      ];
+      const { UNSAFE_getByType } = render(
+        <Onboarding pages={lockedPages} onNext={onNext} controlStatusBar={false} />
+      );
+      const onboardingInstance = UNSAFE_getByType(Onboarding).instance;
+      onboardingInstance.flatList = { scrollToIndex: jest.fn() };
+
+      onboardingInstance.goNext();
+      expect(onNext).not.toHaveBeenCalled();
+    });
+
+    it('swipe-based page change is blocked when canSwipeForward is false', () => {
+      const pageIndexCallback = jest.fn();
+      const lockedPages = [
+        { ...pages[0], canSwipeForward: false },
+        pages[1],
+        pages[2],
+      ];
+      const { UNSAFE_getByType } = render(
+        <Onboarding pages={lockedPages} pageIndexCallback={pageIndexCallback} controlStatusBar={false} />
+      );
+      const flatList = UNSAFE_getByType(FlatList);
+
+      simulateSwipeTo(flatList, 1, lockedPages);
+      expect(pageIndexCallback).not.toHaveBeenCalled();
+    });
+
+    it('backward swipe is blocked when canSwipeBackward is false', () => {
+      const pageIndexCallback = jest.fn();
+      const lockedPages = [
+        pages[0],
+        { ...pages[1], canSwipeBackward: false },
+        pages[2],
+      ];
+      const { UNSAFE_getByType } = render(
+        <Onboarding pages={lockedPages} pageIndexCallback={pageIndexCallback} controlStatusBar={false} />
+      );
+      const flatList = UNSAFE_getByType(FlatList);
+
+      // First swipe to page 1
+      simulateSwipeTo(flatList, 1, lockedPages);
+      expect(pageIndexCallback).toHaveBeenCalledWith(1);
+      pageIndexCallback.mockClear();
+
+      // Now try to swipe backward to page 0 — should be blocked
+      simulateSwipeTo(flatList, 0, lockedPages);
+      expect(pageIndexCallback).not.toHaveBeenCalled();
+    });
+
+    it('defaults to allowing both directions when conditions are not set', () => {
+      const pageIndexCallback = jest.fn();
+      const { UNSAFE_getByType } = renderOnboarding({ pageIndexCallback });
+      const flatList = UNSAFE_getByType(FlatList);
+
+      // Forward swipe should work
+      simulateSwipeTo(flatList, 1, pages);
+      expect(pageIndexCallback).toHaveBeenCalledWith(1);
+      pageIndexCallback.mockClear();
+
+      // Backward swipe should work
+      simulateSwipeTo(flatList, 0, pages);
+      expect(pageIndexCallback).toHaveBeenCalledWith(0);
+    });
+
+    it('scrollEnabled is false when both directions are blocked', () => {
+      const lockedPages = [
+        { ...pages[0], canSwipeForward: false, canSwipeBackward: false },
+        pages[1],
+        pages[2],
+      ];
+      const { UNSAFE_getByType } = render(
+        <Onboarding pages={lockedPages} controlStatusBar={false} />
+      );
+      const flatList = UNSAFE_getByType(FlatList);
+
+      expect(flatList.props.scrollEnabled).toBe(false);
+    });
+
+    it('skip button does not fire when canSwipeForward is false', () => {
+      const onSkip = jest.fn();
+      const lockedPages = [
+        { ...pages[0], canSwipeForward: false },
+        pages[1],
+        pages[2],
+      ];
+      const { getByText } = render(
+        <Onboarding pages={lockedPages} onSkip={onSkip} controlStatusBar={false} />
+      );
+      fireEvent.press(getByText('Skip'));
+      expect(onSkip).not.toHaveBeenCalled();
+    });
+  });
+
   // --- Swipe simulation ---
 
   describe('swipe navigation', () => {
@@ -362,6 +481,109 @@ describe('Onboarding', () => {
       // Current page is 0, swiping to 0 should not trigger callback
       simulateSwipeTo(flatList, 0, pages);
       expect(pageIndexCallback).not.toHaveBeenCalled();
+    });
+  });
+
+  // --- Custom backgrounds ---
+
+  describe('custom backgrounds', () => {
+    it('renders without crashing using background instead of backgroundColor', () => {
+      const bgPages = createTestPagesWithBackground(3);
+      const { toJSON } = render(
+        <Onboarding pages={bgPages} controlStatusBar={false} />
+      );
+      expect(toJSON()).toBeTruthy();
+    });
+
+    it('custom background element appears in rendered output', () => {
+      const bgPages = createTestPagesWithBackground(2);
+      const { getByTestId } = render(
+        <Onboarding pages={bgPages} controlStatusBar={false} />
+      );
+      expect(getByTestId('gradient-0')).toBeTruthy();
+    });
+
+    it('isLight override controls theme (light text on isLight=false)', () => {
+      const bgPages = [
+        {
+          background: <View testID="bg" />,
+          isLight: false,
+          image: <View testID="image-0" />,
+          title: 'Dark Page',
+          subtitle: 'Subtitle',
+        },
+      ];
+      const { getByText } = render(
+        <Onboarding pages={bgPages} controlStatusBar={false} />
+      );
+      const titleEl = getByText('Dark Page');
+      const flatStyle = Array.isArray(titleEl.props.style)
+        ? Object.assign({}, ...titleEl.props.style.filter(Boolean))
+        : titleEl.props.style;
+      // isLight=false means white text
+      expect(flatStyle.color).toBe('#fff');
+    });
+
+    it('isLight=true override produces dark text', () => {
+      const bgPages = [
+        {
+          background: <View testID="bg" />,
+          isLight: true,
+          image: <View testID="image-0" />,
+          title: 'Light Page',
+          subtitle: 'Subtitle',
+        },
+      ];
+      const { getByText } = render(
+        <Onboarding pages={bgPages} controlStatusBar={false} />
+      );
+      const titleEl = getByText('Light Page');
+      const flatStyle = Array.isArray(titleEl.props.style)
+        ? Object.assign({}, ...titleEl.props.style.filter(Boolean))
+        : titleEl.props.style;
+      expect(flatStyle.color).toBe('#000');
+    });
+
+    it('mixed pages render correctly', () => {
+      const mixedPages = createMixedTestPages();
+      const { toJSON, getByText } = render(
+        <Onboarding pages={mixedPages} controlStatusBar={false} />
+      );
+      expect(toJSON()).toBeTruthy();
+      expect(getByText('Title 0')).toBeTruthy();
+    });
+
+    it('no crash when swiping between backgroundColor and background pages', () => {
+      const mixedPages = createMixedTestPages();
+      const { UNSAFE_getByType } = render(
+        <Onboarding pages={mixedPages} controlStatusBar={false} />
+      );
+      const flatList = UNSAFE_getByType(FlatList);
+
+      // Swipe from backgroundColor page to background page
+      expect(() => simulateSwipeTo(flatList, 1, mixedPages)).not.toThrow();
+      // Swipe to mixed page (both backgroundColor and background)
+      expect(() => simulateSwipeTo(flatList, 2, mixedPages)).not.toThrow();
+    });
+
+    it('defaults isLight to false when neither backgroundColor nor isLight provided', () => {
+      const bgPages = [
+        {
+          background: <View testID="bg" />,
+          image: <View testID="image-0" />,
+          title: 'No Light Info',
+          subtitle: 'Subtitle',
+        },
+      ];
+      const { getByText } = render(
+        <Onboarding pages={bgPages} controlStatusBar={false} />
+      );
+      const titleEl = getByText('No Light Info');
+      const flatStyle = Array.isArray(titleEl.props.style)
+        ? Object.assign({}, ...titleEl.props.style.filter(Boolean))
+        : titleEl.props.style;
+      // Default isLight=false means white text (dark background assumed)
+      expect(flatStyle.color).toBe('#fff');
     });
   });
 });

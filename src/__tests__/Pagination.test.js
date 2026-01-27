@@ -129,4 +129,48 @@ describe('Pagination', () => {
     // StatusBar.setBarStyle should NOT be called — the next screen
     // manages its own status bar (#100)
   });
+
+  // --- canSwipeForward ---
+
+  describe('canSwipeForward', () => {
+    it('Next button onPress is a no-op when canSwipeForward is false', () => {
+      const onNext = jest.fn();
+      const { getByText } = render(
+        <Pagination {...defaultProps} onNext={onNext} canSwipeForward={false} />
+      );
+      fireEvent.press(getByText('Next'));
+      expect(onNext).not.toHaveBeenCalled();
+    });
+
+    it('Done button onPress is a no-op when canSwipeForward is false', () => {
+      const onDone = jest.fn();
+      const { getByText } = render(
+        <Pagination {...defaultProps} currentPage={2} onDone={onDone} doneLabel="Done" canSwipeForward={false} />
+      );
+      fireEvent.press(getByText('Done'));
+      expect(onDone).not.toHaveBeenCalled();
+    });
+
+    it('Skip button onPress is a no-op when canSwipeForward is false', () => {
+      const onSkip = jest.fn();
+      const { getByText } = render(
+        <Pagination {...defaultProps} onSkip={onSkip} canSwipeForward={false} />
+      );
+      fireEvent.press(getByText('Skip'));
+      expect(onSkip).not.toHaveBeenCalled();
+    });
+
+    it('buttons are not disabled when canSwipeForward is undefined (default)', () => {
+      const onNext = jest.fn();
+      const onSkip = jest.fn();
+      const { getByText } = render(
+        <Pagination {...defaultProps} onNext={onNext} onSkip={onSkip} />
+      );
+      fireEvent.press(getByText('Next'));
+      expect(onNext).toHaveBeenCalledTimes(1);
+
+      fireEvent.press(getByText('Skip'));
+      expect(onSkip).toHaveBeenCalledTimes(1);
+    });
+  });
 });

@@ -34,6 +34,8 @@ class Onboarding extends Component {
       height: null,
       backgroundColorAnim: new Animated.Value(0),
     };
+
+    this._dragStartOffset = 0;
   }
 
   componentDidUpdate() {
@@ -48,6 +50,16 @@ class Onboarding extends Component {
     if (!viewableItems[0] || this.state.currentPage === viewableItems[0].index)
       return;
 
+    const targetIndex = viewableItems[0].index;
+    const currentPage = this.props.pages[this.state.currentPage];
+    const isRTLiOS = I18nManager.isRTL && Platform.OS === 'ios';
+    const isForward = isRTLiOS
+      ? targetIndex < this.state.currentPage
+      : targetIndex > this.state.currentPage;
+
+    if (isForward && currentPage.canSwipeForward === false) return;
+    if (!isForward && currentPage.canSwipeBackward === false) return;
+
     this.setState((state) => {
       this.props.pageIndexCallback &&
         this.props.pageIndexCallback(viewableItems[0].index);
@@ -60,6 +72,9 @@ class Onboarding extends Component {
   };
 
   goNext = () => {
+    const currentPage = this.props.pages[this.state.currentPage];
+    if (currentPage.canSwipeForward === false) return;
+
     this.props.onNext && this.props.onNext();
     this.flatList.scrollToIndex({
       animated: true,
@@ -83,6 +98,26 @@ class Onboarding extends Component {
   };
 
   keyExtractor = (item, index) => index.toString();
+
+  onScrollBeginDrag = (e) => {
+    this._dragStartOffset = e.nativeEvent.contentOffset.x;
+  };
+
+  onScroll = (e) => {
+    const currentX = e.nativeEvent.contentOffset.x;
+    const delta = currentX - this._dragStartOffset;
+    const currentPage = this.props.pages[this.state.currentPage];
+    const isRTLiOS = I18nManager.isRTL && Platform.OS === 'ios';
+
+    // In RTL on iOS, scrolling left (negative delta) means forward
+    const isForwardDrag = isRTLiOS ? delta < 0 : delta > 0;
+
+    if (isForwardDrag && currentPage.canSwipeForward === false) {
+      this.flatList.scrollToIndex({ index: this.state.currentPage, animated: false });
+    } else if (!isForwardDrag && delta !== 0 && currentPage.canSwipeBackward === false) {
+      this.flatList.scrollToIndex({ index: this.state.currentPage, animated: false });
+    }
+  };
 
   renderItem = ({ item }) => {
     const { image, title, subtitle, backgroundColor } = item;
@@ -149,6 +184,8 @@ class Onboarding extends Component {
     const resolvedNextLabel = currentPage.nextLabel != null ? currentPage.nextLabel : nextLabel;
     const resolvedSkipLabel = currentPage.skipLabel != null ? currentPage.skipLabel : skipLabel;
     const resolvedDoneLabel = currentPage.doneLabel != null ? currentPage.doneLabel : doneLabel;
+    const resolvedCanSwipeForward = currentPage.canSwipeForward !== false;
+    const resolvedCanSwipeBackward = currentPage.canSwipeBackward !== false;
     const isLight = tinycolor(currentBackgroundColor).getBrightness() > 180;
     const barStyle = isLight ? 'dark-content' : 'light-content';
     const bottomBarHighlight =
@@ -175,8 +212,9 @@ class Onboarding extends Component {
       );
     }
 
-    const skipFun =
-      skipToPage != null
+    const skipFun = !resolvedCanSwipeForward
+      ? null
+      : skipToPage != null
         ? () => {
             this.flatList.scrollToIndex({
               animated: true,
@@ -212,6 +250,10 @@ class Onboarding extends Component {
           extraData={
             this.state.width // ensure that the list re-renders on orientation change
           }
+          scrollEnabled={resolvedCanSwipeForward || resolvedCanSwipeBackward}
+          onScrollBeginDrag={this.onScrollBeginDrag}
+          onScroll={this.onScroll}
+          scrollEventThrottle={16}
           {...flatlistProps}
         />
         {showPagination && (
@@ -236,6 +278,7 @@ class Onboarding extends Component {
               DoneButtonComponent={DoneButtonComponent}
               NextButtonComponent={NextButtonComponent}
               DotComponent={DotComponent}
+              canSwipeForward={resolvedCanSwipeForward}
             />
           </SafeAreaView>
         )}
@@ -259,6 +302,8 @@ Onboarding.propTypes = {
       nextLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
       skipLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
       doneLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+      canSwipeForward: PropTypes.bool,
+      canSwipeBackward: PropTypes.bool,
     })
   ).isRequired,
   bottomBarHighlight: PropTypes.bool,

@@ -11,6 +11,8 @@ export interface PageData {
   nextLabel?: string | ReactElement;
   skipLabel?: string | ReactElement;
   doneLabel?: string | ReactElement;
+  canSwipeForward?: boolean;
+  canSwipeBackward?: boolean;
 }
 
 export interface DotProps {
@@ -23,6 +25,7 @@ export interface SkipButtonProps {
   isLight: boolean;
   allowFontScaling: boolean;
   onPress: () => void;
+  disabled?: boolean;
 }
 
 export interface NextButtonProps {
@@ -30,6 +33,7 @@ export interface NextButtonProps {
   isLight: boolean;
   allowFontScaling: boolean;
   onPress: () => void;
+  disabled?: boolean;
 }
 
 export interface DoneButtonProps {
@@ -37,6 +41,7 @@ export interface DoneButtonProps {
   allowFontScaling: boolean;
   onPress: () => void;
   doneLabel?: string | ReactElement;
+  disabled?: boolean;
 }
 
 export interface OnboardingProps {
