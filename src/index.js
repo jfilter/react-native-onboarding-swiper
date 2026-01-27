@@ -3,6 +3,7 @@ import {
   Dimensions,
   FlatList,
   I18nManager,
+  Platform,
   StatusBar,
   SafeAreaView,
   View,
