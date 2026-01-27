@@ -120,8 +120,13 @@ class Onboarding extends Component {
   };
 
   renderItem = ({ item }) => {
-    const { image, title, subtitle, backgroundColor } = item;
-    const isLight = tinycolor(backgroundColor).getBrightness() > 180;
+    const { image, title, subtitle, backgroundColor, background, isLight: pageLightOverride } = item;
+    const isLight =
+      pageLightOverride !== undefined
+        ? pageLightOverride
+        : backgroundColor
+          ? tinycolor(backgroundColor).getBrightness() > 180
+          : false;
     const {
       containerStyles,
       imageContainerStyles,
@@ -136,6 +141,7 @@ class Onboarding extends Component {
         image={image}
         title={title}
         subtitle={subtitle}
+        background={background}
         width={this.state.width || Dimensions.get('window').width}
         height={this.state.height || Dimensions.get('window').height}
         containerStyles={containerStyles}
@@ -180,13 +186,18 @@ class Onboarding extends Component {
       skipToPage,
     } = this.props;
     const currentPage = pages[this.state.currentPage];
-    const currentBackgroundColor = currentPage.backgroundColor;
+    const currentBackgroundColor = currentPage.backgroundColor || 'transparent';
     const resolvedNextLabel = currentPage.nextLabel != null ? currentPage.nextLabel : nextLabel;
     const resolvedSkipLabel = currentPage.skipLabel != null ? currentPage.skipLabel : skipLabel;
     const resolvedDoneLabel = currentPage.doneLabel != null ? currentPage.doneLabel : doneLabel;
     const resolvedCanSwipeForward = currentPage.canSwipeForward !== false;
     const resolvedCanSwipeBackward = currentPage.canSwipeBackward !== false;
-    const isLight = tinycolor(currentBackgroundColor).getBrightness() > 180;
+    const isLight =
+      currentPage.isLight !== undefined
+        ? currentPage.isLight
+        : currentPage.backgroundColor
+          ? tinycolor(currentPage.backgroundColor).getBrightness() > 180
+          : false;
     const barStyle = isLight ? 'dark-content' : 'light-content';
     const bottomBarHighlight =
       alterBottomColor !== undefined
@@ -198,12 +209,18 @@ class Onboarding extends Component {
       this.state.previousPage !== null &&
       pages[this.state.previousPage] !== undefined
     ) {
-      const previousBackgroundColor =
-        pages[this.state.previousPage].backgroundColor;
-      backgroundColor = this.state.backgroundColorAnim.interpolate({
-        inputRange: [0, 1],
-        outputRange: [previousBackgroundColor, currentBackgroundColor],
-      });
+      const previousPage = pages[this.state.previousPage];
+      const canInterpolate =
+        previousPage.backgroundColor &&
+        currentPage.backgroundColor &&
+        !previousPage.background &&
+        !currentPage.background;
+      if (canInterpolate) {
+        backgroundColor = this.state.backgroundColorAnim.interpolate({
+          inputRange: [0, 1],
+          outputRange: [previousPage.backgroundColor, currentPage.backgroundColor],
+        });
+      }
     }
 
     if (alterBottomColor !== undefined) {
@@ -290,7 +307,9 @@ class Onboarding extends Component {
 Onboarding.propTypes = {
   pages: PropTypes.arrayOf(
     PropTypes.shape({
-      backgroundColor: PropTypes.string.isRequired,
+      backgroundColor: PropTypes.string,
+      background: PropTypes.element,
+      isLight: PropTypes.bool,
       image: PropTypes.element.isRequired,
       title: PropTypes.oneOfType([
         PropTypes.string,

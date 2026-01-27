@@ -1,4 +1,4 @@
-import { Dimensions, Text, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -7,6 +7,7 @@ const Page = ({
   image,
   title,
   subtitle,
+  background = null,
   width,
   height,
   containerStyles = null,
@@ -39,6 +40,9 @@ const Page = ({
 
   return (
     <View style={[styles.container, containerStyles, { width, height }]}>
+      {background && (
+        <View style={StyleSheet.absoluteFill}>{background}</View>
+      )}
       <View style={[styles.imageContainer, imageContainerStyles]}>{image}</View>
       {titleElement}
       {subtitleElement}
@@ -49,6 +53,7 @@ const Page = ({
 Page.propTypes = {
   isLight: PropTypes.bool.isRequired,
   image: PropTypes.element.isRequired,
+  background: PropTypes.element,
   containerStyles: PropTypes.shape({
     style: PropTypes.any,
   }),

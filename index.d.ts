@@ -2,7 +2,9 @@ import { Component, ReactElement, ComponentType } from 'react';
 import { FlatListProps, StyleProp, ViewStyle, TextStyle } from 'react-native';
 
 export interface PageData {
-  backgroundColor: string;
+  backgroundColor?: string;
+  background?: ReactElement;
+  isLight?: boolean;
   image: ReactElement;
   title: string | ReactElement | (() => ReactElement);
   subtitle: string | ReactElement;

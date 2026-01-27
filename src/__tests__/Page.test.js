@@ -58,4 +58,32 @@ describe('Page', () => {
       : titleEl.props.style;
     expect(flatStyle.color).toBe('#000');
   });
+
+  it('renders background element when provided', () => {
+    const bg = <View testID="custom-bg" />;
+    const { getByTestId } = render(<Page {...defaultProps} background={bg} />);
+    expect(getByTestId('custom-bg')).toBeTruthy();
+  });
+
+  it('does not render background wrapper when background is absent', () => {
+    const { toJSON } = render(<Page {...defaultProps} />);
+    // The root View's first child should be the image container, not a background wrapper
+    const root = toJSON();
+    // First child should be the image container View (contains the image)
+    expect(root.children[0].props.testID).toBeUndefined();
+    // The image should be directly in the first child
+    expect(root.children[0].children[0].props.testID).toBe('test-image');
+  });
+
+  it('background appears before image in the tree', () => {
+    const bg = <View testID="bg-element" />;
+    const { toJSON } = render(<Page {...defaultProps} background={bg} />);
+    const root = toJSON();
+    // First child should be the absoluteFill wrapper containing the background
+    const bgWrapper = root.children[0];
+    expect(bgWrapper.children[0].props.testID).toBe('bg-element');
+    // Second child should be the image container
+    const imageContainer = root.children[1];
+    expect(imageContainer.children[0].props.testID).toBe('test-image');
+  });
 });
