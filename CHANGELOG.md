@@ -4,9 +4,35 @@
 * add per-page navigation conditions (`canSwipeForward`, `canSwipeBackward`) to control swiping and button navigation on individual pages (#98)
 * add per-page button label customization (`nextLabel`, `skipLabel`, `doneLabel`) (#145)
 * add `onNext` callback prop, fired when the Next button is pressed (#140)
+* add `currentPage` prop for external page control (#77)
 * add built-in TypeScript declarations (#159, #113)
+* implement `getItemLayout` on FlatList for improved scroll performance (#136)
 * fix StatusBar no longer forced to `'default'` on Skip/Done press (#100)
 * fix missing `Platform` import and button clipping on narrow screens
+
+## 1.3.0 (July 28, 2024)
+
+* replace `defaultProps` with default parameters across the project (#150)
+* dependency security updates
+
+## 1.2.0 (January 31, 2022)
+
+* remove deprecated `viewPropTypes` and `text.propTypes`
+* improve `goToPage` method and add `goSlide` method for imperative control
+* fix issue with font scaling prop names (#91)
+
+## 1.1.4 (July 23, 2020)
+
+* fix LTR for Android (continued)
+
+## 1.1.3 (July 21, 2020)
+
+* fix LTR for Android
+
+## 1.1.2 (July 08, 2020)
+
+* fix `goNext` in RTL to move to the correct index (#85)
+* fix issue in calculating last page in RTL
 
 ## 1.1.1 (April 15, 2020)
 
@@ -15,7 +41,12 @@
 
 ## 1.1.0 (May 01, 2019)
 
-* add more props for special cases
+* add `showPagination` prop (#52)
+* add `bottomBarColor` prop (#48)
+
+## 1.0.1 (February 03, 2019)
+
+* fix updating length of pages (#47)
 
 ## 1.0.0 (January 04, 2019)
 
@@ -34,9 +65,16 @@
 * add props for title's styles
 * fix font scaling for symbol buttons
 
+## 0.7.1 (August 14, 2018)
+
+* fix: don't reset to default status bar color when not in control of it
+
 ## 0.7.0 (July 27, 2018)
 
-* add some more props and re-work how the statusbar color gets reset to default
+* add `skipToPage` prop to skip to a specific page (#27)
+* add `transitionAnimationDuration` prop (#28)
+* fix `imageContainerStyles` propagation (#29)
+* set statusbar to default when `onSkip` or `onDone` is called (#24)
 
 ## 0.6.0 (April 08, 2018)
 
@@ -49,6 +87,14 @@
 * allow customization of image container styles
 * fix several propTypes warnings
 
+## 0.4.2 (March 06, 2018)
+
+* fix key error by adding `toString` to `keyExtractor` (#13)
+
+## 0.4.1 (February 23, 2018)
+
+* fix status bar color not updating after leaving on-boarding screens
+
 ## 0.4.0 (February 23, 2018)
 
 * Listen to orientation changes and adjust content appropiatly
@@ -56,9 +102,18 @@
 * Make buttons, dots etc. adjustable via a wide range of different props
 * Change next arrow to text button `next`.
 
+## 0.3.1 (November 30, 2017)
+
+* remove deprecated `View.propTypes` and update with `ViewPropTypes` from react-native
+* fix viewability config hotfix for React Native (#7)
+
 ## 0.3.0 (October 18, 2017)
 
 * Increase touchable Radius for Buttons
+
+## 0.2.1 (October 16, 2017)
+
+* add `.npmignore`
 
 ## 0.2.0 (October 16, 2017)
 
