@@ -8,6 +8,9 @@ export interface PageData {
   subtitle: string | ReactElement;
   titleStyles?: StyleProp<TextStyle>;
   subTitleStyles?: StyleProp<TextStyle>;
+  nextLabel?: string | ReactElement;
+  skipLabel?: string | ReactElement;
+  doneLabel?: string | ReactElement;
 }
 
 export interface DotProps {
@@ -33,6 +36,7 @@ export interface DoneButtonProps {
   isLight: boolean;
   allowFontScaling: boolean;
   onPress: () => void;
+  doneLabel?: string | ReactElement;
 }
 
 export interface OnboardingProps {
@@ -50,6 +54,7 @@ export interface OnboardingProps {
   onNext?: () => void;
   skipLabel?: string | ReactElement;
   nextLabel?: string | ReactElement;
+  doneLabel?: string | ReactElement;
   SkipButtonComponent?: ComponentType<SkipButtonProps>;
   DoneButtonComponent?: ComponentType<DoneButtonProps>;
   NextButtonComponent?: ComponentType<NextButtonProps>;

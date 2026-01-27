@@ -19,6 +19,7 @@ const Pagination = ({
   onDone,
   skipLabel,
   nextLabel,
+  doneLabel,
   allowFontScaling,
   SkipButtonComponent,
   NextButtonComponent,
@@ -58,6 +59,7 @@ const Pagination = ({
   const DoneButtonFinal = showDone && isLastPage && (
     <DoneButtonComponent
       isLight={isLight}
+      doneLabel={doneLabel}
       allowFontScaling={allowFontScaling}
       onPress={() => {
         if (typeof onDone === 'function') {
@@ -111,6 +113,7 @@ Pagination.propTypes = {
     .isRequired,
   nextLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
     .isRequired,
+  doneLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   SkipButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
     .isRequired,
   DoneButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func])

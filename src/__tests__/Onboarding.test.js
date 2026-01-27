@@ -276,6 +276,72 @@ describe('Onboarding', () => {
     });
   });
 
+  // --- Per-page labels ---
+
+  describe('per-page labels', () => {
+    it('per-page nextLabel overrides global nextLabel', () => {
+      const customPages = [
+        { ...pages[0], nextLabel: 'Continue' },
+        pages[1],
+        pages[2],
+      ];
+      const { getByText, queryByText } = render(
+        <Onboarding pages={customPages} controlStatusBar={false} />
+      );
+      expect(getByText('Continue')).toBeTruthy();
+      expect(queryByText('Next')).toBeNull();
+    });
+
+    it('falls back to global nextLabel when page omits it', () => {
+      const customPages = [pages[0], pages[1], pages[2]];
+      const { getByText } = render(
+        <Onboarding pages={customPages} nextLabel="Forward" controlStatusBar={false} />
+      );
+      expect(getByText('Forward')).toBeTruthy();
+    });
+
+    it('per-page skipLabel overrides global skipLabel', () => {
+      const customPages = [
+        { ...pages[0], skipLabel: 'Pass' },
+        pages[1],
+        pages[2],
+      ];
+      const { getByText, queryByText } = render(
+        <Onboarding pages={customPages} controlStatusBar={false} />
+      );
+      expect(getByText('Pass')).toBeTruthy();
+      expect(queryByText('Skip')).toBeNull();
+    });
+
+    it('per-page doneLabel on last page renders text instead of checkmark', () => {
+      const singlePage = [{ ...pages[0], doneLabel: 'Get Started' }];
+      const { getByText, queryByText } = render(
+        <Onboarding pages={singlePage} controlStatusBar={false} />
+      );
+      expect(getByText('Get Started')).toBeTruthy();
+      expect(queryByText('✓')).toBeNull();
+    });
+
+    it('label updates correctly after swiping', () => {
+      const customPages = [
+        { ...pages[0], nextLabel: 'Continue' },
+        { ...pages[1], nextLabel: 'Almost Done' },
+        pages[2],
+      ];
+      const { getByText, queryByText, UNSAFE_getByType } = render(
+        <Onboarding pages={customPages} controlStatusBar={false} />
+      );
+      // First page shows per-page label
+      expect(getByText('Continue')).toBeTruthy();
+
+      // Swipe to second page
+      const flatList = UNSAFE_getByType(FlatList);
+      simulateSwipeTo(flatList, 1, customPages);
+      expect(getByText('Almost Done')).toBeTruthy();
+      expect(queryByText('Continue')).toBeNull();
+    });
+  });
+
   // --- Swipe simulation ---
 
   describe('swipe navigation', () => {

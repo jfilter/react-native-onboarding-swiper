@@ -38,6 +38,21 @@ describe('DoneButton', () => {
     expect(onPress).toHaveBeenCalledTimes(1);
   });
 
+  it('renders doneLabel text instead of checkmark when doneLabel is provided', () => {
+    const { getByText, queryByText } = render(
+      <DoneButton isLight={false} doneLabel="Get Started" onPress={() => {}} />
+    );
+    expect(getByText('Get Started')).toBeTruthy();
+    expect(queryByText('✓')).toBeNull();
+  });
+
+  it('renders checkmark when doneLabel is null', () => {
+    const { getByText } = render(
+      <DoneButton isLight={false} doneLabel={null} onPress={() => {}} />
+    );
+    expect(getByText('✓')).toBeTruthy();
+  });
+
   it('triggers animation after delay', () => {
     const mockStart = jest.fn();
     const timingSpy = jest.spyOn(Animated, 'timing').mockReturnValue({

@@ -106,6 +106,21 @@ describe('Pagination', () => {
     expect(onDone).toHaveBeenCalledTimes(1);
   });
 
+  it('passes doneLabel to DoneButtonComponent', () => {
+    const { getByText, queryByText } = render(
+      <Pagination {...defaultProps} currentPage={2} doneLabel="Finish" />
+    );
+    expect(getByText('Finish')).toBeTruthy();
+    expect(queryByText('✓')).toBeNull();
+  });
+
+  it('renders checkmark when doneLabel is not provided', () => {
+    const { getByText } = render(
+      <Pagination {...defaultProps} currentPage={2} />
+    );
+    expect(getByText('✓')).toBeTruthy();
+  });
+
   it('sets StatusBar to default on Skip when controlStatusBar is true', () => {
     const setBarStyleSpy = jest.spyOn(StatusBar, 'setBarStyle');
     const onSkip = jest.fn();

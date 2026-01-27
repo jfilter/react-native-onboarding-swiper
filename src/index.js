@@ -135,6 +135,7 @@ class Onboarding extends Component {
       onDone,
       skipLabel,
       nextLabel,
+      doneLabel,
       allowFontScalingButtons,
       SkipButtonComponent,
       DoneButtonComponent,
@@ -145,6 +146,9 @@ class Onboarding extends Component {
     } = this.props;
     const currentPage = pages[this.state.currentPage];
     const currentBackgroundColor = currentPage.backgroundColor;
+    const resolvedNextLabel = currentPage.nextLabel != null ? currentPage.nextLabel : nextLabel;
+    const resolvedSkipLabel = currentPage.skipLabel != null ? currentPage.skipLabel : skipLabel;
+    const resolvedDoneLabel = currentPage.doneLabel != null ? currentPage.doneLabel : doneLabel;
     const isLight = tinycolor(currentBackgroundColor).getBrightness() > 180;
     const barStyle = isLight ? 'dark-content' : 'light-content';
     const bottomBarHighlight =
@@ -225,8 +229,9 @@ class Onboarding extends Component {
               onSkip={skipFun}
               onDone={onDone}
               onNext={this.goNext}
-              skipLabel={skipLabel}
-              nextLabel={nextLabel}
+              skipLabel={resolvedSkipLabel}
+              nextLabel={resolvedNextLabel}
+              doneLabel={resolvedDoneLabel}
               allowFontScaling={allowFontScalingButtons}
               SkipButtonComponent={SkipButtonComponent}
               DoneButtonComponent={DoneButtonComponent}
@@ -252,6 +257,9 @@ Onboarding.propTypes = {
       ]).isRequired,
       subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
         .isRequired,
+      nextLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+      skipLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+      doneLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
     })
   ).isRequired,
   bottomBarHighlight: PropTypes.bool,
@@ -267,6 +275,7 @@ Onboarding.propTypes = {
   onNext: PropTypes.func,
   skipLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   nextLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  doneLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   SkipButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   DoneButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   NextButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
@@ -301,6 +310,7 @@ Onboarding.defaultProps = {
   showDone: true,
   skipLabel: 'Skip',
   nextLabel: 'Next',
+  doneLabel: null,
   onSkip: null,
   onDone: null,
   onNext: null,
