@@ -54,3 +54,9 @@ fastlane/screenshots
 
 # Test
 coverage/
+
+# Expo
+expo-example/.expo/
+
+# Playwright
+.playwright-mcp/

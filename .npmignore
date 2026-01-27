@@ -1,2 +1,10 @@
 demo
+example
 examples
+expo-example
+src/__tests__
+coverage
+jest.config.js
+jest.setup.js
+babel.config.js
+.github

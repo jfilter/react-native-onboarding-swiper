@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "onboarding-example",
+    "slug": "onboarding-example",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    }
+  }
+}
