@@ -33,7 +33,6 @@
   },
   "homepage": "https://github.com/jfilter/react-native-onboarding-swiper#readme",
   "dependencies": {
-    "react-native-onboarding-swiper": "file:../../../../../tmp/react-native-onboarding-swiper-1.3.0.tgz",
     "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
