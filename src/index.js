@@ -60,6 +60,7 @@ class Onboarding extends Component {
   };
 
   goNext = () => {
+    this.props.onNext && this.props.onNext();
     this.flatList.scrollToIndex({
       animated: true,
       index:
@@ -263,6 +264,7 @@ Onboarding.propTypes = {
   showPagination: PropTypes.bool,
   onSkip: PropTypes.func,
   onDone: PropTypes.func,
+  onNext: PropTypes.func,
   skipLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   nextLabel: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   SkipButtonComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
@@ -301,6 +303,7 @@ Onboarding.defaultProps = {
   nextLabel: 'Next',
   onSkip: null,
   onDone: null,
+  onNext: null,
   SkipButtonComponent: SkipButton,
   DoneButtonComponent: DoneButton,
   NextButtonComponent: NextButton,

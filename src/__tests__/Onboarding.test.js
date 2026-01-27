@@ -108,6 +108,13 @@ describe('Onboarding', () => {
       expect(onSkip).toHaveBeenCalledTimes(1);
     });
 
+    it('fires onNext when Next button is pressed', () => {
+      const onNext = jest.fn();
+      const { getByText } = renderOnboarding({ onNext });
+      fireEvent.press(getByText('Next'));
+      expect(onNext).toHaveBeenCalledTimes(1);
+    });
+
     it('fires pageIndexCallback on page change', () => {
       const pageIndexCallback = jest.fn();
       const { UNSAFE_getByType } = renderOnboarding({ pageIndexCallback });

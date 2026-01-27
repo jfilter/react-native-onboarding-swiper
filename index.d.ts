@@ -47,6 +47,7 @@ export interface OnboardingProps {
   showPagination?: boolean;
   onSkip?: () => void;
   onDone?: () => void;
+  onNext?: () => void;
   skipLabel?: string | ReactElement;
   nextLabel?: string | ReactElement;
   SkipButtonComponent?: ComponentType<SkipButtonProps>;

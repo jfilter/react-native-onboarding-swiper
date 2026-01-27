@@ -61,6 +61,7 @@ Check out the three examples files: the [simple example](examples/Simple.js), th
 * `showSkip` (optional): a bool flag indicating whether the Skip button is visible. Defaults to `true`.
 * `onSkip` (optional): a callback that is fired if the Onboarding is skipped.
 * `skipToPage` (optional): when pressing skip, go to that page (e.g. `skipToPage={2}`). If this prop is provided, ignores `onSkip`.
+* `onNext` (optional): a callback that is fired when the Next button is pressed.
 * `onDone` (optional): a callback that is fired after the Onboarding is completed.
 * `showDone` (optional): a bool flag indicating whether the Done checkmark button is visible. Defaults to `true`.
 
