@@ -1,3 +1,13 @@
+## 1.4.0
+
+* add per-page custom `background` element and `isLight` override for gradient/custom backgrounds (#78)
+* add per-page navigation conditions (`canSwipeForward`, `canSwipeBackward`) to control swiping and button navigation on individual pages (#98)
+* add per-page button label customization (`nextLabel`, `skipLabel`, `doneLabel`) (#145)
+* add `onNext` callback prop, fired when the Next button is pressed (#140)
+* add built-in TypeScript declarations (#159, #113)
+* fix StatusBar no longer forced to `'default'` on Skip/Done press (#100)
+* fix missing `Platform` import and button clipping on narrow screens
+
 ## 1.1.1 (April 15, 2020)
 
 * fix RTL

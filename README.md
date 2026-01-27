@@ -11,6 +11,10 @@ Your new users shouldn't jump in at the deep end. First give them a pleasurable,
 
 Getting everything running merely takes a minute. Try out the example [running in your browser](https://snack.expo.io/dlQTGD06P). Or check out this [tutorial on YouTube](https://www.youtube.com/watch?v=SMkR-iIGvwQ).
 
+## TypeScript
+
+This library ships with built-in TypeScript declarations. No additional `@types` package is needed.
+
 ## Install
 
 ```bash
@@ -39,6 +43,39 @@ import Onboarding from 'react-native-onboarding-swiper';
 />
 ```
 
+## Custom Backgrounds
+
+You can use any React element as a page background (e.g. a linear gradient) via the `background` prop. Pair it with `isLight` to control text/dot colors since the library can't auto-detect brightness from a gradient.
+
+```js
+import LinearGradient from 'react-native-linear-gradient';
+
+<Onboarding
+  pages={[
+    {
+      background: (
+        <LinearGradient
+          colors={['#003c8f', '#5a9bf6']}
+          style={{ flex: 1 }}
+        />
+      ),
+      isLight: false,
+      image: <Image source={require('./images/circle.png')} />,
+      title: 'Gradient Page',
+      subtitle: 'Using a custom background element',
+    },
+    {
+      backgroundColor: '#e9bcbe',
+      image: <Image source={require('./images/square.png')} />,
+      title: 'Solid Color Page',
+      subtitle: 'Still works the same as before',
+    },
+  ]}
+/>
+```
+
+You can also combine both `backgroundColor` and `background` on the same page — the solid color provides smooth animated transitions while the gradient covers it visually.
+
 ## Examples
 
 Check out the three examples files: the [simple example](examples/Simple.js), the [example with a Call-to-Action button](examples/WithCTA.js) or the [example with custom button components](examples/CustomButtons.js).
@@ -46,7 +83,9 @@ Check out the three examples files: the [simple example](examples/Simple.js), th
 ## Required Properties
 
 * `pages` (required): an array of pages in the following shape:
-  * `backgroundColor` (required): a background color. The color of the font and dots adapts to the background color.
+  * `backgroundColor` (optional): a background color. The color of the font and dots adapts to the background color. Either `backgroundColor` or `background` should be provided.
+  * `background` (optional): a React element rendered behind the page content (e.g. a `<LinearGradient />`). Use this for gradient or custom backgrounds without the library depending on any specific package. Can be combined with `backgroundColor` — the solid color provides smooth animated transitions between pages while the background element handles visuals.
+  * `isLight` (optional): a bool to override automatic theme detection. When `true`, text and dots use dark colors; when `false`, they use light colors. Useful when using `background` since the library can't automatically detect brightness from a gradient. Defaults to `false` when neither `backgroundColor` nor `isLight` is provided.
   * `image` (required): a component (e.g. `<Image />`) to display at the top of the page.
   * `title` (required): a string **OR** a React-Native component.
   * `subtitle` (required): a string **OR** a React-Native component.
@@ -86,6 +125,40 @@ For the pages in the `pages` array, you can set the default styles (and override
 * `imageContainerStyles` (optional): override the default image container styles e.g. the `paddingBottom` of 60.
 * `titleStyles` (optional): override the default title styles.
 * `subTitleStyles` (optional): override the default subtitle styles.
+
+### Per-Page Navigation Conditions
+
+For each page in the `pages` array, you can control whether the user is allowed to swipe or navigate forward/backward:
+
+* `canSwipeForward` (optional): a bool. When `false`, forward swiping is blocked and the Next, Done, and Skip buttons are disabled. Defaults to `true`.
+* `canSwipeBackward` (optional): a bool. When `false`, backward swiping is blocked. Defaults to `true`.
+
+This is useful for requiring the user to complete an action (e.g. fill a form, accept terms) before proceeding. Update the pages array with new state to dynamically enable navigation:
+
+```js
+<Onboarding
+  pages={[
+    {
+      backgroundColor: '#fff',
+      image: <Image source={require('./images/form.png')} />,
+      title: 'Fill the form',
+      subtitle: 'Complete all fields to continue',
+      canSwipeForward: formIsValid,
+    },
+    ...
+  ]}
+/>
+```
+
+Note: the imperative `goToPage()` method is not affected by these conditions and can always navigate to any page.
+
+### Per-Page Button Labels
+
+Each page can override the global button labels:
+
+* `nextLabel` (optional): a string **OR** a React-Native component. Overrides the global `nextLabel` for this page.
+* `skipLabel` (optional): a string **OR** a React-Native component. Overrides the global `skipLabel` for this page.
+* `doneLabel` (optional): a string **OR** a React-Native component. Overrides the global `doneLabel` for this page (applies on the last page).
 
 ### Adjust Individual Page Styles
 
