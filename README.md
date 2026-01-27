@@ -115,6 +115,7 @@ Check out the three examples files: the [simple example](examples/Simple.js), th
 * `transitionAnimationDuration` (optional): The duration in milliseconds for the animation of the background color for the page transition. Defaults to `500`.
 * `allowFontScalingText` (optional): Font scaling can cause troubles with high-resolution screens. You may want to disable it. Defaults to `true`.
 * `allowFontScalingButtons` (optional): Font scaling can cause troubles with high-resolution screens. You may want to disable it. Defaults to `true`.
+* `currentPage` (optional): a number to control the currently visible page from the parent. When this prop changes, the component scrolls to the given page. Useful for resetting to the first page when the user navigates back to the screen (see example below). Defaults to `null` (uncontrolled).
 * `pageIndexCallback` (optional): a function that receives the page `index` as a parameter on page change. [Example Usage](https://github.com/jfilter/react-native-onboarding-swiper/pull/40)
 
 ### Default Page Styles
@@ -197,6 +198,33 @@ Methods:
 
 * `goNext()` : Go to the next page.
 * `goToPage(pageIndex, animated)` : Go to the selected page.
+
+## Resetting the page on navigation
+
+If you use a navigator (e.g. React Navigation) and want the onboarding to reset to the first page when the user comes back, use the `currentPage` prop:
+
+```js
+import { useCallback, useState } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+
+const OnboardingScreen = () => {
+  const [page, setPage] = useState(0);
+
+  useFocusEffect(
+    useCallback(() => {
+      setPage(0);
+    }, [])
+  );
+
+  return (
+    <Onboarding
+      currentPage={page}
+      pageIndexCallback={setPage}
+      pages={[...]}
+    />
+  );
+};
+```
 
 ## Contributing
 

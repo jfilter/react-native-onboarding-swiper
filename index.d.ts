@@ -73,6 +73,7 @@ export interface OnboardingProps {
   titleStyles?: StyleProp<TextStyle>;
   subTitleStyles?: StyleProp<TextStyle>;
   transitionAnimationDuration?: number;
+  currentPage?: number;
   skipToPage?: number;
   pageIndexCallback?: (index: number) => void;
   flatlistProps?: Partial<FlatListProps<PageData>>;

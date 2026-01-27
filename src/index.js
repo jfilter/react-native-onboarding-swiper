@@ -28,7 +28,7 @@ class Onboarding extends Component {
     super(props);
 
     this.state = {
-      currentPage: 0,
+      currentPage: props.currentPage != null ? props.currentPage : 0,
       previousPage: null,
       width: null,
       height: null,
@@ -38,7 +38,19 @@ class Onboarding extends Component {
     this._dragStartOffset = 0;
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    if (
+      typeof this.props.currentPage === 'number' &&
+      this.props.currentPage !== prevProps.currentPage
+    ) {
+      this.goToPage(this.props.currentPage, false);
+      this.setState({
+        previousPage: this.state.currentPage,
+        currentPage: this.props.currentPage,
+        backgroundColorAnim: new Animated.Value(0),
+      });
+    }
+
     Animated.timing(this.state.backgroundColorAnim, {
       toValue: 1,
       duration: this.props.transitionAnimationDuration,
@@ -358,6 +370,7 @@ Onboarding.propTypes = {
     style: PropTypes.any,
   }),
   transitionAnimationDuration: PropTypes.number,
+  currentPage: PropTypes.number,
   skipToPage: PropTypes.number,
   pageIndexCallback: PropTypes.func,
 };
@@ -388,6 +401,7 @@ Onboarding.defaultProps = {
   titleStyles: null,
   subTitleStyles: null,
   transitionAnimationDuration: 500,
+  currentPage: null,
   skipToPage: null,
   pageIndexCallback: null,
 };
