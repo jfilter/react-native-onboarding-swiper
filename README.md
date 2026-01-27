@@ -11,10 +11,6 @@ Your new users shouldn't jump in at the deep end. First give them a pleasurable,
 
 Getting everything running merely takes a minute. Try out the example [running in your browser](https://snack.expo.io/dlQTGD06P). Or check out this [tutorial on YouTube](https://www.youtube.com/watch?v=SMkR-iIGvwQ).
 
-## TypeScript
-
-This library ships with built-in TypeScript declarations. No additional `@types` package is needed.
-
 ## Install
 
 ```bash
@@ -42,39 +38,6 @@ import Onboarding from 'react-native-onboarding-swiper';
   ]}
 />
 ```
-
-## Custom Backgrounds
-
-You can use any React element as a page background (e.g. a linear gradient) via the `background` prop. Pair it with `isLight` to control text/dot colors since the library can't auto-detect brightness from a gradient.
-
-```js
-import LinearGradient from 'react-native-linear-gradient';
-
-<Onboarding
-  pages={[
-    {
-      background: (
-        <LinearGradient
-          colors={['#003c8f', '#5a9bf6']}
-          style={{ flex: 1 }}
-        />
-      ),
-      isLight: false,
-      image: <Image source={require('./images/circle.png')} />,
-      title: 'Gradient Page',
-      subtitle: 'Using a custom background element',
-    },
-    {
-      backgroundColor: '#e9bcbe',
-      image: <Image source={require('./images/square.png')} />,
-      title: 'Solid Color Page',
-      subtitle: 'Still works the same as before',
-    },
-  ]}
-/>
-```
-
-You can also combine both `backgroundColor` and `background` on the same page — the solid color provides smooth animated transitions while the gradient covers it visually.
 
 ## Examples
 
@@ -168,16 +131,49 @@ For each page in the `pages` array, you can override the default page styles. [A
 * `titleStyles` (optional): modify styles of a specific page's title.
 * `subTitleStyles` (optional): modify styles of a specific page's subtitle.
 
-## Custom Components Properties
+### Custom Components
 
-You can also provide your own custom components for the buttons and the dots. All of them have access to a `isLight` prop but it's up to you what you do with it. Also checkout [this example](examples/CustomButtons.js).
+You can provide your own custom components for the buttons and the dots. All of them have access to a `isLight` prop but it's up to you what you do with it. Also checkout [this example](examples/CustomButtons.js).
 
 * `SkipButtonComponent` (optional): Skip Button, gets `skipLabel` as prop.
 * `NextButtonComponent` (optional): Next Button, gets `nextLabel` as prop.
 * `DoneButtonComponent` (optional): Done Button.
 * `DotComponent` (optional): Dot for the pagination, gets `selected` as prop to indicate the active page.
 
-## Controlling the pages imperatively 
+### Custom Backgrounds
+
+You can use any React element as a page background (e.g. a linear gradient) via the `background` prop. Pair it with `isLight` to control text/dot colors since the library can't auto-detect brightness from a gradient.
+
+```js
+import LinearGradient from 'react-native-linear-gradient';
+
+<Onboarding
+  pages={[
+    {
+      background: (
+        <LinearGradient
+          colors={['#003c8f', '#5a9bf6']}
+          style={{ flex: 1 }}
+        />
+      ),
+      isLight: false,
+      image: <Image source={require('./images/circle.png')} />,
+      title: 'Gradient Page',
+      subtitle: 'Using a custom background element',
+    },
+    {
+      backgroundColor: '#e9bcbe',
+      image: <Image source={require('./images/square.png')} />,
+      title: 'Solid Color Page',
+      subtitle: 'Still works the same as before',
+    },
+  ]}
+/>
+```
+
+You can also combine both `backgroundColor` and `background` on the same page — the solid color provides smooth animated transitions while the gradient covers it visually.
+
+## Controlling the pages imperatively
 
 You can control the Onboarding component imperatively with [useRef](https://reactjs.org/docs/hooks-reference.html#useref).
 
@@ -226,16 +222,30 @@ const OnboardingScreen = () => {
 };
 ```
 
+## TypeScript
+
+Built-in TypeScript declarations are included. No additional `@types` package is needed.
+
 ## Contributing
 
 If you have a **question**, found a **bug** or want to propose a new **feature**, have a look at the [issues page](https://github.com/jfilter/react-native-onboarding-swiper/issues).
 
 **Pull requests** are especially welcomed when they fix bugs or improve the code quality.
 
+### Releasing a new version
+
+1. Update the version in `package.json`.
+2. Add an entry to `CHANGELOG.md` with the new version number and a summary of changes.
+3. Commit: `git commit -am "vX.Y.Z"`.
+4. Tag: `git tag vX.Y.Z`.
+5. Push: `git push && git push --tags`.
+6. Publish: `npm publish`.
+
 ## Related Work
 
 * https://github.com/jacse/react-native-app-intro-slider
 * https://github.com/gorhom/react-native-paper-onboarding
+* https://github.com/RichardRNStudio/react-native-slider-intro
 
 ## Acknowledgements
 
