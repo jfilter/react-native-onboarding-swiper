@@ -1,6 +1,5 @@
 import {
   Animated,
-  Dimensions,
   FlatList,
   I18nManager,
   Platform,
@@ -104,8 +103,8 @@ class Onboarding extends Component {
     });
   };
 
-  _onLayout = () => {
-    const { width, height } = Dimensions.get('window');
+  _onLayout = (event) => {
+    const { width, height } = event.nativeEvent.layout;
     this.setState({ width, height });
   };
 
@@ -154,8 +153,8 @@ class Onboarding extends Component {
         title={title}
         subtitle={subtitle}
         background={background}
-        width={this.state.width || Dimensions.get('window').width}
-        height={this.state.height || Dimensions.get('window').height}
+        width={this.state.width}
+        height={this.state.height}
         containerStyles={containerStyles}
         imageContainerStyles={imageContainerStyles}
         allowFontScaling={allowFontScalingText}
@@ -252,14 +251,13 @@ class Onboarding extends Component {
           }
         : onSkip;
 
-    const windowWidth = Dimensions.get('window').width;
-
     return (
       <Animated.View
         onLayout={this._onLayout}
         style={{ flex: 1, backgroundColor, justifyContent: 'center' }}
       >
         {controlStatusBar && <StatusBar barStyle={barStyle} />}
+        {this.state.width !== null && this.state.height !== null && (
         <FlatList
           ref={(list) => {
             this.flatList = list;
@@ -274,7 +272,7 @@ class Onboarding extends Component {
           viewabilityConfig={itemVisibleHotfix}
           initialNumToRender={1}
           getItemLayout={(_data, index) => (
-            {length: windowWidth, offset: windowWidth * index, index}
+            {length: this.state.width, offset: this.state.width * index, index}
           )}
           extraData={
             this.state.width // ensure that the list re-renders on orientation change
@@ -285,6 +283,7 @@ class Onboarding extends Component {
           scrollEventThrottle={16}
           {...flatlistProps}
         />
+        )}
         {showPagination && (
           <SafeAreaView style={bottomBarHighlight ? styles.overlay : {}}>
             <Pagination
